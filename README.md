@@ -1,2 +1,3 @@
 # meta-ekosystem
-Public meta-repo for Kalisio tools, configurations, and conventions
+
+> Kalisio's meta-repo for sharing tools, configurations, and conventions

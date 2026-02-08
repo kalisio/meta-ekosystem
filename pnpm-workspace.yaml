@@ -1,0 +1,6 @@
+packages:
+  - packages/*
+pnpm:
+  catalog:
+    vite: "^5.0.0"
+    vitepress: "^1.0.0"

@@ -1,0 +1,32 @@
+{
+  "name": "meta-ekosystem",
+  "packageManager": "pnpm@10.1.0",
+  "type": "module",
+  "scripts": {
+    "create-docs": "plop vitepress"
+  },
+  "keywords": [
+    "kalisio",
+    "meta-repor",
+    "geokit",
+    "ekosystem",
+    "kalisio"
+  ],
+  "author": {
+    "name": "KALISIO <contact@kalisio.com>",
+    "url": "https://github.com/kalisio"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kalisio/meta-ekosystem.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kalisio/meta-ekosystem/issues"
+  },
+  "homepage": "git://github.com/kalisio/meta-ekosystem#readme",
+  "devDependencies": {
+    "plop": "^4.0.5"
+  }
+}
