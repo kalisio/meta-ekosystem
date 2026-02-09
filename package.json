@@ -1,9 +1,14 @@
 {
-  "name": "meta-ekosystem",
+  "name": "@kalisio/meta-ekosystem",
   "packageManager": "pnpm@10.1.0",
   "type": "module",
+  "files": [
+    "catalog.json",
+    "templates/",
+    "scripts/"
+  ],
   "scripts": {
-    "create-docs": "plop vitepress"
+    "init-docs": "plop vitepress"
   },
   "keywords": [
     "kalisio",
