@@ -1,8 +1,10 @@
+import fs from 'fs'
+import path from 'path'
 import { defineConfig } from 'vitepress'
-//import { withMermaid } from 'vitepress-plugin-mermaid'
+import { withMermaid } from 'vitepress-plugin-mermaid'
 
-//export default withMermaid(
-export default defineConfig({
+export default withMermaid(
+  defineConfig({
     base: '/{{ name }}/',
     title: '{{ name }}',
     description: '{{ description }}',
@@ -15,13 +17,13 @@ export default defineConfig({
       logo: 'https://kalisio.github.io/kalisioscope/kalisio/kalisio-icon-2048x2048.png',
       socialLinks: [{ icon: 'github', link: 'https://github.com/kalisio/{{ name }}' }],
       nav: [
-        { text: 'About', link: '/about/introduction' },
-        {{#if internalPackages.length}}
+        { text: 'About', link: '/about/introduction' }
+        {{#if internalPackages.length}},
         {
           text: 'Packages',
           items: [
             {{#each internalPackages}}
-            { text: '{{this}}', link: '/packages/{{this}}/' }{{#unless @last}},{{/unless}}
+            { text: '{{ this }}', link: '/packages/{{ this }}/' }{{#unless @last}},{{/unless}}
             {{/each}}
           ]
         }
@@ -34,6 +36,11 @@ export default defineConfig({
           { text: 'License', link: '/about/license' },
           { text: 'Contact', link: '/about/contact' }
         ]
+        {{#if internalPackages.length}},
+        {{#each internalPackages}}
+        '/{{ this }}/': getSideBar('{{ this }}'){{#unless @last}},{{/unless}}
+        {{/each}}
+        {{/if}}
       },
       footer: {
         copyright: 'MIT Licensed | Copyright © 2026 Kalisio'
@@ -41,11 +48,16 @@ export default defineConfig({
     },
     vite: {
       optimizeDeps: {
-        include: ['keycloak-js', 'lodash'],
+        include: ['keycloak-js', 'lodash', 'dayjs', 'mermaid', 'cytoscape', 'cytoscape-cose-bilkent'],
       },
       ssr: {
-        noExternal: ['vitepress-theme-kalisio']
+        noExternal: ['vitepress-theme-kalisio', 'dayjs', 'mermaid', 'cytoscape', 'cytoscape-cose-bilkent']
       }
     }
   })
-//)
+)
+
+
+function getSideBar (pkg) {
+  // TODO
+}
