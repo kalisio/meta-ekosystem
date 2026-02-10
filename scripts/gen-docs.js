@@ -11,11 +11,8 @@ const rootDir = path.resolve(process.cwd())
 let template
 try {
   const templateUrl = import.meta.resolve('@kalisio/meta-ekosystem/templates/jsdoc2md/jsdoc2md.hbs')
-  console.log('templateUrl', templateUrl)
   const templatePath = fileURLToPath(templateUrl)
-  console.log('templatePath', templatePath)
   template = fs.readFileSync(templatePath, 'utf8')
-  console.log('template', template)
 } catch (error) {
   throw new Error('❌ Failed to resolve template file from @kalisio/meta-ekosystem',  { cause: error })
 }
