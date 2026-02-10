@@ -1,6 +1,6 @@
 {
   "name": "@kalisio/meta-ekosystem",
-  "packageManager": "pnpm@10.1.0",
+  "packageManager": "pnpm@10.28.0",
   "type": "module",
   "files": [
     "catalog.json",
@@ -12,10 +12,8 @@
   },
   "keywords": [
     "kalisio",
-    "meta-repor",
-    "geokit",
-    "ekosystem",
-    "kalisio"
+    "meta-repo",
+    "ekosystem"
   ],
   "author": {
     "name": "KALISIO <contact@kalisio.com>",
