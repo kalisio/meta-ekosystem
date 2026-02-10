@@ -3,6 +3,8 @@ import fs from 'fs'
 import path from 'path'
 import { parse, stringify } from 'yaml'
 
+const rootDir = path.resolve(process.cwd())
+
 // Read the meta catalog file
 let metaCatalog
 try {
@@ -14,7 +16,7 @@ try {
 
 // Read the local catalog file
 let localCatalog = {}
-const localCatalogPath = path.resolve(process.cwd(), 'catalog.json')
+const localCatalogPath = path.join(rootDir, 'catalog.json')
 if (fs.existsSync(localCatalogPath)) {
   try {
     localCatalog = JSON.parse(fs.readFileSync(localCatalogPath))
@@ -33,7 +35,7 @@ const sortedCatalog = Object.keys(mergedCatalog)
   }, {})
 
 // Read the pnpm-workspace.yaml file
-const workspacePath = path.resolve(process.cwd(), 'pnpm-workspace.yaml')
+const workspacePath = path.join(rootDir, 'pnpm-workspace.yaml')
 if (!fs.existsSync(workspacePath)) {
   throw new Error('❌ pnpm-workspace.yaml not found in this repo')
 }
