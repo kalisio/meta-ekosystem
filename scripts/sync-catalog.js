@@ -15,11 +15,14 @@ try {
   throw new Error('❌ Failed to load the meta catalog from @kalisio/meta-ekosystem')
 }
 // Read the local catalog file
-let localCatalog
-try {
-  localCatalog = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), 'catalog.json')))
-} catch (err) {
-  throw new Error('❌ Failed to load the local catalog')
+let localCatalog = {}
+const localCatalogPath = path.resolve(process.cwd(), 'catalog.json')
+if (fs.existsSync(localCatalogPath)) {
+  try {
+    localCatalog = JSON.parse(fs.readFileSync(localCatalogPath))
+  } catch (err) {
+    throw new Error('❌ Failed to load the local catalog')
+  }
 }
 // Read the pnpm-workspace.yaml file
 const pkgPath = path.resolve(process.cwd(), 'package.json')
@@ -37,5 +40,5 @@ if (dryRun) {
 } else {
   pkg.pnpm.catalog = mergedCatalog
   fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2))
-  console.log('✅ pnpm.catalog synced from meta-ekosystem')
+  console.log('✅ pnpm.catalog synced from meta-ekosystem catalog')
 }
