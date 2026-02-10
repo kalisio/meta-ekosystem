@@ -2,6 +2,7 @@
 import jsdoc2md from 'jsdoc-to-markdown'
 import fs from 'fs'
 import path from 'path'
+import { fileURLToPath } from 'url'
 import { glob } from 'glob'
 
 const rootDir = path.resolve(process.cwd())
@@ -11,12 +12,12 @@ let template
 try {
   const templateUrl = await import.meta.resolve('@kalisio/meta-ekosystem/templates/jsdoc2md/jsdoc2md.hbs')
   console.log(templateUrl)
-  const templatePath = new URL(templateUrl).pathname
+  const templatePath = fileURLToPath(templateUrl)
   console.log(templatePath)
   template = fs.readFileSync(templatePath, 'utf8')
   console.log(template)
 } catch (err) {
-  throw new Error('❌ Failed to resolve template file from @kalisio/meta-ekosystem')
+  throw new Error('❌ Failed to resolve template file from @kalisio/meta-ekosystem',  { cause: err })
 }
 
 // List the packages
