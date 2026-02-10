@@ -33,9 +33,10 @@
   },
   "homepage": "git://github.com/kalisio/meta-ekosystem#readme",
   "devDependencies": {
-    "plop": "^4.0.5"
+    "plop": "^4.0.5",
+    "yaml": "^2.8.2"
   },
-   "engines": {
+  "engines": {
     "node": ">=20"
   }
 }

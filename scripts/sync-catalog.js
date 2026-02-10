@@ -1,10 +1,7 @@
 #!/usr/bin/env node
 import fs from 'fs'
 import path from 'path'
-
-// Options : support --dry-run
-const args = process.argv.slice(2)
-const dryRun = args.includes('--dry-run')
+import { parse, stringify } from 'yaml'
 
 // Read the meta catalog file
 let metaCatalog
@@ -12,8 +9,9 @@ try {
   metaCatalog = await import('@kalisio/meta-ekosystem/catalog.json', { with: { type: 'json' } })
   metaCatalog = metaCatalog.default ?? metaCatalog
 } catch (err) {
-  throw new Error('❌ Failed to load the meta catalog from @kalisio/meta-ekosystem')
+  throw new Error('❌ Failed to load the meta catalog.json file from @kalisio/meta-ekosystem')
 }
+
 // Read the local catalog file
 let localCatalog = {}
 const localCatalogPath = path.resolve(process.cwd(), 'catalog.json')
@@ -21,24 +19,33 @@ if (fs.existsSync(localCatalogPath)) {
   try {
     localCatalog = JSON.parse(fs.readFileSync(localCatalogPath))
   } catch (err) {
-    throw new Error('❌ Failed to load the local catalog')
+    throw new Error('❌ Failed to load the local catalog.json file')
   }
 }
+
+// Merge catalogs and sort the global catalog
+const mergedCatalog = { ...metaCatalog, ...localCatalog }
+const sortedCatalog = Object.keys(mergedCatalog)
+  .sort()
+  .reduce((acc, key) => {
+    acc[key] = mergedCatalog[key]
+    return acc
+  }, {})
+
 // Read the pnpm-workspace.yaml file
-const pkgPath = path.resolve(process.cwd(), 'package.json')
-if (!fs.existsSync(pkgPath)) {
+const workspacePath = path.resolve(process.cwd(), 'pnpm-workspace.yaml')
+if (!fs.existsSync(workspacePath)) {
   throw new Error('❌ pnpm-workspace.yaml not found in this repo')
 }
-const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'))
-// Merge the catalog
-pkg.pnpm ||= {}
-pkg.pnpm.catalog ||= {}
-const mergedCatalog = { ...metaCatalog, ...localCatalog }
-if (dryRun) {
-  console.log('🔹 Dry run mode, merged catalog would be:')
-  console.log(JSON.stringify(mergedCatalog, null, 2))
-} else {
-  pkg.pnpm.catalog = mergedCatalog
-  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2))
-  console.log('✅ pnpm.catalog synced from meta-ekosystem catalog')
+let workspace
+try {
+  workspace = parse(readFileSync('./pnpm-workspace.yaml', 'utf8'))
+} catch (err) {
+  throw new Error('❌ Failed to load pnpm-workspace.yaml file')
 }
+
+// Assign the global catalog to the workspace
+workspace.catalog = sortedCatalog
+fs.writeFileSync(workspacePath, stringify(workspace), 'utf8')
+
+console.log(`✅ catalog synced in pnpm-workspace.yaml`)
