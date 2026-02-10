@@ -39,7 +39,7 @@ if (!fs.existsSync(workspacePath)) {
 }
 let workspace
 try {
-  workspace = parse(readFileSync('./pnpm-workspace.yaml', 'utf8'))
+  workspace = parse(fs.readFileSync('./pnpm-workspace.yaml', 'utf8'))
 } catch (err) {
   throw new Error('❌ Failed to load pnpm-workspace.yaml file')
 }
