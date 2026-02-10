@@ -5,46 +5,49 @@ import path from 'path'
 import { glob } from 'glob'
 
 const rootDir = path.resolve(process.cwd())
-const templatesDir = path.join(rootDir, 'templates', 'jsdoc2md')
 
+// Read the template file
+let templatePath
+try {
+  const templateUrl = await import.meta.resolve('@kalisio/meta-ekosystem/templates/jsdoc2md/jsdoc2md.hbs')
+  templatePath = new URL(templateUrl).pathname
+} catch (err) {
+  throw new Error('❌ Failed to resolve template file from @kalisio/meta-ekosystem')
+}
+const template = fs.readFileSync(templatePath, 'utf8')
+
+// List the packages
 const packageDirs = await glob('packages/*/', { cwd: rootDir })
 const packages = packageDirs.map(dir => path.basename(dir))
-
 console.log(`📦 Found ${packages.length} package(s): ${packages.join(', ')}\n`)
 
+// Iterate through the packages to generate the documentation
 for (const pkgName of packages) {
   console.log(`📝 Generating docs for @kalisio/${pkgName}...`)
-
   const pkgDir = path.join(rootDir, 'packages', pkgName)
   const docsDir = path.join(rootDir, 'docs', pkgName)
-
   const sourceFiles = await glob('src/**/*.js', {
     cwd: pkgDir,
     ignore: ['**/*.test.js', '**/*.spec.js']
   })
-
   if (sourceFiles.length === 0) {
     console.log('  ⚠️  No source files found\n')
     continue
   }
-
   console.log(`  Found ${sourceFiles.length} file(s)`)
-
+  // Iterate through the file and generate the documentation
   for (const relativeFile of sourceFiles) {
     const sourceFile = path.join(pkgDir, relativeFile)
     const relativePath = relativeFile.replace(/^src\//, '').replace(/\.js$/, '.md')
     const outputFile = path.join(docsDir, relativePath)
-
     try {
       const markdown = await jsdoc2md.render({
         files: sourceFile,
         'no-cache': true,
-        template: fs.readFileSync(path.join(templatesDir, 'jsdoc2md.hbs'), 'utf8')
+        template
       })
-
       if (markdown.trim()) {
         fs.mkdirSync(path.dirname(outputFile), { recursive: true })
-
         const moduleName = path.basename(relativeFile, '.js')
         const content = `---
 title: ${moduleName}
@@ -54,7 +57,6 @@ title: ${moduleName}
 
 ${markdown}
 `
-
         fs.writeFileSync(outputFile, content)
         console.log(`  ✅ ${relativePath}`)
       } else {
@@ -64,7 +66,6 @@ ${markdown}
       console.error(`  ❌ ${relativeFile}: ${error.message}`)
     }
   }
-
   console.log('')
 }
 
