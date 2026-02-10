@@ -7,14 +7,17 @@ import { glob } from 'glob'
 const rootDir = path.resolve(process.cwd())
 
 // Read the template file
-let templatePath
+let template
 try {
   const templateUrl = await import.meta.resolve('@kalisio/meta-ekosystem/templates/jsdoc2md/jsdoc2md.hbs')
-  templatePath = new URL(templateUrl).pathname
+  console.log(templateUrl)
+  const templatePath = new URL(templateUrl).pathname
+  console.log(templatePath)
+  template = fs.readFileSync(templatePath, 'utf8')
+  console.log(template)
 } catch (err) {
   throw new Error('❌ Failed to resolve template file from @kalisio/meta-ekosystem')
 }
-const template = fs.readFileSync(templatePath, 'utf8')
 
 // List the packages
 const packageDirs = await glob('packages/*/', { cwd: rootDir })
