@@ -1,5 +1,9 @@
 # meta-ekosystem
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Latest Release](https://img.shields.io/github/v/tag/kalisio/feathers-s3?sort=semver&label=latest)](https://github.com/kalisio/meta-ekosystem/releases)
+[![Download Status](https://img.shields.io/npm/dm/@kalisio/feathers-s3.svg?style=flat-square)](https://www.npmjs.com/package/@kalisio/meta-ekosystem)
+
 > Kalisio's meta-repo for sharing tools, configurations, and conventions
 
 This package centralizes common development resources used across Kalisio projects, including:
