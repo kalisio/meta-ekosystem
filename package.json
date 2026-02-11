@@ -3,9 +3,9 @@
   "packageManager": "pnpm@10.28.0",
   "type": "module",
   "bin": {
-    "kalisio-sync-catalog": "./commands/sync-catalog.js",
-    "kalisio-init-docs": "./commands/init-docs.js",
-    "kalisio-gen-docs": "./commands/gen-docs.js"
+    "k-sync-catalog": "./commands/k-sync-catalog.js",
+    "k-init-docs": "./commands/k-init-docs.js",
+    "k-gen-docs": "./commands/k-gen-docs.js"
   },
   "files": [
     "catalog.json",
