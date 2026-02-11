@@ -38,7 +38,7 @@ It synchronizes your project catalog by merging the meta `catalog.json` with an 
 * Usage
 
 ```bash
-pnpm k-sync-catalog"
+pnpm k-sync-catalog
 ```
 
 #### k-init-docs
