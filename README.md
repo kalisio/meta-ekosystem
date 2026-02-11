@@ -25,9 +25,9 @@ This package centralizes common development resources used across Kalisio projec
 pnpm add @kalisio/meta-ekosystem
 ```
 
-### Binaries
+### Commands
 
-The binaries are intended to be used by monorepo projects that depend on this repository.
+The commands are intended to be used by monorepo projects that depend on this repository.
 
 #### k-sync-catalog
 
