@@ -3,17 +3,15 @@
   "packageManager": "pnpm@10.28.0",
   "type": "module",
   "bin": {
-    "kalisio-sync-catalog": "./scripts/sync-catalog.js",
-    "kalisio-gen-docs": "./scripts/gen-docs.js"
+    "kalisio-sync-catalog": "./bin/sync-catalog.js",
+    "kalisio-init-docs": "./bin/init-docs.js",
+    "kalisio-gen-docs": "./bin/gen-docs.js"
   },
   "files": [
     "catalog.json",
     "templates/",
     "scripts/"
   ],
-  "scripts": {
-    "init-docs": "plop vitepress"
-  },
   "keywords": [
     "kalisio",
     "meta-repo",

@@ -1,19 +1,16 @@
 import path from 'path'
 import fs from 'fs'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 export default function vitepressGenerator(plop) {
   plop.setGenerator('vitepress', {
     description: 'Generate VitePress docs for a repo',
-    prompts: [
-      {
-        type: 'input',
-        name: 'targetPath',
-        message: 'Enter the path to the repo where docs should be created:',
-        default: process.cwd()
-      }
-    ],
+    prompts: [],
     actions: function(answers) {
-      const targetRepo = path.resolve(answers.targetPath)
+      const targetRepo = path.resolve(process.cwd())
       // Read the package.json file
       const packageJsonPath = path.join(targetRepo, 'package.json')
       if (!fs.existsSync(packageJsonPath)) {
@@ -30,12 +27,13 @@ export default function vitepressGenerator(plop) {
         })
       }
       // Tell plop to do the process
+      const templatesPath = path.resolve(__dirname, 'vitepress')
       return [
         {
           type: 'addMany',
           destination: path.join(targetRepo, 'docs'),
-          base: path.resolve('./templates/vitepress'),
-          templateFiles: path.resolve('./templates/vitepress/**/*'),
+          base: templatesPath,
+          templateFiles: path.join(templatesPath, '**/*'),
           globOptions: { dot: true },
           data: {
             name: packageJson.name,
