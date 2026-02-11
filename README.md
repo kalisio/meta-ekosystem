@@ -8,6 +8,11 @@ This package centralizes common development resources used across Kalisio projec
 - Various code genertors to help creating monorepo projects
 - Common conventions 
 
+> [!IMPORTANT]  
+> Before getting started, make sure you have the following prerequisites installed:
+> - [Node.js](https://nodejs.org/) >= 20
+> - [pnpm](https://pnpm.io/) >= 10
+
 ## Usage
 
 ### Installation
@@ -15,11 +20,6 @@ This package centralizes common development resources used across Kalisio projec
 ``` bash
 pnpm add @kalisio/meta-ekosystem
 ```
-
-> [!IMPORTANT]  
-> Prerequisites:
-> - [Node.js](https://nodejs.org/) >= 20
-> - [pnpm](https://pnpm.io/) >= 10
 
 ### Binaries
 
@@ -103,6 +103,6 @@ pnpm link ../path/to/meta-ekosystem
 
 Licensed under the [MIT license](LICENSE).
 
-Copyright (c) 2026-present [Kalisio](https://kalisio.com)
+Copyright (c) 2026 [Kalisio](https://kalisio.com)
 
 [![Kalisio](https://kalisio.github.io/kalisioscope/kalisio/kalisio-logo-black-256x84.png)](https://kalisio.com)
