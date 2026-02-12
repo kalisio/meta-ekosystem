@@ -1,10 +1,12 @@
 {
   "name": "@kalisio/meta-ekosystem",
+  "version": "0.0.0",
+  "description": "Kalisio's meta-repo for sharing tools, configurations, and conventions",
   "packageManager": "pnpm@10.28.0",
   "type": "module",
   "bin": {
     "k-sync-catalog": "./commands/k-sync-catalog.js",
-    "k-init-docs": "./commands/k-init-docs.js",
+    "k-init-docs": "./commands/k-run-plop.js vitepress",
     "k-gen-docs": "./commands/k-gen-docs.js"
   },
   "files": [
@@ -12,6 +14,12 @@
     "templates/",
     "scripts/"
   ],
+  "scripts": {
+    "changeset": "changeset",
+    "changeset:status": "changeset status",
+    "changeset:version": "changeset version",
+    "changeset:release": "changeset publish"
+  },
   "keywords": [
     "kalisio",
     "meta-repo",
@@ -32,6 +40,7 @@
   },
   "homepage": "git://github.com/kalisio/meta-ekosystem#readme",
   "devDependencies": {
+    "@changesets/cli": "^2.29.8",
     "glob": "^13.0.1",
     "jsdoc-to-markdown": "^9.1.3",
     "plop": "^4.0.5",
