@@ -10,9 +10,9 @@ This package centralizes common development resources used across Kalisio projec
 - A meta package catalog for ecosystem managment
 - Various scripts to be included in monorepo projects that includes this meta-repo
 - Various code genertors to help creating monorepo projects
-- Common conventions 
+- Common conventions
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Before getting started, make sure you have the following prerequisites installed:
 > - [Node.js](https://nodejs.org/) >= 20
 > - [pnpm](https://pnpm.io/) >= 10
@@ -29,28 +29,60 @@ pnpm add @kalisio/meta-ekosystem
 
 The commands are intended to be used by monorepo projects that depend on this repository.
 
-#### k-sync-catalog
-
-* Decription
-
-It synchronizes your project catalog by merging the meta `catalog.json` with an existing local catalog file and updating the catalog property in `pnpm-workspace.yaml`.
-
-* Usage
-
-```bash
-pnpm k-sync-catalog
-```
-
 #### k-init-docs
 
 * Description
 
-It generates a complete [VitePress](https://vitepress.dev/) documentation skeleton in a `docs/` directory.
+It generates a [VitePress](https://vitepress.dev/) skeleton in a `docs/` directory with the following structure:
+
+```
+templates/vitepress
+├── about
+│   ├── contact.md
+│   ├── contributing.md
+│   ├── introduction.md
+│   └── license.md
+├── index.md
+└── .vitepress
+    ├── config.mjs
+    └── theme
+        ├── custom.css
+        └── index.js
+```
 
 * Usage
 
 ```bash
 pnpm k-init-docs
+```
+
+#### k-init-monorepo
+
+* Description
+
+It generates a **monorepo** skeleton with the following structure:
+
+```
+templates/monorepo
+├── CONTRIBUTING.md
+├── .gitignore
+├── .husky
+│   └── pre-commit
+├── LICENSE.md
+├── package.json.hbs
+├── pnpm-workspace.yaml
+├── README.md
+├── sonar-project.properties
+├── vite.config.js
+└── vitest.config.js
+```
+
+It will prompt you to enter the name and the path to the repository
+
+* Usage
+
+```bash
+pnpm k-init-monorepo
 ```
 
 #### k-gen-docs
@@ -61,6 +93,18 @@ It generates [VitePress](https://vitepress.dev/)-compatible Markdown documentati
 
 ```bash
 pnpm k-gen-docs
+```
+
+#### k-sync-catalog
+
+* Description
+
+It synchronizes your project catalog by merging the meta `catalog.json` with an existing local catalog file and updating the catalog property in `pnpm-workspace.yaml`.
+
+* Usage
+
+```bash
+pnpm k-sync-catalog
 ```
 
 ## Contributing
