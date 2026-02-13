@@ -34,7 +34,9 @@ export default function vitepressGenerator(plop) {
           destination: path.join(targetRepo, 'docs'),
           base: templatesPath,
           templateFiles: path.join(templatesPath, '**/*'),
-          globOptions: { dot: true },
+          globOptions: { 
+            dot: true 
+          },
           data: {
             name: packageJson.name,
             description: packageJson.description,

@@ -6,7 +6,8 @@
   "type": "module",
   "bin": {
     "k-sync-catalog": "./commands/k-sync-catalog.js",
-    "k-init-docs": "./commands/k-run-plop.js vitepress",
+    "k-init-monorepo": "./commands/k-init-monorepo.js",
+    "k-init-docs": "./commands/k-init-docs.js",
     "k-gen-docs": "./commands/k-gen-docs.js"
   },
   "files": [
