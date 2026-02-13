@@ -108,7 +108,7 @@ pnpm k-gen-docs
 
 * Description
 
-It synchronizes your project catalog by merging the meta `catalog.json` with an existing local catalog file and updating the catalog property in `pnpm-workspace.yaml`.
+It synchronizes your project catalog by merging the **meta-catalog** with an existing local catalog file and updating the catalog property in `pnpm-workspace.yaml`.
 
 <div align="center">
   <img src="./docs/k-sync-catalog.png" alt="k-sync-catalog" width="400"/>
