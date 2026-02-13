@@ -57,3 +57,4 @@ jest-*.json
 *.zip
 *.tar.gz
 *.tgz
+*.bkp

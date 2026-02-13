@@ -19,11 +19,20 @@ This package centralizes common development resources used across Kalisio projec
 
 ## Usage
 
+This repository is designed to be included as a development dependency in your monorepo, providing access to the different shared resources.
+
 ### Installation
 
 ``` bash
-pnpm add @kalisio/meta-ekosystem
+pnpm add -D @kalisio/meta-ekosystem
 ```
+
+### Catalog
+
+The `catalog.json` file, also referred to as the **meta-catalog**, centralizes and maintains the list of all dependencies, along with their respective versions, to ensure consistency and alignment across the **Kalisio** ecosystem.
+
+> [!TIP]
+> Use the [k-sync-catalog](#k-sync-catalog) commands to keep your local catalog synchronized with this meta-catalog.
 
 ### Commands
 
@@ -101,6 +110,7 @@ pnpm k-gen-docs
 
 It synchronizes your project catalog by merging the meta `catalog.json` with an existing local catalog file and updating the catalog property in `pnpm-workspace.yaml`.
 
+![k-sync-catalog](./docs/k-sync-catalog.png)
 * Usage
 
 ```bash
