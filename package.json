@@ -15,6 +15,9 @@
     "templates/",
     "scripts/"
   ],
+  "exports": {
+    "./catalog.json": "./catalog.json"
+  },
   "scripts": {
     "changeset": "changeset",
     "changeset:status": "changeset status",
