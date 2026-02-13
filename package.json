@@ -19,7 +19,7 @@
     "changeset": "changeset",
     "changeset:status": "changeset status",
     "changeset:version": "changeset version",
-    "changeset:release": "changeset publish"
+    "changeset:publish": "changeset publish"
   },
   "keywords": [
     "kalisio",
