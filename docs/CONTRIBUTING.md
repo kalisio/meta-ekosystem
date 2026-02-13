@@ -6,7 +6,7 @@
 
 Before creating an issue please make sure you have checked out the docs, you might want to also try searching Github. It's pretty likely someone has already asked a similar question.
 
-Issues can be reported in the [issue tracker](https://github.com/kalisio/krawler/issues).
+Issues can be reported in the [issue tracker](https://github.com/kalisio/meta-ekosystem/issues).
 
 ### Pull Requests
 
@@ -41,7 +41,7 @@ Where `type` must be one of the following:
 * `style`: changes that do not affect the meaning of the code (lint issues)
 * `test`: adding missing tests or correcting existing tests
 
-Use the optional `[ breaking ]` keyword to declare a **BREAKING CHANGE**. 
+Use the optional `[ breaking ]` keyword to declare a **BREAKING CHANGE**.
 
 ### Examples
 

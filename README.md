@@ -124,7 +124,7 @@ pnpm k-sync-catalog
 
 ### Guidelines
 
-Found a bug ? Missing a Feature ? Want to contribute ? check out our [contribution guidelines](./CONTRIBUTING.md) for details.
+Found a bug ? Missing a Feature ? Want to contribute ? check out our [contribution guidelines](./docs/CONTRIBUTING.md) for details.
 
 ### Development
 
