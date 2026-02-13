@@ -110,7 +110,10 @@ pnpm k-gen-docs
 
 It synchronizes your project catalog by merging the meta `catalog.json` with an existing local catalog file and updating the catalog property in `pnpm-workspace.yaml`.
 
-![k-sync-catalog](./docs/k-sync-catalog.png)
+<div align="center">
+  <img src="./docs/k-sync-catalog.png" alt="k-sync-catalog" width="400"/>
+</div>
+
 * Usage
 
 ```bash
