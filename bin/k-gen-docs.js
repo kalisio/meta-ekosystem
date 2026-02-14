@@ -14,7 +14,7 @@ try {
   const templatePath = fileURLToPath(templateUrl)
   template = fs.readFileSync(templatePath, 'utf8')
 } catch (error) {
-  throw new Error('❌ Failed to resolve template file from @kalisio/meta-ekosystem',  { cause: error })
+  throw new Error('❌ Failed to resolve template file from @kalisio/meta-ekosystem', { cause: error })
 }
 
 // List the packages

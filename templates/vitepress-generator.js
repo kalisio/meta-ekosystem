@@ -5,11 +5,11 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-export default function vitepressGenerator(plop) {
+export default function vitepressGenerator (plop) {
   plop.setGenerator('vitepress', {
     description: 'Generate VitePress docs for a repo',
     prompts: [],
-    actions: function(answers) {
+    actions: function (answers) {
       const targetRepo = path.resolve(process.cwd())
       // Read the package.json file
       const packageJsonPath = path.join(targetRepo, 'package.json')
@@ -34,8 +34,8 @@ export default function vitepressGenerator(plop) {
           destination: path.join(targetRepo, 'docs'),
           base: templatesPath,
           templateFiles: path.join(templatesPath, '**/*'),
-          globOptions: { 
-            dot: true 
+          globOptions: {
+            dot: true
           },
           data: {
             name: packageJson.name,

@@ -7,11 +7,13 @@ const rootDir = path.resolve(process.cwd())
 
 // Read the meta catalog file
 let metaCatalog
-try {
-  metaCatalog = await import('@kalisio/meta-ekosystem/catalog.json', { with: { type: 'json' } })
-  metaCatalog = metaCatalog.default ?? metaCatalog
-} catch (err) {
-  throw new Error('❌ Failed to load the meta catalog.json file from @kalisio/meta-ekosystem')
+const metacatalogPath = path.resolve(rootDir, 'node_modules/@kalisio/meta-ekosystem/catalog.json')
+if (fs.existsSync(metacatalogPath)) {
+  try {
+    metaCatalog = JSON.parse(fs.readFileSync(metacatalogPath))
+  } catch (err) {
+    throw new Error('❌ Failed to load the meta catalog.json file')
+  }
 }
 
 // Read the local catalog file
@@ -50,4 +52,4 @@ try {
 workspace.catalog = sortedCatalog
 fs.writeFileSync(workspacePath, stringify(workspace), 'utf8')
 
-console.log(`✅ catalog synced in pnpm-workspace.yaml`)
+console.log('✅ catalog synced in pnpm-workspace.yaml')

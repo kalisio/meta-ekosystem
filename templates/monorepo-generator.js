@@ -1,26 +1,25 @@
 import path from 'path'
-import fs from 'fs'
 import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-export default function monorepoGenerator(plop) {
+export default function monorepoGenerator (plop) {
   plop.setGenerator('monorepo', {
     prompts: [
-      { 
-        type: 'input', 
-        name: 'name', 
-        message: 'Name of the repository:' 
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Name of the repository:'
       },
-      { 
-        type: 'input', 
-        name: 'path', 
-        message: 'Path to the new repositoty:', 
-        default: '..' 
+      {
+        type: 'input',
+        name: 'path',
+        message: 'Path to the new repositoty:',
+        default: '..'
       }
     ],
-    actions: function(answers) {
+    actions: function (answers) {
       const targetRepo = path.resolve(process.cwd(), answers.path, answers.name)
       const templatesPath = path.resolve(__dirname, 'monorepo')
       return [
@@ -29,7 +28,7 @@ export default function monorepoGenerator(plop) {
           destination: targetRepo,
           base: templatesPath,
           templateFiles: path.join(templatesPath, '**/*'),
-          globOptions: { 
+          globOptions: {
             dot: true
           },
           data: {

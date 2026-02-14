@@ -1,0 +1,42 @@
+{
+  "name": "@kalisio/{{ name }}",
+  "description": "{{ description }}",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "development": "./src/index.js",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build"
+  },
+  "keywords": [
+    "check",
+    "basik"
+  ],
+  "author": {
+    "name": "KALISIO <contact@kalisio.com>",
+    "url": "https://github.com/kalisio"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kalisio/{{ monorepo }}.git",
+    "directory": "packages/{{ name }}"
+  },
+  "bugs": {
+    "url": "https://github.com/kalisio/{{ monorepo }}/issues"
+  },
+  "homepage": "https://github.com/kalisio/{{ monorepo }}/tree/main/packages/check#readme",
+  "dependencies": {},
+  "devDependencies": {}
+}

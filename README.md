@@ -160,7 +160,7 @@ Or for a direct local link:
 pnpm link ../path/to/meta-ekosystem
 ```
 
-To stop linking a local version of `@kalisio/meta-ekosystem` and want to go back to using the published version:
+To stop linking a local version and switch back to the published version:
 
 ```bash
 # In your project directory
