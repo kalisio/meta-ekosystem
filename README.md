@@ -194,6 +194,7 @@ pnpm unlink @kalisio/meta-ekosystem
 ### Linting
 
 ```bash
+# In the meta-ekosystem directory
 pnpm lint
 ```
 
