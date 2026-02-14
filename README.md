@@ -45,7 +45,7 @@ The commands are intended to be used by monorepo projects that depend on this re
 It generates a [VitePress](https://vitepress.dev/) skeleton in a `docs/` directory with the following structure:
 
 ```
-templates/vitepress
+docs
 ├── about
 │   ├── contact.md
 │   ├── contributing.md
@@ -72,13 +72,13 @@ pnpm k-init-docs
 It generates a **monorepo** skeleton with the following structure:
 
 ```
-templates/monorepo
+monorepo
 ├── CONTRIBUTING.md
 ├── .gitignore
 ├── .husky
 │   └── pre-commit
 ├── LICENSE.md
-├── package.json.hbs
+├── package.json
 ├── pnpm-workspace.yaml
 ├── README.md
 ├── sonar-project.properties
@@ -86,13 +86,37 @@ templates/monorepo
 └── vitest.config.js
 ```
 
-It will prompt you to enter the name and the path to the repository
-
 * Usage
 
 ```bash
 pnpm k-init-monorepo
 ```
+
+>[!NOTE]
+> You will be prompted for the repository `name` and `path`.
+
+#### k-init-pacakge
+
+* Description
+
+It generates a **package** skeleton with the following structure:
+
+```
+package
+├── LICENSE.md
+├── package.json
+├── README.md
+└── vite.config.js
+```
+
+* Usage
+
+```bash
+pnpm k-init-package
+```
+
+>[!NOTE]
+> You will be prompted for the pacakge `name` and `description`.
 
 #### k-gen-docs
 
