@@ -6,7 +6,7 @@
 
 > Kalisio's meta-repo for sharing tools, configurations, and conventions
 
-This package centralizes common development resources used across Kalisio projects, including:
+This repository centralizes common development resources used across Kalisio projects, including:
 - A meta package catalog for ecosystem managment
 - Various scripts to be included in monorepo projects that includes this meta-repo
 - Various code genertors to help creating monorepo projects
@@ -148,7 +148,7 @@ pnpm k-sync-catalog
 
 ### Guidelines
 
-Found a bug ? Missing a Feature ? Want to contribute ? check out our [contribution guidelines](./docs/CONTRIBUTING.md) for details.
+Found a bug ? Missing a feature ? Want to contribute ? Please refer to our [contribution guidelines](./docs/CONTRIBUTING.md) for details.
 
 ### Development
 
@@ -163,14 +163,14 @@ cd meta-ekosystem
 pnpm install
 ```
 
-#### Linking locally
+#### Local linking
 
 This repository provides global binaries to help manage the monorepo ecosystem. During development, you will often need to link this package to other projects to test the features you are working on.
 
 If you're working on multiple packages simultaneously:
 
 ```bash
-# In meta-ekosystem directory
+# In the meta-ekosystem directory
 pnpm link --global
 
 # In your project directory
@@ -191,9 +191,19 @@ To stop linking a local version and switch back to the published version:
 pnpm unlink @kalisio/meta-ekosystem
 ```
 
+### Linting
+
+```bash
+pnpm lint
+```
+
+> [!NOTE]
+> This repository follows the [standardJS](https://standardjs.com/) style guide for linting and code consistency.
+> By default, **standard** is called with the `--fix` option to automatically fix style issues before committing.
+
 ## License
 
-Licensed under the [MIT license](LICENSE).
+Licensed under the [MIT License](LICENSE).
 
 Copyright (c) 2026 [Kalisio](https://kalisio.com)
 
