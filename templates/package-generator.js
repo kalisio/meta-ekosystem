@@ -7,6 +7,7 @@ const __dirname = path.dirname(__filename)
 
 export default function packageGenerator (plop) {
   plop.setGenerator('package', {
+    description: 'Generate a package skeleton in a monorepo',
     prompts: [
       {
         type: 'input',

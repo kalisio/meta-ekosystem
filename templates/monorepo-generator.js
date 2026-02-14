@@ -6,16 +6,17 @@ const __dirname = path.dirname(__filename)
 
 export default function monorepoGenerator (plop) {
   plop.setGenerator('monorepo', {
+    description: 'Generate a monorepo skeleton',
     prompts: [
       {
         type: 'input',
         name: 'name',
-        message: 'Name of the repository:'
+        message: 'Repository name:'
       },
       {
         type: 'input',
         name: 'path',
-        message: 'Path to the new repositoty:',
+        message: 'Repository path:',
         default: '..'
       }
     ],

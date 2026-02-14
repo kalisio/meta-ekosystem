@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename)
 
 export default function vitepressGenerator (plop) {
   plop.setGenerator('vitepress', {
-    description: 'Generate VitePress docs for a repo',
+    description: 'Generate a VitePress docummentation skeleton',
     prompts: [],
     actions: function (answers) {
       const targetRepo = path.resolve(process.cwd())
