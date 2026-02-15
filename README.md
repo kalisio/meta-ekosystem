@@ -120,7 +120,9 @@ pnpm k-init-package
 
 #### k-gen-docs
 
-It generates [VitePress](https://vitepress.dev/)-compatible Markdown documentation from JSDoc comments by scanning monorepo packages and rendering them using [Handlebars template](./templates/jsdoc2md/jsdoc2md.hbs) into a `docs/` directory.
+It generates [VitePress](https://vitepress.dev/)-compatible Markdown documentation from JSDoc comments by scanning 
+monorepo packages and rendering them with a [Handlebars template](./templates/jsdoc2md/jsdoc2md.hbs) into a `docs/` 
+directory.
 
 * Usage
 
@@ -132,7 +134,8 @@ pnpm k-gen-docs
 
 * Description
 
-It synchronizes your project catalog by merging the **meta-catalog** with an existing local catalog file and updating the catalog property in `pnpm-workspace.yaml`.
+It synchronizes your project catalog by merging the **meta-catalog** with an existing local catalog file and updating 
+the catalog property in `pnpm-workspace.yaml`.
 
 <div align="center">
   <img src="./docs/k-sync-catalog.png" alt="k-sync-catalog" width="400"/>
@@ -148,7 +151,8 @@ pnpm k-sync-catalog
 
 ### Guidelines
 
-Found a bug ? Missing a feature ? Want to contribute ? Please refer to our [contribution guidelines](./docs/CONTRIBUTING.md) for details.
+Found a bug ? Missing a feature ? Want to contribute ? Please refer to our [contribution guidelines](./docs/CONTRIBUTING.md) 
+for details.
 
 ### Development
 
@@ -165,7 +169,8 @@ pnpm install
 
 #### Local linking
 
-This repository provides global binaries to help manage the monorepo ecosystem. During development, you will often need to link this package to other projects to test the features you are working on.
+This repository provides global binaries to help manage the monorepo ecosystem. During development, you will often 
+need to link this package to other projects to test the features you are working on.
 
 If you're working on multiple packages simultaneously:
 
