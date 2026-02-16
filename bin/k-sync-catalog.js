@@ -52,4 +52,4 @@ try {
 workspace.catalog = sortedCatalog
 fs.writeFileSync(workspacePath, stringify(workspace), 'utf8')
 
-console.log('✅ catalog synced in pnpm-workspace.yaml')
+console.log('✅ catalog synced successfully!')
