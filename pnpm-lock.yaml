@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      node-plop:
+        specifier: ^0.32.3
+        version: 0.32.3(@types/node@25.2.3)
     devDependencies:
       '@changesets/cli':
         specifier: ^2.29.8
@@ -23,9 +27,6 @@ importers:
       lint-staged:
         specifier: ^16.2.7
         version: 16.2.7
-      node-plop:
-        specifier: ^0.32.3
-        version: 0.32.3(@types/node@25.2.3)
       standard:
         specifier: ^17.1.2
         version: 17.1.2
