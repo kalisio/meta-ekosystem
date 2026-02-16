@@ -13,6 +13,7 @@
   },
   "files": [
     "catalog.json",
+    "plopfile.js",
     "templates/",
     "scripts/"
   ],
