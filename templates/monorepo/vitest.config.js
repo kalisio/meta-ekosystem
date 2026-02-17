@@ -22,7 +22,7 @@ export default defineConfig({
     silent: false,
     testTimeout: 30000,
     projects: [
-      // a faire
+      // TODO
     ]
   }
 })
