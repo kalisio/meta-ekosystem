@@ -7,7 +7,7 @@
 > Kalisio's meta-repo for sharing tools, configurations, and conventions
 
 This repository centralizes common development resources used across Kalisio projects, including:
-- A meta package catalog for ecosystem managment
+- A meta package catalog for ecosystem management
 - Various scripts to be included in monorepo projects that includes this meta-repo
 - Various code genertors to help creating monorepo projects
 - Common conventions
