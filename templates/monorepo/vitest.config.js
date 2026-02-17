@@ -11,18 +11,11 @@ export default defineConfig({
       reportsDirectory: './coverage',
       all: true,
       clean: true,
-      include: ['packages/*/src/**/*.js'],
-      exclude: [
-        '**/node_modules/**',
-        '**/test/**',
-        '**/dist/**',
-        '**/*.test.js'
-      ]
+      include: ['packages/*/src/**/*.js']
     },
     silent: false,
     testTimeout: 30000,
     projects: [
-      // TODO
     ]
   }
 })
