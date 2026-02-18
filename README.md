@@ -1,10 +1,13 @@
 # meta-ekosystem
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Latest Release](https://img.shields.io/github/v/tag/kalisio/meta-ekosystem?sort=semver&label=latest)](https://github.com/kalisio/meta-ekosystem/releases)
 [![Download Status](https://img.shields.io/npm/dm/@kalisio/meta-ekosystem.svg?style=flat-square)](https://www.npmjs.com/package/@kalisio/meta-ekosystem)
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> Kalisio's meta-repo for sharing tools, configurations, and conventions
+
+_Kalisio's meta-repo for sharing tools, configurations, and conventions_
+
+---
 
 This repository centralizes common development resources used across Kalisio projects, including:
 - A meta package catalog for ecosystem management
@@ -37,6 +40,10 @@ The [`catalog.json`](./catalog.json) file, also referred to as the **meta-catalo
 ### Commands
 
 The commands are intended to be used by monorepo projects that depend on this repository.
+
+>[!TIP]
+> To run a command from this repository, use:
+> `node ./bin/<command>`
 
 #### k-init-docs
 
@@ -120,8 +127,8 @@ pnpm k-init-package
 
 #### k-gen-docs
 
-It generates [VitePress](https://vitepress.dev/)-compatible Markdown documentation from JSDoc comments by scanning 
-monorepo packages and rendering them with a [Handlebars template](./templates/jsdoc2md/jsdoc2md.hbs) into a `docs/` 
+It generates [VitePress](https://vitepress.dev/)-compatible Markdown documentation from JSDoc comments by scanning
+monorepo packages and rendering them with a [Handlebars template](./templates/jsdoc2md/jsdoc2md.hbs) into a `docs/`
 directory.
 
 * Usage
@@ -134,7 +141,7 @@ pnpm k-gen-docs
 
 * Description
 
-It synchronizes your project catalog by merging the **meta-catalog** with an existing local catalog file and updating 
+It synchronizes your project catalog by merging the **meta-catalog** with an existing local catalog file and updating
 the catalog property in `pnpm-workspace.yaml`.
 
 <div align="center">
@@ -151,7 +158,7 @@ pnpm k-sync-catalog
 
 ### Guidelines
 
-Found a bug ? Missing a feature ? Want to contribute ? Please refer to our [contribution guidelines](./docs/CONTRIBUTING.md) 
+Found a bug ? Missing a feature ? Want to contribute ? Please refer to our [contribution guidelines](./docs/CONTRIBUTING.md)
 for details.
 
 ### Development
@@ -169,7 +176,7 @@ pnpm install
 
 #### Local linking
 
-This repository provides global binaries to help manage the monorepo ecosystem. During development, you will often 
+This repository provides global binaries to help manage the monorepo ecosystem. During development, you will often
 need to link this package to other projects to test the features you are working on.
 
 If you're working on multiple packages simultaneously:
