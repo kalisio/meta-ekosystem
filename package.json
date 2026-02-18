@@ -18,7 +18,8 @@
     "scripts/"
   ],
   "exports": {
-    "./catalog.json": "./catalog.json"
+    "./catalog.json": "./catalog.json",
+    "./templates/jsdoc2md/jsdoc2md.hbs": "./templates/jsdoc2md/jsdoc2md.hbs"
   },
   "lint-staged": {
     "*.{js,cjs,mjs}": [
@@ -35,7 +36,7 @@
   },
   "keywords": [
     "kalisio",
-    "meta-repo",
+    "metarepo",
     "ekosystem"
   ],
   "author": {
