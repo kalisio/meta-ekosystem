@@ -15,6 +15,11 @@ export default function monorepoGenerator (plop) {
       },
       {
         type: 'input',
+        name: 'description',
+        message: 'Repository description:'
+      },
+      {
+        type: 'input',
         name: 'path',
         message: 'Repository path:',
         default: '..'
@@ -33,7 +38,8 @@ export default function monorepoGenerator (plop) {
             dot: true
           },
           data: {
-            name: answers.name
+            name: answers.name,
+            description: answers.description
           }
         }
       ]
