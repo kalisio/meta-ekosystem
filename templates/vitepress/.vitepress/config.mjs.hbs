@@ -17,7 +17,7 @@ export default withMermaid(
       logo: 'https://kalisio.github.io/kalisioscope/kalisio/kalisio-icon-2048x2048.png',
       socialLinks: [{ icon: 'github', link: 'https://github.com/kalisio/{{ name }}' }],
       nav: [
-        { text: 'About', link: '/about/introduction' }
+        { text: 'Overview', link: '/overview/about' }
         {{#if internalPackages.length}},
         {
           text: 'Packages',
@@ -30,11 +30,11 @@ export default withMermaid(
         {{/if}}
       ],
       sidebar: {
-        '/about/': [
-          { text: 'About', link: '/about/introduction' },
-          { text: 'Contributing', link: '/about/contributing' },
-          { text: 'License', link: '/about/license' },
-          { text: 'Contact', link: '/about/contact' }
+        '/overview/': [
+          { text: 'About', link: '/overview/about' },
+          { text: 'Contributing', link: '/overview/contributing' },
+          { text: 'License', link: '/overview/license' },
+          { text: 'Contact', link: '/overview/contact' }
         ]
         {{#if internalPackages.length}},
         {{#each internalPackages}}
