@@ -1,0 +1,11 @@
+# About {{ name }}
+
+*{{ description }}*
+
+This repository contains the following packages:
+
+{{#if internalPackages.length}}
+{{#each internalPackages}}
+- **[@kalisio/{{ this }}](./packages/{{ this }})**
+{{/each}}
+{{/if}}
