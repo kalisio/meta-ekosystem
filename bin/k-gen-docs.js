@@ -26,7 +26,7 @@ console.log(`📦 Found ${packages.length} package(s): ${packages.join(', ')}\n`
 for (const pkgName of packages) {
   console.log(`📝 Generating docs for @kalisio/${pkgName}...`)
   const pkgDir = path.join(rootDir, 'packages', pkgName)
-  const docsDir = path.join(rootDir, 'docs', pkgName)
+  const docsDir = path.join(rootDir, 'docs', 'packages', pkgName)
   const sourceFiles = await glob('src/**/*.js', {
     cwd: pkgDir,
     ignore: ['**/*.test.js', '**/*.spec.js']
