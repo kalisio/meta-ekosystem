@@ -8,8 +8,7 @@
     "k-sync-catalog": "./bin/k-sync-catalog.js",
     "k-init-monorepo": "./bin/k-init-monorepo.js",
     "k-init-package": "./bin/k-init-package.js",
-    "k-init-docs": "./bin/k-init-docs.js",
-    "k-gen-docs": "./bin/k-gen-docs.js"
+    "k-init-docs": "./bin/k-init-docs.js"
   },
   "files": [
     "catalog.json",

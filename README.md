@@ -125,18 +125,6 @@ pnpm k-init-package
 >[!NOTE]
 > You will be prompted for the pacakge `name` and `description`.
 
-#### k-gen-docs
-
-It generates [VitePress](https://vitepress.dev/)-compatible Markdown documentation from JSDoc comments by scanning
-monorepo packages and rendering them with a [Handlebars template](./templates/jsdoc2md/jsdoc2md.hbs) into a `docs/`
-directory.
-
-* Usage
-
-```bash
-pnpm k-gen-docs
-```
-
 #### k-sync-catalog
 
 * Description
