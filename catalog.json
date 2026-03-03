@@ -29,6 +29,7 @@
     "moment": "^2.30.1",
     "quasar": "^2.14.3",
     "standard": "^17.1.2",
+    "socket.io-client": "^4.8.2",
     "vite": "^7.1.9",
     "vitepress": "^1.6.3",
     "vitepress-plugin-mermaid": "^2.0.16",
