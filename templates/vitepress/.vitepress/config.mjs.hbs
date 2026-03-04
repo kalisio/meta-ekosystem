@@ -38,7 +38,7 @@ export default withMermaid(
         ]
         {{#if internalPackages.length}},
         {{#each internalPackages}}
-        '/{{ this }}/': getSideBar('{{ this }}'){{#unless @last}},{{/unless}}
+        '/{{ this }}/': generateSideBar('{{ this }}'){{#unless @last}},{{/unless}}
         {{/each}}
         {{/if}}
       },
@@ -58,7 +58,7 @@ export default withMermaid(
 )
 
 
-function getSideBar (pkg) {
+function generateSideBar (pkg) {
   // Ensure the pkg folder exists
   const pkgDir = path.resolve(process.cwd(), `docs/packages/${pkg}`)
     if (!fs.existsSync(pkgDir)) {
