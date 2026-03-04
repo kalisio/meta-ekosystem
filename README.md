@@ -202,6 +202,41 @@ pnpm lint
 > This repository follows the [standardJS](https://standardjs.com/) style guide for linting and code consistency.
 > By default, **standard** is called with the `--fix` option to automatically fix style issues before committing.
 
+### Versioning
+
+Create changesets as needed during the development phase using:
+
+```bash
+pnpm changeset
+```
+
+> [!NOTE]
+> It is recommended to create a changeset for each significant commit, e.g., a fix or feat.
+
+Then update the **version** using:
+
+```bash
+pnpm changeset:version
+```
+
+And commit the changes:
+
+```bash
+git add . && git commit -m "chore: released <new version>"
+```
+
+### Publishing
+
+To publish this package to [NPM](https://www.npmjs.com/), use:
+
+```bash
+pnpm changeset:publish
+git push --follow-tags
+```
+
+> [!NOTE]
+> When publishing a tag will be created corresponding to the **version** defined in the `package.json`
+
 ## License
 
 Licensed under the [MIT License](LICENSE).
