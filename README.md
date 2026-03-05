@@ -102,7 +102,7 @@ pnpm k-init-monorepo
 >[!NOTE]
 > You will be prompted for the repository `name` and `path`.
 
-#### k-init-pacakge
+#### k-init-package
 
 * Description
 
@@ -123,7 +123,33 @@ pnpm k-init-package
 ```
 
 >[!NOTE]
-> You will be prompted for the pacakge `name` and `description`.
+> You will be prompted for the package `name` and `description`.
+
+#### k-init-example
+
+* Description
+
+It generates an **example** skeleton with the following structure:
+
+```
+package
+├── LICENSE.md
+├── package.json
+├── README.md
+└── vite.config.js
+```
+
+* Usage
+
+```bash
+pnpm k-init-example
+```
+
+>[!NOTE]
+> You will be prompted for the example `name`.
+
+>[!IMPORTANT]
+> The `name` is used to declare the dependency on the package named `@kalisio/<name>`
 
 #### k-sync-catalog
 

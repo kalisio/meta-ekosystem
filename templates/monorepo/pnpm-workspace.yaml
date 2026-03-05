@@ -1,5 +1,6 @@
 packages:
-  - "packages/*"
+  - packages/**
+  - examples/**
 
 # Default catalog for devDependencies at startup
 # Use k-sync-catalog to update it
