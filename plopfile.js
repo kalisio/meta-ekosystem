@@ -12,6 +12,10 @@ const { default: monorepoGenerator } = await import(monorepoGeneratorPath)
 const packageGeneratorPath = path.resolve(__dirname, './templates/package-generator.js')
 const { default: packageGenerator } = await import(packageGeneratorPath)
 
+// Import example generator
+const exampleGeneratorPath = path.resolve(__dirname, './templates/example-generator.js')
+const { default: exampleGenerator } = await import(exampleGeneratorPath)
+
 // Import vitepress generator
 const vitepressGeneratorPath = path.resolve(__dirname, './templates/vitepress-generator.js')
 const { default: vitepressGenerator } = await import(vitepressGeneratorPath)
@@ -20,6 +24,7 @@ export default function (plop) {
   [
     monorepoGenerator,
     packageGenerator,
+    exampleGenerator,
     vitepressGenerator
   ].forEach(generator => generator(plop))
 }
