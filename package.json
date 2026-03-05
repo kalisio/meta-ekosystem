@@ -5,11 +5,12 @@
   "packageManager": "pnpm@10.28.0",
   "type": "module",
   "bin": {
-    "k-sync-catalog": "./bin/k-sync-catalog.js",
+    "k-init-application": "./bin/k-init-application.js",
+    "k-init-docs": "./bin/k-init-docs.js",
+    "k-init-example": "./bin/k-init-example.js",
     "k-init-monorepo": "./bin/k-init-monorepo.js",
     "k-init-package": "./bin/k-init-package.js",
-    "k-init-example": "./bin/k-init-example.js",
-    "k-init-docs": "./bin/k-init-docs.js"
+    "k-sync-catalog": "./bin/k-sync-catalog.js"
   },
   "files": [
     "catalog.json",

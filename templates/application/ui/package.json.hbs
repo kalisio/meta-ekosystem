@@ -1,6 +1,6 @@
 {
-  "name": "@kalisio/{{ name }}",
-  "description": "{{ description }}",
+  "name": "@kalisio/{{ name }}-ui",
+  "description": "{{ description }} (ui package)",
   "version": "0.0.0",
   "type": "module",
   "exports": {
@@ -17,6 +17,7 @@
     "build": "vite build"
   },
   "keywords": [
+    "{{ name }}",
     "kalisio"
   ],
   "author": {
@@ -33,7 +34,9 @@
   "bugs": {
     "url": "https://github.com/kalisio/{{ monorepo }}/issues"
   },
-  "homepage": "https://github.com/kalisio/{{ monorepo }}/tree/main/packages/{{ name }}",
-  "dependencies": {},
+  "homepage": "https://github.com/kalisio/{{ monorepo }}/tree/main/packages/{{ name }}-ui",
+  "dependencies": {
+    "@kalisio/{{ name }}-common": "workspace:*"
+  },
   "devDependencies": {}
 }

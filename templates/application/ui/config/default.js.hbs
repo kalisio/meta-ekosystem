@@ -1,0 +1,86 @@
+const leftPane = require('./kdk/panes.left')
+
+// Helper declaration
+const APP_SLUG = '{{ name }}'
+const API_PATH = '/api'
+
+const LEFT_PANE = {
+  content: [
+    leftPane.activityLink({ name: 'activity', icon: 'las la-smile', label: 'Activity.LABEL' }),
+    leftPane.logout()
+  ],
+  opener: true
+}
+
+module.exports = {
+  appName: 'Kalisio {{ name }}',
+  appSlug: APP_SLUG,
+  buildMode: process.env.BUILD_MODE === 'pwa' ? 'pwa' : 'spa',
+  flavor: process.env.NODE_APP_INSTANCE || 'dev',
+  version: require('../package.json').version,
+  buildNumber: process.env.BUILD_NUMBER,
+  apiPath: API_PATH,
+  apiJwt: `${APP_SLUG}-jwt`,
+  apiTimeout: 20000,
+  transport: 'websocket', // Could be 'http' or 'websocket',
+  appChangelog: 'https://kalisio.github.io/skeleton/about/changelog.html',
+  locale: {
+    // If you'd like to force locale otherwise it is retrieved from browser
+    // default: 'en',
+    fallback: 'en'
+  },
+  logs: {
+    level: (process.env.NODE_ENV === 'development' ? 'debug' : 'info')
+  },
+  about: {
+    actions: [
+      {
+        id: 'platform-info',
+        icon: 'las la-desktop',
+        label: 'KAbout.PLATFORM_INFO',
+        stack: true,
+        dialog: {
+          title: 'KAbout.PLATFORM_INFO',
+          component: 'app/KPlatform',
+          okAction: 'CLOSE',
+          widthPolicy: 'narrow'
+        }
+      },
+      {
+        id: 'report-bug',
+        icon: 'las la-bug',
+        label: 'KAbout.BUG_REPORT',
+        stack: true,
+        component: 'action/KBugReportAction'
+      },
+      {
+        id: 'view-changelog',
+        icon: 'las la-history',
+        label: 'KAbout.VIEW_CHANGELOG',
+        stack: true,
+        url: 'https://kalisio.github.io/apps-ekosystem/about/changelog.html'
+      }
+    ]
+  },
+  screens: {
+    actions: [{
+      id: 'terms-policies',
+      label: 'screen.TERMS_AND_POLICIES',
+      dialog: {
+        component: 'document/KDocument',
+        url: 'terms.md'
+      }
+    }],
+    logout: {
+      actions: [
+        { id: 'login-link', label: 'KLogoutScreen.LOG_IN_AGAIN_LABEL', route: { name: 'login' } }
+      ]
+    }
+  },
+  homeActivity: {
+    panes: {
+      left: LEFT_PANE
+    }
+  },
+  routes: require('../src/router/routes')
+}
