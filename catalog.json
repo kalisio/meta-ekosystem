@@ -7,7 +7,7 @@
     "@changesets/cli": "^2.29.8",
     "@feathersjs/adapter-commons": "^5.0.8",
     "@feathersjs/adapter-tests": "^5.0.8",
-    "@feathersjs/authentication": "^5.0..8",
+    "@feathersjs/authentication": "^5.0.8",
     "@feathersjs/authentication-client": "^5.0.8",
     "@feathersjs/authentication-local": "^5.0.8",
     "@feathersjs/client": "^5.0.8",
