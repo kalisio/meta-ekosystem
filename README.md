@@ -80,15 +80,17 @@ It generates a **monorepo** skeleton with the following structure:
 
 ```
 monorepo
-├── CONTRIBUTING.md
+├── .changeset
+│   └── config.json
+├── .editorconfig
 ├── .gitignore
 ├── .husky
 │   └── pre-commit
 ├── LICENSE.md
-├── package.json
+├── package.json.hbs
 ├── pnpm-workspace.yaml
-├── README.md
-├── sonar-project.properties
+├── README.md.hbs
+├── sonar-project.properties.hbs
 ├── vite.config.js
 └── vitest.config.js
 ```
