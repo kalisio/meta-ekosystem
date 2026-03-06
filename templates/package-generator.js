@@ -46,6 +46,33 @@ export default function packageGenerator (plop) {
             name: packageName,
             monorepo: monorepoName
           }
+        },
+        function addVitestProject (answers) {
+          const vitestConfigFilePath = path.join(monorepoDir, 'vitest.config.js')
+          let content = fs.readFileSync(vitestConfigFilePath, 'utf8')
+          const newProject = `      {
+        test: {
+          name: '${answers.name}',
+          root: 'packages/${answers.name}',
+          include: ['test/**/*.js']
+        }
+      }`
+          content = content.replace(
+            /(\n {4}\]\n {2}\}\n\}\))/,
+            `,\n${newProject}$1`
+          )
+          fs.writeFileSync(vitestConfigFilePath, content, 'utf8')
+          return `✅ Projet "${answers.name}" ajouté dans vitest.config.js`
+        },
+        function addPackageScripts (answers) {
+          const pkg = JSON.parse(fs.readFileSync(monorepoPkgPath, 'utf-8'))
+          pkg.scripts[`test:${answers.name}`] = `pnpm run test --project ${answers.name}`
+          pkg.scripts[`build:${answers.name}`] = `pnpm --filter @kalisio/${answers.name} build`
+          pkg.scripts = Object.fromEntries(
+            Object.entries(pkg.scripts).sort(([a], [b]) => a.localeCompare(b))
+          )
+          fs.writeFileSync(monorepoPkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf-8')
+          return `✅ Scripts "test:${answers.name}" et "build:${answers.name}" ajoutés dans package.json`
         }
       ]
     }
