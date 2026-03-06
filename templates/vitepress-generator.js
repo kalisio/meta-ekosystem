@@ -8,18 +8,24 @@ const __dirname = path.dirname(__filename)
 export default function vitepressGenerator (plop) {
   plop.setGenerator('vitepress', {
     description: 'Generate a VitePress docummentation skeleton',
-    prompts: [],
-    actions: function (answers) {
-      const targetRepo = path.resolve(process.cwd())
-      // Read the package.json file
-      const packageJsonPath = path.join(targetRepo, 'package.json')
-      if (!fs.existsSync(packageJsonPath)) {
-        throw new Error(`❌ No package.json found in ${targetRepo}. Aborting.`)
+    prompts: [
+      {
+        type: 'input',
+        name: 'roadmapUrl',
+        message: 'Roadmap url:'
       }
-      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'))
+    ],
+    actions: function (answers) {
+      const monorepoDir = path.resolve(process.cwd())
+      // Read the package.json file
+      const monorepoPkgPath = path.join(monorepoDir, 'package.json')
+      if (!fs.existsSync(monorepoPkgPath)) {
+        throw new Error(`❌ No package.json found in ${monorepoDir}. Aborting.`)
+      }
+      const packageJson = JSON.parse(fs.readFileSync(monorepoPkgPath, 'utf-8'))
       // Define the list of packages
       let internalPackages = []
-      const packagesDir = path.join(targetRepo, 'packages')
+      const packagesDir = path.join(monorepoDir, 'packages')
       if (fs.existsSync(packagesDir)) {
         internalPackages = fs.readdirSync(packagesDir).filter(name => {
           const pjson = path.join(packagesDir, name, 'package.json')
@@ -31,7 +37,7 @@ export default function vitepressGenerator (plop) {
       return [
         {
           type: 'addMany',
-          destination: path.join(targetRepo, 'docs'),
+          destination: path.join(monorepoDir, 'docs'),
           base: templatesPath,
           templateFiles: path.join(templatesPath, '**/*'),
           globOptions: {
@@ -42,9 +48,19 @@ export default function vitepressGenerator (plop) {
             description: packageJson.description,
             version: packageJson.version,
             internalPackages,
-            targetPath: answers.targetPath
+            roadmapUrl: answers.roadmapUrl
           },
           abortOnFail: true
+        },
+        function addPackageScripts () {
+          const pkg = JSON.parse(fs.readFileSync(monorepoPkgPath, 'utf-8'))
+          pkg.scripts['docs:dev'] = 'vitepress dev docs'
+          pkg.scripts['docs:build'] = 'vitepress build docs'
+          pkg.scripts = Object.fromEntries(
+            Object.entries(pkg.scripts).sort(([a], [b]) => a.localeCompare(b))
+          )
+          fs.writeFileSync(monorepoPkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf-8')
+          return '✅ Scripts "docs:dev" and "docs:build" added in package.json'
         }
       ]
     }

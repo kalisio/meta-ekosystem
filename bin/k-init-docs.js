@@ -10,8 +10,9 @@ const plopfilePath = path.join(metaRepoDir, 'plopfile.js')
 try {
   const plop = await nodePlop(plopfilePath, { cwd: metaRepoDir })
   const generator = plop.getGenerator('vitepress')
-  if (!generator) throw new Error('❌ Generator \'vitepress\' not found')
+  const answers = await generator.runPrompts()
   await generator.runActions({
+    ...answers,
     dest: process.cwd()
   })
   console.log('✅ Documentation initialized successfully!')

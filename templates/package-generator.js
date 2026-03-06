@@ -62,7 +62,7 @@ export default function packageGenerator (plop) {
             `,\n${newProject}$1`
           )
           fs.writeFileSync(vitestConfigFilePath, content, 'utf8')
-          return `✅ Projet "${answers.name}" ajouté dans vitest.config.js`
+          return `✅ Project "${answers.name}" added in vitest.config.js`
         },
         function addPackageScripts (answers) {
           const pkg = JSON.parse(fs.readFileSync(monorepoPkgPath, 'utf-8'))
@@ -72,7 +72,7 @@ export default function packageGenerator (plop) {
             Object.entries(pkg.scripts).sort(([a], [b]) => a.localeCompare(b))
           )
           fs.writeFileSync(monorepoPkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf-8')
-          return `✅ Scripts "test:${answers.name}" et "build:${answers.name}" ajoutés dans package.json`
+          return `✅ Scripts "test:${answers.name}" and "build:${answers.name}" added in package.json`
         }
       ]
     }
