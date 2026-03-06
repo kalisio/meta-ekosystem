@@ -6,8 +6,8 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 export default function packageGenerator (plop) {
-  plop.setGenerator('package', {
-    description: 'Generate a package skeleton in a monorepo',
+  plop.setGenerator('example', {
+    description: 'Generate an example skeleton in a monorepo',
     prompts: [
       {
         type: 'input',
