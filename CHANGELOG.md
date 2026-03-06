@@ -1,5 +1,15 @@
 # @kalisio/meta-ekosystem
 
+## 0.3.0
+
+### Minor Changes
+
+- f9d5d30: Update package generator template
+- 85b3425: Provide a basic example generator
+- f9d5d30: Add main dependencies to the meta-catalog
+- Update vitepress generator template
+- f9d5d30: Update monorepo generator template
+
 ## [0.2.1](https://github.com/kalisio/meta-ekosystem/milestone/2)
 
 ### Patch Changes
