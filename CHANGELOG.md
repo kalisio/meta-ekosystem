@@ -1,22 +1,22 @@
 # @kalisio/meta-ekosystem
 
-## 0.3.0
+## [0.3.0](https://github.com/kalisio/meta-ekosystem/milestone/3?closed=1)
 
 ### Minor Changes
 
-- f9d5d30: Update package generator template
-- 85b3425: Provide a basic example generator
-- f9d5d30: Add main dependencies to the meta-catalog
-- Update vitepress generator template
-- f9d5d30: Update monorepo generator template
+- feat: Update package generator template
+- feat: Provide a basic example generator
+- feat: Add main dependencies to the meta-catalog
+- feat vitepress generator template
+- feat: Update monorepo generator template
 
-## [0.2.1](https://github.com/kalisio/meta-ekosystem/milestone/2)
+## [0.2.1](https://github.com/kalisio/meta-ekosystem/milestone/2?closed=1)
 
 ### Patch Changes
 
 - fix: Plop binary is not found
 
-## [0.2.0](https://github.com/kalisio/meta-ekosystem/milestone/2)
+## [0.2.0](https://github.com/kalisio/meta-ekosystem/milestone/2?closed=1)
 
 ### Minor Changes
 
@@ -24,9 +24,9 @@
 
 ### Patch Changes
 
-- fix: k-sync-catalog does not work when linkin the module locally
+- fix: k-sync-catalog does not work when linking the module locally
 
-## [0.1.0](https://github.com/kalisio/meta-ekosystem/milestone/1)
+## [0.1.0](https://github.com/kalisio/meta-ekosystem/milestone/1?closed=1)
 
 ### Minor Changes
 
