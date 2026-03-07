@@ -3,19 +3,7 @@
   "description": "{{ description }} (common package)",
   "version": "0.0.0",
   "type": "module",
-  "exports": {
-    ".": {
-      "development": "./src/index.js",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "vite build"
-  },
+  "exports": "./src/index.js",
   "keywords": [
     "{{ name }}",
     "kalisio"

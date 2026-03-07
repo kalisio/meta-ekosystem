@@ -41,8 +41,9 @@ module.exports = {
     default: 12,
     max: 50
   },
+  // Uncomment the following bloc to enable distribution
+  /*
   distribution: {
-    /*
     services: (service) => false,
     remoteServices: (service) => false,
     middlewares: { after: express.errorHandler() },
@@ -53,8 +54,8 @@ module.exports = {
     healthcheckPath: API_PREFIX + '/distribution/',
     distributedMethods: ['find', 'get', 'create', 'update', 'patch', 'remove'],
     distributedEvents: ['created', 'updated', 'patched', 'removed']
-    */
   },
+  */
   authentication: {
     secret: process.env.APP_SECRET,
     appId: process.env.APP_ID,
@@ -134,7 +135,7 @@ module.exports = {
   },
   db: {
     adapter: 'mongodb',
-    url: process.env.DB_URL || (isDocker ? 'mongodb://mongodb:27017/{{ name }}' : 'mongodb://127.0.0.1:27017/{{ name }}')
+    url: process.env.DB_URL || (isDocker() ? 'mongodb://mongodb:27017/{{ name }}' : 'mongodb://127.0.0.1:27017/{{ name }}')
   }
   // Declare the required services here
 }

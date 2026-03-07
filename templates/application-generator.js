@@ -37,7 +37,7 @@ export default function packageGenerator (plop) {
         {
           type: 'addMany',
           destination: `${packageDir}-common`,
-          base: templatesDir,
+          base: path.join(templatesDir, 'common'),
           templateFiles: path.join(templatesDir, 'common', '**/*'),
           globOptions: {
             dot: true
@@ -50,7 +50,7 @@ export default function packageGenerator (plop) {
         {
           type: 'addMany',
           destination: `${packageDir}-api`,
-          base: templatesDir,
+          base: path.join(templatesDir, 'api'),
           templateFiles: path.join(templatesDir, 'api', '**/*'),
           globOptions: {
             dot: true
@@ -63,7 +63,7 @@ export default function packageGenerator (plop) {
         {
           type: 'addMany',
           destination: `${packageDir}-ui`,
-          base: templatesDir,
+          base: path.join(templatesDir, 'ui'),
           templateFiles: path.join(templatesDir, 'ui', '**/*'),
           globOptions: {
             dot: true

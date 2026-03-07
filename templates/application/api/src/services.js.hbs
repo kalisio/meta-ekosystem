@@ -1,0 +1,36 @@
+import path from 'node:path'
+import fs from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import _ from 'lodash'
+import kdkCore from '@kalisio/kdk/core.api.js'
+import makeDebug from 'debug'
+
+const debug = makeDebug('{{ name }}:services')
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+export default async function () {
+  const app = this
+  // Set up our plugin services
+  try {
+    const packageInfo = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json')))
+    app.use(app.get('apiPath') + '/capabilities', (req, res, next) => {
+      const response = {
+        name: 'teams',
+        domain: app.get('domain'),
+        version: packageInfo.version
+      }
+      if (process.env.BUILD_NUMBER) {
+        response.buildNumber = process.env.BUILD_NUMBER
+      }
+      res.json(response)
+    })
+    await app.configure(kdkCore)
+    debug('kdk initialized')
+    /*
+       Declare the services here
+     */
+  } catch (error) {
+    app.logger.error(error.message)
+  }
+}

@@ -14,7 +14,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "vite build"
+    "dev": "node --watch src/index.js"
   },
   "keywords": [
     "{{ name }}",
@@ -36,8 +36,16 @@
   },
   "homepage": "https://github.com/kalisio/{{ monorepo }}/tree/main/packages/{{ name }}-api",
   "dependencies": {
+    "@feathersjs/authentication": "catalog:",
+    "@feathersjs/express": "catalog:",
+    "@kalisio/feathers-distributed": "catalog:",
+    "@kalisio/kdk": "catalog:",
     "@kalisio/{{ name }}-common": "workspace:*",
-    "is-docker": "catalog:"
+    "debug": "catalog:",
+    "feathers-hooks-common": "catalog:",
+    "is-docker": "catalog:",
+    "lodash": "catalog:",
+    "winston": "catalog:"
   },
   "devDependencies": {}
 }
