@@ -44,6 +44,7 @@ export default function packageGenerator (plop) {
           },
           data: {
             name: packageName,
+            description: answers.description,
             monorepo: monorepoName
           }
         },
@@ -57,6 +58,7 @@ export default function packageGenerator (plop) {
           },
           data: {
             name: packageName,
+            description: answers.description,
             monorepo: monorepoName
           }
         },
@@ -70,6 +72,7 @@ export default function packageGenerator (plop) {
           },
           data: {
             name: packageName,
+            description: answers.description,
             monorepo: monorepoName
           }
         }
