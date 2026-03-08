@@ -3,31 +3,18 @@
   "description": "{{ description }}",
   "type": "module",
   "packageManager": "pnpm@10.1.0",
-  "standard": {
-    "globals": [
-      "describe",
-      "it",
-      "expect",
-      "beforeEach",
-      "afterEach",
-      "Image"
-    ],
-    "ignore": [
-      "dist/**"
-    ]
-  },
   "lint-staged": {
     "*.{js,cjs,mjs}": [
       "pnpm lint"
     ]
   },
   "scripts": {
-    "build": "pnpm -r --filter @kalisio/* build",",
+    "build": "pnpm -r build",",
     "changeset": "changeset",
     "changeset:status": "changeset status",
     "changeset:version": "changeset version",
     "changeset:release": "pnpm build && changeset publish",
-    "lint": "standard 'packages/**/*.js' --fix",
+    "lint": "pnpm -r lint",
     "prepare": "husky",
     "test": "vitest run --coverage"
   },
