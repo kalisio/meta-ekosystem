@@ -1,14 +1,14 @@
 # @kalisio/meta-ekosystem
 
-## 0.5.0
+## [0.5.0](https://github.com/kalisio/meta-ekosystem/milestone/5?closed=1)
 
 ### Minor Changes
 
-- 7884a49: feat: Update test coverage configuration
+- feat: Update test coverage configuration
 
 ### Patch Changes
 
-- 7884a49: fix: fix .gitignore
+- fix: fix .gitignore
 
 ## [0.4.1](https://github.com/kalisio/meta-ekosystem/milestone/4?closed=1)
 
