@@ -1,5 +1,11 @@
 # @kalisio/meta-ekosystem
 
+## 0.4.1
+
+### Patch Changes
+
+- fix: Package generator tries to add a project in vitest.config.js
+
 ## [0.4.0](https://github.com/kalisio/meta-ekosystem/milestone/4?closed=1)
 
 ### Minor Changes
