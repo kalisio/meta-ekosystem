@@ -253,6 +253,7 @@ And commit the changes:
 
 ```bash
 git add . && git commit -m "chore: released <new version>"
+git push
 ```
 
 ### Publishing
