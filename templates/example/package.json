@@ -4,7 +4,9 @@
   "packageManager": "pnpm@10.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "lint": "standard ",
+    "lint:fix": "standard --fix"
   },
   "author": {
     "name": "KALISIO <contact@kalisio.com>",
