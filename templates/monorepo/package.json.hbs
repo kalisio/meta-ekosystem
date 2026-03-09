@@ -9,14 +9,14 @@
     ]
   },
   "scripts": {
-    "build": "pnpm -r build",",
+    "build": "pnpm -r build",
     "changeset": "changeset",
     "changeset:status": "changeset status",
     "changeset:version": "changeset version",
     "changeset:release": "pnpm build && changeset publish",
-    "lint": "pnpm -r lint",
+    "lint": "pnpm -r lint --fix",
     "prepare": "husky",
-    "test": "vitest run --coverage"
+    "test": "pnpm -r test --coverage"
   },
   "keywords": [
     "kalisio"
