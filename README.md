@@ -92,7 +92,8 @@ monorepo
 ├── README.md.hbs
 ├── sonar-project.properties.hbs
 ├── vite.config.js
-└── vitest.config.js
+├── vitest.config.js
+└── vitest.workspace.js
 ```
 
 * Usage
@@ -115,7 +116,8 @@ package
 ├── LICENSE.md
 ├── package.json
 ├── README.md
-└── vite.config.js
+├── vite.config.js
+└── vitest.config.js
 ```
 
 * Usage
