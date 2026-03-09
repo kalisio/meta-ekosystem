@@ -1,5 +1,14 @@
 # @kalisio/meta-ekosystem
 
+## [0.4.0](https://github.com/kalisio/meta-ekosystem/milestone/4?closed=1)
+
+### Minor Changes
+
+- feat: Enhance package generator
+- feat: Add missing dependencies in meta-catalog
+- feat: Enhance example generator
+- feat: Enhance vitepress generator
+
 ## [0.3.0](https://github.com/kalisio/meta-ekosystem/milestone/3?closed=1)
 
 ### Minor Changes
@@ -7,7 +16,7 @@
 - feat: Update package generator template
 - feat: Provide a basic example generator
 - feat: Add main dependencies to the meta-catalog
-- feat vitepress generator template
+- feat Enhance vitepress generator template
 - feat: Update monorepo generator template
 
 ## [0.2.1](https://github.com/kalisio/meta-ekosystem/milestone/2?closed=1)
