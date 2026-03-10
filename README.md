@@ -91,9 +91,7 @@ monorepo
 ├── pnpm-workspace.yaml
 ├── README.md.hbs
 ├── sonar-project.properties.hbs
-├── vite.config.js
-├── vitest.config.js
-└── vitest.workspace.js
+└── vite.config.js
 ```
 
 * Usage
