@@ -53,17 +53,20 @@ It generates a [VitePress](https://vitepress.dev/) skeleton in a `docs/` directo
 
 ```
 docs
-├── about
+├── index.md
+├── overview
+│   ├── about.md
+│   ├── changelog.md
 │   ├── contact.md
 │   ├── contributing.md
-│   ├── introduction.md
-│   └── license.md
-├── index.md
+│   ├── license.md
+│   └── roadmap.md
 └── .vitepress
     ├── config.mjs
     └── theme
         ├── custom.css
         └── index.js
+
 ```
 
 * Usage
@@ -87,10 +90,10 @@ monorepo
 ├── .husky
 │   └── pre-commit
 ├── LICENSE.md
-├── package.json.hbs
+├── package.json
 ├── pnpm-workspace.yaml
-├── README.md.hbs
-├── sonar-project.properties.hbs
+├── README.md
+├── sonar-project.properties
 └── vite.config.js
 ```
 
