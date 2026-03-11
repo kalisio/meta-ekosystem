@@ -191,7 +191,11 @@ cd meta-ekosystem
 
 # Install dependencies
 pnpm install
+
+# Link globally (make the binaries available system-wide)
+pnpm link
 ```
+
 
 #### Local linking
 
@@ -253,7 +257,8 @@ pnpm changeset:version
 And commit the changes:
 
 ```bash
-git add . && git commit -m "chore: released <new version>"
+git add .
+git commit -m "chore: released <new version>"
 git push
 ```
 
