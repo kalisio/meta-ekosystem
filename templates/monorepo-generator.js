@@ -20,6 +20,11 @@ export default function monorepoGenerator (plop) {
       },
       {
         type: 'input',
+        name: 'roadmapUrl',
+        message: 'Roadmap url:'
+      },
+      {
+        type: 'input',
         name: 'path',
         message: 'Repository path:',
         default: '..'
@@ -39,7 +44,8 @@ export default function monorepoGenerator (plop) {
           },
           data: {
             name: answers.name,
-            description: answers.description
+            description: answers.description,
+            roadmapUrl: answers.roadmapUrl
           }
         }
       ]
