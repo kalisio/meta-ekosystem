@@ -27,23 +27,40 @@ export default function packageGenerator (plop) {
       if (!fs.existsSync(monorepoPkgPath)) {
         throw new Error(`❌ No package.json found in ${monorepoDir}. Aborting.`)
       }
-      // Defne the requested variables
+      // Define the requested variables
       const monorepoPkg = JSON.parse(fs.readFileSync(monorepoPkgPath, 'utf-8'))
       const monorepoName = monorepoPkg.name
       const packageName = answers.name
-      const packageDir = path.join(monorepoDir, 'packages', packageName)
+      const contentPackageDir = path.join(monorepoDir, 'packages', packageName)
+      const docsDir = path.join(monorepoDir, 'docs')
+      const docsPackageDir = path.join(docsDir, 'packages', packageName)
       const templatesDir = path.join(__dirname, 'package')
       return [
         {
           type: 'addMany',
-          destination: packageDir,
-          base: templatesDir,
-          templateFiles: path.join(templatesDir, '**/*'),
+          destination: contentPackageDir,
+          base: path.join(templatesDir, 'content'),
+          templateFiles: '**/*',
           globOptions: {
             dot: true
           },
           data: {
             name: packageName,
+            description: answers.description,
+            monorepo: monorepoName
+          }
+        },
+        {
+          type: 'addMany',
+          destination: docsPackageDir,
+          base: path.join(templatesDir, 'docs'),
+          templateFiles: '**/*',
+          globOptions: {
+            dot: true
+          },
+          data: {
+            name: packageName,
+            description: answers.description,
             monorepo: monorepoName
           }
         },
@@ -57,6 +74,17 @@ export default function packageGenerator (plop) {
           )
           fs.writeFileSync(monorepoPkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf-8')
           return `✅ Scripts "test:${answers.name}" and "build:${answers.name}" added in package.json`
+        },
+        {
+          type: 'modify',
+          path: path.join(docsDir, '.vitepress', 'packages.json'),
+          transform: (fileContent, answers) => {
+            const packages = JSON.parse(fileContent)
+            if (!packages.includes(answers.name)) {
+              packages.push(answers.name)
+            }
+            return JSON.stringify(packages, null, 2)
+          }
         }
       ]
     }

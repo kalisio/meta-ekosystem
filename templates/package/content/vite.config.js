@@ -1,10 +1,10 @@
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import { defineConfig, mergeConfig } from 'vite'
-import { defaultConfig } from '../../vite.config'
+import { baseConfig } from '../../vite.base-config'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-export default mergeConfig(defaultConfig, defineConfig({
+export default mergeConfig(baseConfig, defineConfig({
   root: __dirname
 }))
