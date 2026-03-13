@@ -108,9 +108,9 @@ package
 └── vitest.config.js
 ```
 
-And it updates the docs configuration consequently:
-- an entry is added to the `packages.json` file used to build the documentation
-- a folder with an `index.md` is added to the `packages` folder
+And it updates the documentation configuration accordingly:
+- an entry is added to the `packages.json` file, which is used to build the documentation.
+- a folder containing an `index.md` file is added to the `packages` directory.
 
 * Usage
 
