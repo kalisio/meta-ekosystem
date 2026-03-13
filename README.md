@@ -53,18 +53,35 @@ It generates a **monorepo** skeleton with the following structure:
 
 ```
 monorepo
-├── .changeset
+── .changeset
 │   └── config.json
+├── docs
+│   ├── index.md.hbs
+│   ├── overview
+│   │   ├── about.md.hbs
+│   │   ├── changelog.md
+│   │   ├── contact.md
+│   │   ├── contributing.md.hbs
+│   │   ├── license.md
+│   │   └── roadmap.md.hbs
+│   └── .vitepress
+│       ├── config.mjs.hbs
+│       ├── packages.json
+│       ├── sidebar.mjs
+│       └── theme
+│           ├── custom.css
+│           └── index.js
 ├── .editorconfig
 ├── .gitignore
 ├── .husky
 │   └── pre-commit
 ├── LICENSE.md
-├── package.json
+├── package.json.hbs
 ├── pnpm-workspace.yaml
-├── README.md
-├── sonar-project.properties
-└── vite.config.js
+├── README.md.hbs
+├── sonar-project.properties.hbs
+├── vite.base-config.js
+└── vitest.base-config.js
 ```
 
 * Usage
