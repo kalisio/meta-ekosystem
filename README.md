@@ -108,6 +108,10 @@ package
 └── vitest.config.js
 ```
 
+And it updates the docs configuration consequently:
+- an entry is added to the `packages.json` file used to build the documentation
+- a folder with an `index.md` is added to the `packages` folder
+
 * Usage
 
 ```bash
