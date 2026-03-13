@@ -45,36 +45,6 @@ The commands are intended to be used by monorepo projects that depend on this re
 > To run a command from this repository, use:
 > `node ./bin/<command>`
 
-#### k-init-docs
-
-* Description
-
-It generates a [VitePress](https://vitepress.dev/) skeleton in a `docs/` directory with the following structure:
-
-```
-docs
-├── index.md
-├── overview
-│   ├── about.md
-│   ├── changelog.md
-│   ├── contact.md
-│   ├── contributing.md
-│   ├── license.md
-│   └── roadmap.md
-└── .vitepress
-    ├── config.mjs
-    └── theme
-        ├── custom.css
-        └── index.js
-
-```
-
-* Usage
-
-```bash
-pnpm k-init-docs
-```
-
 #### k-init-monorepo
 
 * Description

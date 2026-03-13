@@ -6,7 +6,6 @@
   "type": "module",
   "bin": {
     "k-init-application": "./bin/k-init-application.js",
-    "k-init-docs": "./bin/k-init-docs.js",
     "k-init-example": "./bin/k-init-example.js",
     "k-init-monorepo": "./bin/k-init-monorepo.js",
     "k-init-package": "./bin/k-init-package.js",
@@ -19,8 +18,7 @@
     "scripts/"
   ],
   "exports": {
-    "./catalog.json": "./catalog.json",
-    "./templates/jsdoc2md/jsdoc2md.hbs": "./templates/jsdoc2md/jsdoc2md.hbs"
+    "./catalog.json": "./catalog.json"
   },
   "lint-staged": {
     "*.{js,cjs,mjs}": [

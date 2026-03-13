@@ -20,16 +20,11 @@ const { default: exampleGenerator } = await import(exampleGeneratorPath)
 const applicationGeneratorPath = path.resolve(__dirname, './templates/application-generator.js')
 const { default: applicationGenerator } = await import(applicationGeneratorPath)
 
-// Import vitepress generator
-const vitepressGeneratorPath = path.resolve(__dirname, './templates/vitepress-generator.js')
-const { default: vitepressGenerator } = await import(vitepressGeneratorPath)
-
 export default function (plop) {
   [
     applicationGenerator,
     monorepoGenerator,
     packageGenerator,
-    exampleGenerator,
-    vitepressGenerator
+    exampleGenerator
   ].forEach(generator => generator(plop))
 }
