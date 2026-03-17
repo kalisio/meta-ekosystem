@@ -1,6 +1,6 @@
 # @kalisio/meta-ekosystem
 
-## 0.6.0
+## [0.6.0](https://github.com/kalisio/meta-ekosystem/milestone/6?closed=1)
 
 ### Minor Changes
 
