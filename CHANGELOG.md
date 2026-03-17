@@ -1,5 +1,18 @@
 # @kalisio/meta-ekosystem
 
+## 0.6.0
+
+### Minor Changes
+
+- feat: Add missing dependencies in meta-catalog
+- feat: Remove k-init-docs
+- feat: Enhance package generator
+- feat: Enhance monorepo generator
+
+### Patch Changes
+
+- fix: Wrong link on the about.md page in the VitePress generator
+
 ## [0.5.0](https://github.com/kalisio/meta-ekosystem/milestone/5?closed=1)
 
 ### Minor Changes

@@ -187,7 +187,6 @@ pnpm install
 pnpm link
 ```
 
-
 #### Local linking
 
 This repository provides global binaries to help manage the monorepo ecosystem. During development, you will often
