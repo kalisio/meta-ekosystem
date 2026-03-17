@@ -18,7 +18,9 @@
     "docs:dev": "vitepress dev docs",
     "lint": "pnpm -r lint --fix",
     "prepare": "husky",
-    "test": "pnpm -r test --coverage"
+    "pretest": "mkdir -p coverage",
+    "test": "pnpm -r test --coverage",
+    "posttest": "pnpm lcov-result-merger --prepend-source-files 'packages/*/coverage/lcov.info' coverage/lcov.info"
   },
   "keywords": [
     "kalisio"
@@ -49,6 +51,7 @@
     "@vitest/coverage-v8": "catalog:",
     "cross-env": "catalog:",
     "husky": "catalog:",
+    "lcov-result-merger": "catalog:",
     "lint-staged": "catalog:",
     "mermaid": "catalog:",
     "standard": "catalog:",
