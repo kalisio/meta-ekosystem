@@ -3,19 +3,6 @@
   "description": "{{ description }} (ui package)",
   "version": "0.0.0",
   "type": "module",
-  "exports": {
-    ".": {
-      "development": "./src/index.js",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "vite build"
-  },
   "keywords": [
     "{{ name }}",
     "kalisio"
@@ -35,8 +22,45 @@
     "url": "https://github.com/kalisio/{{ monorepo }}/issues"
   },
   "homepage": "https://github.com/kalisio/{{ monorepo }}/tree/main/packages/{{ name }}-ui",
-  "dependencies": {
-    "@kalisio/{{ name }}-common": "workspace:*"
+  "scripts": {
+    "lint": "eslint -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\"",
+    "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "dev": "cross-env NODE_ENV=development quasar dev",
+    "build": "quasar build",
+    "postinstall": "quasar prepare",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
-  "devDependencies": {}
+  "dependencies": {
+    "@kalisio/kdk": "catalog:",
+    "@kalisio/feathers-localforage": "catalog:",
+    "@quasar/extras": "catalog:",
+    "config": "catalog:",
+    "feathers-reactive": "catalog:",
+    "jwt-decode": "catalog:",
+    "lodash": "catalog:",
+    "path-browserify": "catalog:",
+    "quasar": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "eslint": "^9.14.0",
+    "eslint-plugin-vue": "^10.4.0",
+    "globals": "^16.4.0",
+    "vite-plugin-checker": "^0.11.0",
+    "vue-eslint-parser": "^10.2.0",
+    "@vue/eslint-config-prettier": "^10.1.0",
+    "prettier": "^3.8.1",
+    "@quasar/app-vite": "catalog:",
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.14"
+  },
+  "engines": {
+    "node": "^28 || ^26 || ^24 || ^22 || ^20",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1",
+    "pnpm": ">= 10.0.0"
+  }
 }

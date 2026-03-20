@@ -1,6 +1,6 @@
 // import 'whatwg-fetch'
 import _ from 'lodash'
-import logger from 'loglevel'
+// import logger from 'loglevel'
 import config from 'config'
 import { Notify } from 'quasar'
 import appHooks from '../main.hooks'
@@ -48,13 +48,13 @@ export default async ({ app }) => {
 
   // Register global properties
   // FIXME: This is used for testing purpose, don't know how to access this from Puppeteer otherwise
-  global.$store = app.config.globalProperties.$store
-  global.$layout = app.config.globalProperties.$layout
-  global.$api = app.config.globalProperties.$api
+  // global.$store = app.config.globalProperties.$store
+  // global.$layout = app.config.globalProperties.$layout
+  // global.$api = app.config.globalProperties.$api
 
   // Add global guard
   beforeGuard.registerGuard(authenticationGuard)
 
   // For debug purpose
-  logger.debug('[KDK] is now ready:', Store.get('kdk'))
+  // logger.debug('[KDK] is now ready:', Store.get('kdk'))
 }
