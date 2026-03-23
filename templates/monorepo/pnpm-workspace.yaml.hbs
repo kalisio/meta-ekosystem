@@ -1,0 +1,8 @@
+packages:
+  - packages/**
+  - examples/**
+
+catalog:
+{{#each catalog}}
+  {{@key}}: "{{this}}"
+{{/each}}

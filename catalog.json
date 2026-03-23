@@ -31,6 +31,7 @@
     "@kalisio/feathers-s3": "^1.6.0",
     "@kalisio/feathers-webpush": "^1.0.1",
     "@kalisio/kdk": "^2.6.4",
+    "@kalisio/meta-ekosystem": "https://github.com/kalisio/meta-ekosystem",
     "@logtape/logtape": "^0.7.0",
     "@quasar/app-vite": "^2.5.1",
     "@quasar/extras": "^1.17.0",

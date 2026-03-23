@@ -20,6 +20,11 @@
   "exports": {
     "./catalog.json": "./catalog.json"
   },
+  "standard": {
+    "globals": [
+      "self"
+    ]
+  },
   "lint-staged": {
     "*.{js,cjs,mjs}": [
       "pnpm lint"
