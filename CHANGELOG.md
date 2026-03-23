@@ -1,5 +1,12 @@
 # @kalisio/meta-ekosystem
 
+## 0.6.1
+
+### Patch Changes
+
+- f8f10df: fix: Actions Learn more about common-ekosystem ? has a wrong link in index.md
+- fix: Add missing dependencies in monorepo template
+
 ## [0.6.0](https://github.com/kalisio/meta-ekosystem/milestone/6?closed=1)
 
 ### Minor Changes
