@@ -7,7 +7,6 @@ const isDocker = require('is-docker')
 const SERVER_PORT = process.env.PORT || 8081
 // Required to know webpack port so that in dev we can build correct URLs
 const CLIENT_PORT = process.env.CLIENT_PORT || 8080
-const API_PREFIX = '/api'
 
 let host, domain
 if (process.env.SUBDOMAIN) {
@@ -35,8 +34,6 @@ module.exports = {
   domain,
   host,
   port: SERVER_PORT,
-  distPath: fs.existsSync(path.join(__dirname, '../../dist/pwa')) ? path.join(__dirname, '../../dist/pwa') : path.join(__dirname, '../../dist/spa'),
-  apiPath: API_PREFIX,
   paginate: {
     default: 12,
     max: 50
@@ -51,7 +48,7 @@ module.exports = {
     // this assumes a gateway scenario where authentication is performed externally
     authentication: false,
     key: '{{ name }}',
-    healthcheckPath: API_PREFIX + '/distribution/',
+    healthcheckPath: '/distribution/',
     distributedMethods: ['find', 'get', 'create', 'update', 'patch', 'remove'],
     distributedEvents: ['created', 'updated', 'patched', 'removed']
   },
@@ -59,8 +56,8 @@ module.exports = {
   authentication: {
     secret: process.env.APP_SECRET,
     appId: process.env.APP_ID,
-    path: API_PREFIX + '/authentication',
-    service: API_PREFIX + '/users',
+    path: '/authentication',
+    service: '/users',
     entity: 'user',
     authStrategies: [
       'jwt',
