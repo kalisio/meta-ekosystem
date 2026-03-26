@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import path from 'path'
 import { fileURLToPath } from 'url'
+import chalk from 'chalk'
 import nodePlop from 'node-plop'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -16,8 +17,8 @@ try {
     ...answers,
     dest: process.cwd()
   })
-  console.log(`✅ Monorepo '${answers.name}' initialized successfully!`)
+  console.log(chalk.green(`✅ Monorepo '${answers.name}' initialized successfully!`))
 } catch (error) {
-  console.error('❌ Error initializing monorepo:', error)
+  console.error(chalk.red('❌ Error initializing monorepo:', error))
   process.exit(1)
 }

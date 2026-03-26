@@ -22,15 +22,17 @@ This repository centralizes common development resources used across Kalisio pro
 
 ## Usage
 
-This repository is designed to be included as a development dependency in your monorepo, providing access to the different shared resources.
-
 ### Installation
 
 ``` bash
-pnpm add -D @kalisio/meta-ekosystem
+git clone https://github.com/kalisio/meta-ekosystem
+pnpm install
+pnpm link --global
 ```
 
-### Catalog
+### Resources
+
+#### Catalog
 
 The [`catalog.json`](./catalog.json) file, also referred to as the **meta-catalog**, centralizes and maintains the list of all dependencies, along with their respective versions, to ensure consistency and alignment across the **Kalisio** ecosystem.
 
