@@ -1,5 +1,11 @@
 # @kalisio/meta-ekosystem
 
+## [0.7.0](https://github.com/kalisio/meta-ekosystem/milestone/7?closed=1)
+
+### Minor Changes
+
+- feat: Allow using meta-ekosystem as a global package
+
 ## 0.6.1
 
 ### Patch Changes
