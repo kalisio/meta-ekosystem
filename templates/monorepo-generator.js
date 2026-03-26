@@ -45,7 +45,7 @@ export default function monorepoGenerator (plop) {
         type: 'input',
         name: 'path',
         message: 'Repository path:',
-        default: '..'
+        default: '.'
       }
     ],
     actions: function (answers) {
