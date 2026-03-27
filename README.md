@@ -49,7 +49,7 @@ The commands are intended to be used by monorepo projects that depend on this re
 
 #### k-init-monorepo
 
-* Description
+##### Description
 
 It generates a **monorepo** skeleton with the following structure:
 
@@ -86,7 +86,7 @@ monorepo
 └── vitest.base-config.js
 ```
 
-* Usage
+##### Usage
 
 ```bash
 pnpm k-init-monorepo
@@ -97,7 +97,7 @@ pnpm k-init-monorepo
 
 #### k-init-package
 
-* Description
+##### Description
 
 It generates a **package** skeleton with the following structure:
 
@@ -122,7 +122,7 @@ The command also updates the documentation configuration accordingly:
 - adds an entry to the `packages.json` file, which is used to generate the documentation
 - creates a new folder in the packages directory containing an `index.md` file
 
-* Usage
+##### Usage
 
 ```bash
 pnpm k-init-package
@@ -133,7 +133,7 @@ pnpm k-init-package
 
 #### k-init-example
 
-* Description
+##### Description
 
 It generates an **example** skeleton with the following structure:
 
@@ -145,7 +145,7 @@ package
 └── vite.config.js
 ```
 
-* Usage
+##### Usage
 
 ```bash
 pnpm k-init-example
@@ -159,7 +159,7 @@ pnpm k-init-example
 
 #### k-sync-catalog
 
-* Description
+##### Description
 
 It synchronizes your project catalog by merging the **meta-catalog** with an existing local catalog file and updating
 the catalog property in `pnpm-workspace.yaml`.
@@ -168,7 +168,7 @@ the catalog property in `pnpm-workspace.yaml`.
   <img src="./docs/k-sync-catalog.png" alt="k-sync-catalog" width="400"/>
 </div>
 
-* Usage
+##### Usage
 
 ```bash
 pnpm k-sync-catalog
