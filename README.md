@@ -110,9 +110,17 @@ package
 └── vitest.config.js
 ```
 
-And it updates the documentation configuration accordingly:
-- an entry is added to the `packages.json` file, which is used to build the documentation.
-- a folder containing an `index.md` file is added to the `packages` directory.
+It adds the following scripts to the parent monorepo's `package.json`:
+
+| Script | Description |
+|---|---|
+| `build:<package>` | Build the package |
+| `lint:<package>`  | Lint the package  |
+| `test:<package>`  | Run the package tests |
+
+The command also updates the documentation configuration accordingly:
+- adds an entry to the `packages.json` file, which is used to generate the documentation
+- creates a new folder in the packages directory containing an `index.md` file
 
 * Usage
 
