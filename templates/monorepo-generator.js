@@ -1,26 +1,13 @@
 import path from 'node:path'
-import fs from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { parse, stringify } from 'yaml'
+import { execSync } from 'node:child_process'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 export default function monorepoGenerator (plop) {
   plop.setActionType('injectCatalog', (answers, config) => {
-    const catalogPath = path.resolve(__dirname, '../catalog.json')
-    const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf-8'))
-    const workspacePath = path.resolve(config.destination, 'pnpm-workspace.yaml')
-    const existing = parse(fs.readFileSync(workspacePath, 'utf-8'))
-    const updated = {
-      ...existing,
-      catalog: {
-        ...(existing.catalog ?? {}),
-        ...catalog
-      }
-    }
-    fs.writeFileSync(workspacePath, stringify(updated))
-    return '✅ pnpm-workspace.yaml synchronized'
+    execSync('k-sync-catalog', { cwd: config.destination })
   })
 
   plop.setGenerator('monorepo', {
