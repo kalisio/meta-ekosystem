@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "lint": "standard ",
-    "lint:fix": "standard --fix"
+    "lint": "standard --fix"
   },
   "author": {
     "name": "KALISIO <contact@kalisio.com>",

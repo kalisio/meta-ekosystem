@@ -3,11 +3,6 @@
   "description": "{{ description }}",
   "type": "module",
   "packageManager": "pnpm@10.1.0",
-  "lint-staged": {
-    "*.{js,cjs,mjs}": [
-      "pnpm lint"
-    ]
-  },
   "scripts": {
     "build": "pnpm -r build",
     "changeset": "changeset",
@@ -16,7 +11,7 @@
     "changeset:release": "pnpm build && changeset publish",
     "docs:build": "vitepress build docs",
     "docs:dev": "vitepress dev docs",
-    "lint": "pnpm -r lint --fix",
+    "lint": "pnpm -r lint",
     "prepare": "husky",
     "pretest": "mkdir -p coverage",
     "test": "pnpm -r test --coverage",
