@@ -78,6 +78,7 @@ monorepo
 ├── .husky
 │   └── pre-commit
 ├── LICENSE.md
+├── lint-staged.config.mjs
 ├── package.json.hbs
 ├── pnpm-workspace.yaml
 ├── README.md.hbs
