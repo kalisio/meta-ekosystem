@@ -97,7 +97,7 @@
     "superagent": "~10.3.0",
     "tar": "~7.4.3",
     "unzipper": "~0.12.3",
-    "vite": "~7.1.9",
+    "vite": "~7.3.1",
     "vite-bundle-visualizer": "~1.2.1",
     "vite-plugin-checker": "~0.11.0",
     "vitepress": "~1.6.3",
