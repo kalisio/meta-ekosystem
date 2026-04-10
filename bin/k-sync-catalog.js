@@ -90,7 +90,10 @@ try {
   console.error(chalk.red('❌ Failed to read package.json file:', error))
   process.exit(1)
 }
-packageContent.metaCatalog = metaPackageContent.version
+packageContent.metaCatalog = {
+  version: metaPackageContent.version,
+  syncedAt: new Date().toISOString()
+}
 fs.writeFileSync(packagePath, JSON.stringify(packageContent, null, 2), 'utf8')
 
 console.log(chalk.green('✅ catalog synchronized successfully!'))
