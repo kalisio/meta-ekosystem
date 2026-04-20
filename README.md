@@ -26,6 +26,7 @@ This repository centralizes common development resources used across Kalisio pro
 
 ``` bash
 git clone https://github.com/kalisio/meta-ekosystem
+cd meta-ekosystem
 pnpm install
 pnpm link --global
 ```
