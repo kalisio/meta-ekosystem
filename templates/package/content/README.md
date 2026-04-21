@@ -6,7 +6,7 @@ _{{ description }}_
 
 ## Documentation
 
-Detailed documentation is available at the following [link](https://github.com/kalisio/{{ monorepo }}/packages/{{ name }}).
+Detailed documentation is available at the following [link](https://kalisio.github.io/{{ monorepo }}/packages/{{ name }}).
 
 ## License
 
