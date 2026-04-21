@@ -43,6 +43,7 @@
     "@thumbmarkjs/thumbmarkjs": "~1.7.5",
     "@turf/bbox": "~7.3.4",
     "@turf/boolean-clockwise": "~7.3.4",
+    "@turf/intersect": "~7.3.5",
     "@turf/kinks": "~7.3.4",
     "@vitest/coverage-v8": "~4.1.4",
     "@vitejs/plugin-vue": "~6.0.4",
