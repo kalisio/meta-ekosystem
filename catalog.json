@@ -41,6 +41,7 @@
     "@quasar/quasar-app-extension-testing-unit-vitest": "~1.2.4",
     "@quasar/extras": "~1.17.0",
     "@thumbmarkjs/thumbmarkjs": "~1.7.5",
+    "@turf/bbox": "~7.3.4",
     "@turf/boolean-clockwise": "~7.3.4",
     "@turf/kinks": "~7.3.4",
     "@vitest/coverage-v8": "~4.1.4",
