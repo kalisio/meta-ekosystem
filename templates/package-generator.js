@@ -68,7 +68,7 @@ export default function packageGenerator (plop) {
           const pkg = JSON.parse(fs.readFileSync(monorepoPkgPath, 'utf-8'))
           pkg.scripts[`build:${answers.name}`] = `pnpm --filter @kalisio/${answers.name} build`
           pkg.scripts[`lint:${answers.name}`] = `pnpm --filter @kalisio/${answers.name} lint`
-          pkg.scripts[`test:${answers.name}`] = `pnpm --filter @kalisio/${answers.name} test --coverage`
+          pkg.scripts[`test:${answers.name}`] = `pnpm --filter @kalisio/${answers.name} test`
           pkg.scripts = Object.fromEntries(
             Object.entries(pkg.scripts).sort(([a], [b]) => a.localeCompare(b))
           )
