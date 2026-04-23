@@ -1,23 +1,23 @@
 # @kalisio/meta-ekosystem
 
-## 0.8.0
+## [0.8.0](https://github.com/kalisio/meta-ekosystem/milestone/8?closed=1)
 
 ### Minor Changes
 
-- 30180e7: feat: Store the version of the meta catalog when syncing
-- 30180e7: feat: Remove meta-ekosystem from the monorepo template's dependencies
-- fa88507: feat: Add a timestamp when syncing the Meta catalog
-- fa88507: feat: Add a timestamp when syncing the Meta catalog
-- fa88507: feat: Enhance monorepo template's documentation
-- fa88507: feat: Use tilde versioning for all dependencies
+- feat: Store the version of the meta catalog when syncing
+- feat: Remove meta-ekosystem from the monorepo template's dependencies
+- feat: Add a timestamp when syncing the Meta catalog
+- feat: Enhance monorepo template's documentation
+- feat: Use tilde versioning for all dependencies
 - feat: Add missing dependencies
 - feat: Update outdated dependencies
-- fa88507: Update lint/lint-staged configuration in monorepo/package/example templates
+- feat: Update lint/lint-staged configuration in monorepo/package/example templates
+- feat: The package's test script should enforce coverage
 
 ### Patch Changes
 
-- fa88507: fix: The package’s README should refer to the VitePress documentation
-- 9849f7b: fix: Remove Vitest globals from the package’s package.json
+- fix: The package’s README should refer to the VitePress documentation
+- fix: Remove Vitest globals from the package’s package.json
 
 ## [0.7.0](https://github.com/kalisio/meta-ekosystem/milestone/7?closed=1)
 
@@ -29,7 +29,7 @@
 
 ### Patch Changes
 
-- f8f10df: fix: Actions Learn more about common-ekosystem ? has a wrong link in index.md
+- fix: Actions Learn more about common-ekosystem ? has a wrong link in index.md
 - fix: Add missing dependencies in monorepo template
 
 ## [0.6.0](https://github.com/kalisio/meta-ekosystem/milestone/6?closed=1)
