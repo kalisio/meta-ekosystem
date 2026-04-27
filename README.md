@@ -193,21 +193,6 @@ pnpm k-sync-catalog
 Found a bug ? Missing a feature ? Want to contribute ? Please refer to our [contribution guidelines](./docs/CONTRIBUTING.md)
 for details.
 
-### Installation
-
-
-```bash
-# Clone the repository
-git clone https://github.com/kalisio/meta-ekosystem.git
-cd meta-ekosystem
-
-# Install dependencies
-pnpm install
-
-# Link globally (make the binaries available system-wide)
-pnpm link
-```
-
 ### Linting
 
 ```bash
