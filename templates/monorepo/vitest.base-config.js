@@ -1,4 +1,6 @@
-export const baseConfig = {
+import { defineConfig } from 'vitest/config'
+
+export const baseConfig = defineConfig({
   test: {
     globals: true,
     silent: false,
@@ -18,4 +20,4 @@ export const baseConfig = {
       reportsDirectory: './coverage/'
     }
   }
-}
+})
