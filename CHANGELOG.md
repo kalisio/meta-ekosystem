@@ -1,10 +1,12 @@
 # @kalisio/meta-ekosystem
 
-## 0.9.0
+## [0.9.0](https://github.com/kalisio/meta-ekosystem/milestone/9?closed=1)
 
 ### Minor Changes
 
 - feat: Provide a script to clear a monorepo
+- feat: Enhance package documentation
+- feat: Add missing dependencies
 
 ### Patch Changes
 
