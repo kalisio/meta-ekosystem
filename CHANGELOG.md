@@ -1,5 +1,16 @@
 # @kalisio/meta-ekosystem
 
+## 0.9.0
+
+### Minor Changes
+
+- feat: Provide a script to clear a monorepo
+
+### Patch Changes
+
+- fix: Publish script should be called changeset:publish instead of changesert:release
+- fix: vite and vitest base configs should be created using definedConfig
+
 ## [0.8.0](https://github.com/kalisio/meta-ekosystem/milestone/8?closed=1)
 
 ### Minor Changes

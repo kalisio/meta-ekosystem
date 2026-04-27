@@ -193,9 +193,8 @@ pnpm k-sync-catalog
 Found a bug ? Missing a feature ? Want to contribute ? Please refer to our [contribution guidelines](./docs/CONTRIBUTING.md)
 for details.
 
-### Development
+### Installation
 
-#### Setup
 
 ```bash
 # Clone the repository
@@ -207,35 +206,6 @@ pnpm install
 
 # Link globally (make the binaries available system-wide)
 pnpm link
-```
-
-#### Local linking
-
-This repository provides global binaries to help manage the monorepo ecosystem. During development, you will often
-need to link this package to other projects to test the features you are working on.
-
-If you're working on multiple packages simultaneously:
-
-```bash
-# In the meta-ekosystem directory
-pnpm link --global
-
-# In your project directory
-pnpm link --global @kalisio/meta-ekosystem
-```
-
-Or for a direct local link:
-
-```bash
-# In your project directory
-pnpm link ../path/to/meta-ekosystem
-```
-
-To stop linking a local version and switch back to the published version:
-
-```bash
-# In your project directory
-pnpm unlink @kalisio/meta-ekosystem
 ```
 
 ### Linting
