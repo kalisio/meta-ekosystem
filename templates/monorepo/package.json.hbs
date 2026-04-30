@@ -10,8 +10,8 @@
     "changeset:version": "changeset version",
     "changeset:publish": "pnpm build && changeset publish",
     "clear": "pnpm -r exec rimraf node_modules dist coverage",
-    "docs:build": "vitepress build docs",
-    "docs:dev": "vitepress dev docs",
+    "docs:build": "pnpm --filter docs run build",
+    "docs:dev": "pnpm --filter docs run dev",
     "lint": "pnpm -r lint",
     "prepare": "husky",
     "pretest": "mkdir -p coverage",
@@ -35,12 +35,6 @@
     "url": "https://github.com/kalisio/{{ name }}/issues"
   },
   "homepage": "git://github.com/kalisio/{{ name }}#readme",
-  "dependencies": {
-    "keycloak-js": "catalog:",
-    "lodash": "catalog:",
-    "moment": "catalog:",
-    "quasar": "catalog:"
-  },
   "devDependencies": {
    "@changesets/cli": "catalog:",
     "@vitest/coverage-v8": "catalog:",
@@ -48,14 +42,10 @@
     "husky": "catalog:",
     "lcov-result-merger": "catalog:",
     "lint-staged": "catalog:",
-    "mermaid": "catalog:",
     "rimraf": "catalog:",
     "standard": "catalog:",
     "vite": "catalog:",
     "vite-bundle-visualizer": "catalog:",
-    "vitepress": "catalog:",
-    "vitepress-plugin-mermaid": "catalog:",
-    "vitepress-theme-kalisio": "catalog:",
     "vitest": "catalog:"
   }
 }
