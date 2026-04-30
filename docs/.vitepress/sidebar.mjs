@@ -3,7 +3,7 @@ import path from 'node:path'
 
 export function generateSideBar (pkg) {
   // Ensure the pkg folder exists
-  const pkgDir = path.resolve(process.cwd(), `packages/${pkg}`)
+  const pkgDir = path.resolve(process.cwd(), pkg)
     if (!fs.existsSync(pkgDir)) {
     return []
   }

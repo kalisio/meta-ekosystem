@@ -1,0 +1,27 @@
+{
+  "name": "docs",
+  "description": "meta-ekosystem docs",
+  "packageManager": "pnpm@10.28.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "vitepress build",
+    "dev": "vitepress dev"
+  },
+  "author": {
+    "name": "KALISIO <contact@kalisio.com>",
+    "url": "https://github.com/kalisio"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "devDependencies": {
+    "keycloak-js": "~23.0.4",
+    "lodash": "~4.18.1",
+    "mermaid": "~10.8.0",
+    "moment": "~2.30.1",
+    "quasar": "~2.18.7",
+    "vitepress": "~1.6.3",
+    "vitepress-plugin-mermaid": "~2.0.16",
+    "vitepress-theme-kalisio": "https://github.com/kalisio/vitepress-theme-kalisio"
+  }
+}
