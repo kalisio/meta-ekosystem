@@ -36,7 +36,9 @@
     "changeset": "changeset",
     "changeset:status": "changeset status",
     "changeset:version": "changeset version",
-    "changeset:publish": "changeset publish"
+    "changeset:publish": "changeset publish",
+    "docs:build": "pnpm --filter docs run build",
+    "docs:dev": "pnpm --filter docs run dev"
   },
   "keywords": [
     "kalisio",
@@ -62,6 +64,7 @@
     "glob": "^13.0.1",
     "husky": "^9.1.7",
     "jsdoc-to-markdown": "^9.1.3",
+    "knip": "^6.9.0",
     "lint-staged": "^16.2.7",
     "standard": "^17.1.2",
     "yaml": "^2.8.2"
