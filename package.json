@@ -33,12 +33,9 @@
   "scripts": {
     "prepare": "husky",
     "lint": "standard '**/*.js' --fix",
-    "changeset": "changeset",
-    "changeset:status": "changeset status",
-    "changeset:version": "changeset version",
-    "changeset:publish": "changeset publish",
-    "docs:build": "pnpm --filter docs run build",
-    "docs:dev": "pnpm --filter docs run dev"
+    "change": "changeset",
+    "version": "changeset version",
+    "publish": "changeset publish"
   },
   "keywords": [
     "kalisio",

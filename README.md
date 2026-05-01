@@ -197,7 +197,7 @@ pnpm lint
 Create changesets as needed during the development phase using:
 
 ```bash
-pnpm changeset
+pnpm change
 ```
 
 > [!NOTE]
@@ -206,7 +206,7 @@ pnpm changeset
 Then update the **version** using:
 
 ```bash
-pnpm changeset:version
+pnpm version
 ```
 
 And commit the changes:
@@ -222,7 +222,7 @@ git push
 To publish this package to [NPM](https://www.npmjs.com/), use:
 
 ```bash
-pnpm changeset:publish
+pnpm publish
 git push --follow-tags
 ```
 
