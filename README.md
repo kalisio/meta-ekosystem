@@ -65,7 +65,8 @@ monorepo
 │   │   ├── contributing.md.hbs
 │   │   ├── license.md
 │   │   └── roadmap.md.hbs
-│   └── package.json
+│   └── package.json.hbs
+├── knip.json
 ├── LICENSE.md
 ├── lint-staged.config.mjs
 ├── package.json.hbs
