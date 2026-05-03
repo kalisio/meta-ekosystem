@@ -185,7 +185,6 @@ for details.
 ### Linting
 
 ```bash
-# In the meta-ekosystem directory
 pnpm lint
 ```
 
@@ -207,15 +206,7 @@ pnpm change
 Then update the **version** using:
 
 ```bash
-pnpm version
-```
-
-And commit the changes:
-
-```bash
-git add .
-git commit -m "chore: released <new version>"
-git push
+pnpm bump
 ```
 
 ### Publishing
@@ -223,8 +214,7 @@ git push
 To publish this package to [NPM](https://www.npmjs.com/), use:
 
 ```bash
-pnpm publish
-git push --follow-tags
+pnpm release
 ```
 
 > [!NOTE]
