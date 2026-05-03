@@ -31,11 +31,13 @@
     ]
   },
   "scripts": {
-    "prepare": "husky",
-    "lint": "standard '**/*.js' --fix",
+    "bump": "changeset version",
     "change": "changeset",
-    "version": "changeset version",
-    "publish": "changeset publish"
+    "lint": "standard '**/*.js' --fix",
+    "prepare": "husky",
+    "postbump": "node scripts/commit-bump.js",
+    "postrelease": "git push --follow-tags",
+    "release": "changeset publish"
   },
   "keywords": [
     "kalisio",
