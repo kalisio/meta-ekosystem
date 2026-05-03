@@ -1,5 +1,19 @@
 # @kalisio/meta-ekosystem
 
+## 0.10.0
+
+### Minor Changes
+
+- 210c0c6: Add missing dependencies
+- 5c709cd: feat: Provide an inspect script that rely on knip
+- 210c0c6: feat: Update outdated dependencies
+- 3450907: feat: Add an Auditing section to monorepo documentation
+- 5c709cd: feat: Turn docs directory into a package
+
+### Patch Changes
+
+- 93267bb: fix: package template should not export a development entry
+
 ## [0.9.0](https://github.com/kalisio/meta-ekosystem/milestone/9?closed=1)
 
 ### Minor Changes
