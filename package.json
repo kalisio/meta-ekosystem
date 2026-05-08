@@ -52,12 +52,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kalisio/meta-ekosystem.git"
+    "url": "https://github.com/kalisio/meta-ekosystem.git"
   },
   "bugs": {
     "url": "https://github.com/kalisio/meta-ekosystem/issues"
   },
-  "homepage": "git://github.com/kalisio/meta-ekosystem#readme",
+  "homepage": "https://github.com/kalisio/meta-ekosystem#readme",
   "devDependencies": {
     "@changesets/cli": "^2.29.8",
     "glob": "^13.0.1",
