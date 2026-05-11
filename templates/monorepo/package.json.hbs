@@ -14,8 +14,9 @@
     "lint": "pnpm -r lint",
     "prepare": "husky",
     "prerelease": "pnpm build",
-    "pretest": "mkdir -p coverage",
     "release: "changeset publish",
+    "postrelease": "git push --follow-tags",
+    "pretest": "mkdir -p coverage",
     "test": "pnpm -r test --coverage",
     "posttest": "pnpm lcov-result-merger --prepend-source-files 'packages/*/coverage/lcov.info' coverage/lcov.info"
   },
@@ -46,7 +47,6 @@
     "rimraf": "catalog:",
     "standard": "catalog:",
     "vite": "catalog:",
-    "vite-bundle-visualizer": "catalog:",
     "vitest": "catalog:"
   }
 }
