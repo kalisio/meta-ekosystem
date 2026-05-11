@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     ".": {
+      "development": "./src/index.js",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     }
@@ -12,6 +13,14 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs"
+      }
+    }
+  },
   "standard": {
     "ignore": [
       "dist/**"
@@ -33,13 +42,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kalisio/{{ monorepo }}.git",
+    "url": "git+https://github.com/kalisio/{{ monorepo }}.git",
     "directory": "packages/{{ name }}"
   },
   "bugs": {
     "url": "https://github.com/kalisio/{{ monorepo }}/issues"
   },
-  "homepage": "https://github.com/kalisio/{{ monorepo }}/tree/main/packages/{{ name }}",
+  "homepage": "https://github.com/kalisio/{{ monorepo }}/tree/master/packages/{{ name }}",
   "dependencies": {},
   "devDependencies": {}
 }
