@@ -13,14 +13,6 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "exports": {
-      ".": {
-        "import": "./dist/index.mjs",
-        "require": "./dist/index.cjs"
-      }
-    }
-  },
   "standard": {
     "ignore": [
       "dist/**"
@@ -28,6 +20,7 @@
   },
   "scripts": {
     "build": "vite build",
+    "postbuild": "publint",
     "lint": "standard --fix",
     "test": "vitest run --coverage"
   },
@@ -50,5 +43,16 @@
   },
   "homepage": "https://github.com/kalisio/{{ monorepo }}/tree/master/packages/{{ name }}",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {},
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs"
+      }
+    }
+  }
 }

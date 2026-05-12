@@ -80,15 +80,12 @@ pnpm build:<package>
 ```
 
 > [!NOTE]
-> There are two different tools to inspect your packages and their generated bundles. These tools must be run
-> from within a package directory:
-> 1. [publint](https://github.com/publint/publint) is a tool that checks whether an npm package is correctly
-> configured for publishing:
+> The generated Vite bundle is automatically linted with [publint](https://github.com/publint/publint)
+
+> [!TIP]
+> To inspect the size and composition of the generated Vite bundle, run [vite-bundle-visualizer](https://github.com/KusStar/vite-bundle-visualizer):
 > ```bash
-> pnpm dlx publint
-> ```
-> 2. [vite-bundle-visualizer]() is a tool for analyzing the size and composition of a Vite build output:
-> ```bash
+> cd packages/<my-package>
 > pnpm dlx vite-bundle-visualizer
 > ```
 
