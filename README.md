@@ -44,10 +44,6 @@ The [`catalog.json`](./catalog.json) file, also referred to as the **meta-catalo
 
 The commands are intended to be used by monorepo projects that depend on this repository.
 
->[!TIP]
-> To run a command from this repository, use:
-> `node ./bin/<command>`
-
 #### k-init-monorepo
 
 ##### Description
