@@ -1,18 +1,18 @@
 # @kalisio/meta-ekosystem
 
-## 0.10.0
+## [0.10.0]((https://github.com/kalisio/meta-ekosystem/milestone/9?closed=1))
 
 ### Minor Changes
 
-- 210c0c6: Add missing dependencies
-- 5c709cd: feat: Provide an inspect script that rely on knip
-- 210c0c6: feat: Update outdated dependencies
-- 3450907: feat: Add an Auditing section to monorepo documentation
-- 5c709cd: feat: Turn docs directory into a package
+- Add missing dependencies
+- feat: Provide an inspect script that rely on knip
+- feat: Update outdated dependencies
+- feat: Add an Auditing section to monorepo documentation
+- feat: Turn docs directory into a package
 
 ### Patch Changes
 
-- 93267bb: fix: package template should not export a development entry
+- fix: package template should not export a development entry
 
 ## [0.9.0](https://github.com/kalisio/meta-ekosystem/milestone/9?closed=1)
 
@@ -24,7 +24,7 @@
 
 ### Patch Changes
 
-- fix: Publish script should be called changeset:publish instead of changesert:release
+- fix: Publish script should be called changeset:publish instead of changeset:release
 - fix: vite and vitest base configs should be created using definedConfig
 
 ## [0.8.0](https://github.com/kalisio/meta-ekosystem/milestone/8?closed=1)
