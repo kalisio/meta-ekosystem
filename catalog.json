@@ -151,6 +151,7 @@
     "vue-eslint-parser": "~10.2.0",
     "vue-i18n": "~11.3.0",
     "vue-router": "~5.0.3",
+    "vue-router-mock": "~2.0.2",
     "web-push": "~3.6.5",
     "winston": "~3.19.0",
     "winston-daily-rotate-file": "~4.7.1",
