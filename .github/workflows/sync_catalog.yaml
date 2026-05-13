@@ -1,0 +1,75 @@
+name: sync_catalog
+
+# Triggered on every semver tag push on meta-ekosystem.
+# Can also be triggered manually via workflow_dispatch.
+# Syncs the catalog to all repos and creates a pull request
+# for each repo that has changes.
+on:
+  # push:
+  #   tags:
+  #     - 'v[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to sync, it  must match current HEAD (e.g. v1.0.0)'
+        required: true
+
+# Ensure only one sync runs at a time
+concurrency:
+  group: sync_catalog
+  cancel-in-progress: false
+
+jobs:
+
+  #  Load repos to sync from monorepos.json 
+  load_repos:
+    name: Load repos
+    runs-on: ubuntu-22.04
+    outputs:
+      repos: ${{ steps.load.outputs.repos }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Load repos
+        id: load
+        run: echo "repos=$(jq -c '.monorepos' monorepos.json)" >> "$GITHUB_OUTPUT"
+
+  #  Sync catalog in parallel 
+  sync_catalog:
+    name: Sync ${{ matrix.repo }}
+    needs: load_repos
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        repo: ${{ fromJson(needs.load_repos.outputs.repos) }}
+      fail-fast: false
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          submodules: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Init runner
+        run: bash ./scripts/init_runner.sh ${{ github.job }}
+
+      - name: Setup workspace
+        env:
+          KALISIO_GITHUB_URL: ${{ secrets.KALISIO_GITHUB_URL }}
+          MONOREPO: ${{ matrix.repo }}
+        run: bash ./scripts/setup_workspace.sh
+
+      - name: Sync catalog
+        env:
+          KALISIO_GITHUB_URL: ${{ secrets.KALISIO_GITHUB_URL }}
+          MONOREPO: ${{ matrix.repo }}
+          GITHUB_REF_NAME: ${{ github.event.inputs.tag || github.ref_name }}
+        run: bash ./scripts/sync_catalog.sh
