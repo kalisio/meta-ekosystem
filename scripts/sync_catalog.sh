@@ -3,14 +3,14 @@ set -euo pipefail
 # set -x
 
 # Syncs the meta-ekosystem catalog to the *-ekosystem repo defined by
-# EKOSYSTEM_REPO and creates a pull request if there are changes.
+# MONOREPO  and creates a pull request if there are changes.
 # Requires GH_TOKEN env var to be set for gh CLI authentication.
 #
 # Usage (CI mode):
-#   EKOSYSTEM_REPO=kdk-ekosystem bash ./scripts/sync_catalog.sh
+#   MONOREPO=kdk-ekosystem bash ./scripts/sync_catalog.sh
 #
 # Usage (dev mode):
-#   EKOSYSTEM_REPO=kdk-ekosystem bash ./scripts/sync_catalog.sh <tag>
+#   MONOREPO=kdk-ekosystem bash ./scripts/sync_catalog.sh <tag>
 
 THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
 THIS_DIR=$(dirname "$THIS_FILE")
@@ -19,7 +19,7 @@ ROOT_DIR=$(dirname "$THIS_DIR")
 . "$THIS_DIR/kash/kash.sh"
 
 TAG="${GITHUB_REF_NAME:-${1:-}}"
-WORKSPACE_DIR="${EKOSYSTEM_WORKSPACE_DIR:-$(dirname "$ROOT_DIR")}"
+WORKSPACE_DIR="${MONOREPO_WORKSPACE_DIR:-$(dirname "$ROOT_DIR")}"
 
 ## Validate required variables
 ##
@@ -28,8 +28,8 @@ if [[ -z "$TAG" ]]; then
     exit 1
 fi
 
-if [[ -z "${EKOSYSTEM_REPO:-}" ]]; then
-    echo "-> Error: EKOSYSTEM_REPO is required." >&2
+if [[ -z "${MONOREPO:-}" ]]; then
+    echo "-> Error: MONOREPO is required." >&2
     exit 1
 fi
 
@@ -48,7 +48,7 @@ fi
 
 ## Sync catalog and create pull request
 ##
-REPO_DIR="$WORKSPACE_DIR/$EKOSYSTEM_REPO"
+REPO_DIR="$WORKSPACE_DIR/$MONOREPO"
 BRANCH="sync/catalog-$TAG"
 
 cd "$REPO_DIR"
@@ -56,7 +56,7 @@ node "$ROOT_DIR/scripts/k-sync-catalog.js"
 
 # Skip if no changes on the files k-sync-catalog modifies
 if git diff --quiet -- pnpm-workspace.yaml package.json; then
-    echo "-> No changes in $EKOSYSTEM_REPO, skipping"
+    echo "-> No changes in $MONOREPO, skipping"
     exit 0
 fi
 
@@ -74,9 +74,9 @@ git commit -m "chore: sync catalog to meta-ekosystem@$TAG"
 git push --force-with-lease origin "$BRANCH"
 
 gh_create_pull_request \
-    "kalisio/$EKOSYSTEM_REPO" \
+    "kalisio/$MONOREPO" \
     "chore: sync catalog to meta-ekosystem@$TAG" \
     "Automated catalog sync from meta-ekosystem@$TAG." \
     "$BRANCH"
 
-echo "-> $EKOSYSTEM_REPO synced successfully"
+echo "-> $MONOREPO synced successfully"
