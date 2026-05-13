@@ -52,7 +52,7 @@ REPO_DIR="$WORKSPACE_DIR/$MONOREPO"
 BRANCH="sync/catalog-$TAG"
 
 cd "$REPO_DIR"
-node "$ROOT_DIR/scripts/k-sync-catalog.js"
+node "$ROOT_DIR/bin/k-sync-catalog.js"
 
 # Skip if no changes on the files k-sync-catalog modifies
 if git diff --quiet -- pnpm-workspace.yaml package.json; then
