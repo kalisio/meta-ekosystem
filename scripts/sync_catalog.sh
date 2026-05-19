@@ -3,11 +3,11 @@ set -euo pipefail
 # set -x
 
 # Syncs the meta-ekosystem catalog to the *-ekosystem repo defined by
-# MONOREPO and creates a pull request if there are changes.
-# Requires GH_TOKEN env var to be set for gh CLI authentication and git operations.
+# MONOREPO_PATH and creates a pull request if there are changes.
+# Requires GH_TOKEN env var to be set for gh CLI authentication.
 #
 # Usage (CI mode):
-#   MONOREPO=kdk-ekosystem GH_TOKEN=xxx bash ./scripts/sync_catalog.sh
+#   MONOREPO=kdk-ekosystem bash ./scripts/sync_catalog.sh
 
 THIS_FILE=$(readlink -f "${BASH_SOURCE[0]}")
 THIS_DIR=$(dirname "$THIS_FILE")
@@ -35,35 +35,43 @@ if [[ -z "${GH_TOKEN:-}" ]]; then
     exit 1
 fi
 
+if [[ -z "${KALISIO_GITHUB_URL:-}" || ! "$KALISIO_GITHUB_URL" =~ ^https:// ]]; then
+    echo "-> Error: KALISIO_GITHUB_URL is invalid or missing." >&2
+    exit 1
+fi
+
 ## Configure git identity for commits
 ## https://github.com/actions/checkout/pull/1707
 ##
 git config --global user.name "github-actions[bot]"
 git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-## Install pnpm
+## Install required tools
 ##
-echo "-> Installing pnpm"
+# echo " Installing gh CLI"
+# ensure_gh
+
+echo " Installing pnpm"
 ensure_pnpm
 
 ## Install meta-ekosystem dependencies required by k-sync-catalog
 ##
-echo "-> Installing meta-ekosystem dependencies"
+echo " Installing meta-ekosystem dependencies"
 cd "$ROOT_DIR" && pnpm install && cd ~-
 
-## Clone the ekosystem repo with GH_TOKEN
+## Clone the ekosystem repo
 ##
 if [[ ! -d "$WORKSPACE_DIR/$MONOREPO" ]]; then
-    echo "-> Cloning $MONOREPO"
+    echo " Cloning $MONOREPO"
     git_shallow_clone \
-        "https://x-access-token:${GH_TOKEN}@github.com/kalisio/${MONOREPO}.git" \
+        "$KALISIO_GITHUB_URL/kalisio/$MONOREPO.git" \
         "$WORKSPACE_DIR/$MONOREPO"
 else
-    echo "-> $MONOREPO already cloned, skipping"
+    echo " $MONOREPO already cloned, skipping"
 fi
 
 ## Sync catalog and create pull request
-## gh CLI uses GH_TOKEN automatically
+
 ##
 REPO_DIR="$WORKSPACE_DIR/$MONOREPO"
 BRANCH="sync/catalog-$TAG"
@@ -73,7 +81,7 @@ node "$ROOT_DIR/bin/k-sync-catalog.js"
 
 # Skip if no changes on the files k-sync-catalog modifies
 if git diff --quiet -- pnpm-workspace.yaml package.json; then
-    echo "-> No changes in $MONOREPO, skipping"
+    echo " No changes in $MONOREPO, skipping"
     exit 0
 fi
 
@@ -96,4 +104,4 @@ gh_create_pull_request \
     "Automated catalog sync from meta-ekosystem@$TAG." \
     "$BRANCH"
 
-echo "-> $MONOREPO synced successfully"
+echo " $MONOREPO synced successfully"

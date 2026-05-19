@@ -55,6 +55,7 @@ jobs:
 
       - name: Sync catalog
         env:
+          KALISIO_GITHUB_URL: ${{ secrets.KALISIO_GITHUB_URL }}
           GH_TOKEN: ${{ secrets.PR_TOKEN }} 
           MONOREPO: ${{ matrix.repo }}
           GITHUB_REF_NAME: ${{ github.event.inputs.tag || github.ref_name }}

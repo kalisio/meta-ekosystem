@@ -1,5 +1,9 @@
 {
   "monorepos": [
-    "feathers-ekosystem"
+    "feathers-ekosystem",
+    "kdk-ekosystem",
+    "quasar-ekosystem",
+    "krawler-ekosystem",
+    "common-ekosystem"
   ]
 }
