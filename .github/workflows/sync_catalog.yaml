@@ -10,13 +10,14 @@ on:
         description: 'Tag to sync, it must match current HEAD (e.g. v1.0.0)'
         required: true
 
+# Only one sync runs at a time
 concurrency:
   group: sync_catalog
   cancel-in-progress: false
 
 jobs:
 
-  #  Load repos to sync from monorepos.json 
+  # Get list of repos from monorepos.json
   load_repos:
     name: Load repos
     runs-on: ubuntu-22.04
@@ -32,7 +33,7 @@ jobs:
         id: load
         run: echo "repos=$(jq -c '.monorepos' monorepos.json)" >> "$GITHUB_OUTPUT"
 
-  #  Sync catalog in parallel 
+  # Sync each repo in parallel
   sync_catalog:
     name: Sync ${{ matrix.repo }}
     needs: load_repos
@@ -40,9 +41,9 @@ jobs:
     strategy:
       matrix:
         repo: ${{ fromJson(needs.load_repos.outputs.repos) }}
-      fail-fast: false
+      fail-fast: false  # do not stop other repos if one fails
     steps:
-      - name: Checkout repo
+      - name: Checkout meta-ekosystem
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
@@ -53,10 +54,19 @@ jobs:
         with:
           node-version: 20
 
+      # Generate a short-lived token from a GitHub App
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: kalisio
+          repositories: ${{ matrix.repo }}   # only allow access to this repo
+
       - name: Sync catalog
         env:
-          # KALISIO_GITHUB_URL: ${{ secrets.KALISIO_GITHUB_URL }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }} 
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
           MONOREPO: ${{ matrix.repo }}
           GITHUB_REF_NAME: ${{ github.event.inputs.tag || github.ref_name }}
         run: bash ./scripts/sync_catalog.sh
