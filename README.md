@@ -168,7 +168,20 @@ the catalog property in `pnpm-workspace.yaml`.
 cd path/to/<my-monorepo>
 pnpm k-sync-catalog
 ```
+## CI/CD Automation
 
+When a version tag (e.g., `v1.2.3`) is pushed to this repository, a GitHub Actions workflow automatically:
+
+1. **Discovers** all repositories in monorepo.json under the `kalisio` organisation (excluding `meta-ekosystem` itself).
+2. **Clones** each discovered repository.
+3. **Runs** `k-sync-catalog` inside each clone to update the dependencies according to the central `catalog.json`.
+4. **Creates** a pull request for every repository that has changes, using a dedicated GitHub App bot (`meta-ekosystem-ci[bot]`).
+
+This ensures that every dependent repository stays synchronised with the latest dependency versions defined in this meta‑catalog.
+
+> The diagram below illustrates the dynamic discovery and parallel execution across repositories.
+
+![CI Workflow](./docs/sync-catalog-diagram.png)
 ## Contributing
 
 ### Guidelines
