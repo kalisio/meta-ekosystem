@@ -61,29 +61,15 @@ cd "$ROOT_DIR" && pnpm install && cd ~-
 
 ## Clone the ekosystem repo
 ##
-# if [[ ! -d "$WORKSPACE_DIR/$MONOREPO" ]]; then
-#     echo " Cloning $MONOREPO"
-#     git_shallow_clone \
-#         "$KALISIO_GITHUB_URL/kalisio/$MONOREPO.git" \
-#         "$WORKSPACE_DIR/$MONOREPO"
-# else
-#     echo " $MONOREPO already cloned, skipping"
-# fi
-## Clone the ekosystem repo
-##
 if [[ ! -d "$WORKSPACE_DIR/$MONOREPO" ]]; then
-    echo "-> Cloning $MONOREPO"
+    echo " Cloning $MONOREPO"
     git_shallow_clone \
         "$KALISIO_GITHUB_URL/kalisio/$MONOREPO.git" \
         "$WORKSPACE_DIR/$MONOREPO"
-    
-    # Reconfigure remote to use GH_TOKEN for push operations
-    cd "$WORKSPACE_DIR/$MONOREPO"
-    git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/kalisio/${MONOREPO}.git"
-    cd ~-
 else
-    echo "-> $MONOREPO already cloned, skipping"
+    echo " $MONOREPO already cloned, skipping"
 fi
+
 ## Sync catalog and create pull request
 
 ##
