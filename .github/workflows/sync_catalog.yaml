@@ -1,9 +1,5 @@
 name: sync_catalog
 
-# Triggered on every semver tag push on meta-ekosystem.
-# Can also be triggered manually via workflow_dispatch.
-# Syncs the catalog to all repos and creates a pull request
-# for each repo that has changes.
 on:
   # push:
   #   tags:
@@ -11,10 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Tag to sync, it  must match current HEAD (e.g. v1.0.0)'
+        description: 'Tag to sync, it must match current HEAD (e.g. v1.0.0)'
         required: true
 
-# Ensure only one sync runs at a time
 concurrency:
   group: sync_catalog
   cancel-in-progress: false
@@ -58,19 +53,10 @@ jobs:
         with:
           node-version: 20
 
-      - name: Init runner
-        run: bash ./scripts/init_runner.sh ${{ github.job }}
-
-      - name: Setup workspace
-        env:
-          KALISIO_GITHUB_URL: ${{ secrets.KALISIO_GITHUB_URL }}
-          MONOREPO: ${{ matrix.repo }}
-        run: bash ./scripts/setup_workspace.sh
-
       - name: Sync catalog
         env:
           KALISIO_GITHUB_URL: ${{ secrets.KALISIO_GITHUB_URL }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          MONOREPO: ${{ matrix.repo }}
+          PR_TOKEN: ${{ secrets.PR_TOKEN }}
+          EKOSYSTEM_REPO: ${{ matrix.repo }}
           GITHUB_REF_NAME: ${{ github.event.inputs.tag || github.ref_name }}
         run: bash ./scripts/sync_catalog.sh
