@@ -31,8 +31,8 @@ if [[ -z "${GH_TOKEN:-}" ]]; then
 fi
 
 #  Set git identity 
-git config --global user.name "github-actions[bot]"
-git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+git config --global user.name "meta-ekosystem-ci[bot]"
+git config --global user.email "meta-ekosystem-ci[bot]@users.noreply.github.com"
 
 #  Install tools 
 echo "-> Installing pnpm"
