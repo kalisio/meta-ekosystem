@@ -57,13 +57,16 @@ else
     echo "-> $MONOREPO already cloned, skipping"
 fi
 
-## Enter repo directory
+### Enter repo directory
 cd "$REPO_DIR"
+
+# Configure remote origin with tokenized URL
+git remote set-url origin "$REMOTE_URL"
 
 ## Run catalog sync
 node "$ROOT_DIR/bin/k-sync-catalog.js"
 
-## Skip if no changes in relevant files
+# Skip if no changes
 if git diff --quiet -- pnpm-workspace.yaml package.json; then
     echo "-> No changes in $MONOREPO, skipping"
     exit 0
@@ -72,10 +75,10 @@ fi
 ## Prepare branch
 BRANCH="sync/catalog-$TAG"
 
-# Check if remote branch exists (using explicit tokenized URL)
-if git ls-remote --heads "$REMOTE_URL" "refs/heads/$BRANCH" | grep -q "refs/heads/$BRANCH$"; then
+# Check if remote branch exists
+if git ls-remote --heads origin "refs/heads/$BRANCH" | grep -q "refs/heads/$BRANCH$"; then
     echo "-> Branch $BRANCH already exists on remote, fetching and checking out"
-    git fetch "$REMOTE_URL" "$BRANCH"
+    git fetch origin "$BRANCH"
     git checkout "$BRANCH"
 else
     echo "-> Creating new branch $BRANCH"
@@ -86,15 +89,15 @@ fi
 git add pnpm-workspace.yaml package.json
 git commit -m "chore: sync catalog to meta-ekosystem@$TAG"
 
-## Push using explicit tokenized URL (force-with-lease for safety)
+## Push using origin (now configured with token)
 echo "-> Pushing branch $BRANCH"
-git push --force-with-lease "$REMOTE_URL" "$BRANCH"
+git push --force-with-lease origin "$BRANCH"
 
-## Create pull request using gh CLI (uses GH_TOKEN automatically)
+## Create pull request
 gh_create_pull_request \
     "kalisio/$MONOREPO" \
     "chore: sync catalog to meta-ekosystem@$TAG" \
     "Automated catalog sync from meta-ekosystem@$TAG." \
     "$BRANCH"
-
+    
 echo "-> $MONOREPO synced successfully"
