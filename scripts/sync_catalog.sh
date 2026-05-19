@@ -35,10 +35,10 @@ if [[ -z "${GH_TOKEN:-}" ]]; then
     exit 1
 fi
 
-if [[ -z "${KALISIO_GITHUB_URL:-}" || ! "$KALISIO_GITHUB_URL" =~ ^https:// ]]; then
-    echo "-> Error: KALISIO_GITHUB_URL is invalid or missing." >&2
-    exit 1
-fi
+# if [[ -z "${KALISIO_GITHUB_URL:-}" || ! "$KALISIO_GITHUB_URL" =~ ^https:// ]]; then
+#     echo "-> Error: KALISIO_GITHUB_URL is invalid or missing." >&2
+#     exit 1
+# fi
 
 ## Configure git identity for commits
 ## https://github.com/actions/checkout/pull/1707
@@ -61,13 +61,24 @@ cd "$ROOT_DIR" && pnpm install && cd ~-
 
 ## Clone the ekosystem repo
 ##
+# if [[ ! -d "$WORKSPACE_DIR/$MONOREPO" ]]; then
+#     echo " Cloning $MONOREPO"
+#     git_shallow_clone \
+#         "$KALISIO_GITHUB_URL/kalisio/$MONOREPO.git" \
+#         "$WORKSPACE_DIR/$MONOREPO"
+# else
+#     echo " $MONOREPO already cloned, skipping"
+# fi
+
+## Clone the ekosystem repo with GH_TOKEN
+##
 if [[ ! -d "$WORKSPACE_DIR/$MONOREPO" ]]; then
-    echo " Cloning $MONOREPO"
+    echo "-> Cloning $MONOREPO"
     git_shallow_clone \
-        "$KALISIO_GITHUB_URL/kalisio/$MONOREPO.git" \
+        "https://x-access-token:${GH_TOKEN}@github.com/kalisio/${MONOREPO}.git" \
         "$WORKSPACE_DIR/$MONOREPO"
 else
-    echo " $MONOREPO already cloned, skipping"
+    echo "-> $MONOREPO already cloned, skipping"
 fi
 
 ## Sync catalog and create pull request
