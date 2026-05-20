@@ -56,25 +56,25 @@ fi
 cd "$REPO_DIR"
 git remote set-url origin "$REMOTE_URL"
 
-#  Run catalog sync tool 
+# Create or switch to target branch BEFORE running sync
+BRANCH="sync/catalog-$TAG"
+
+if git ls-remote --heads origin "refs/heads/$BRANCH" | grep -q "refs/heads/$BRANCH$"; then
+    echo "-> Branch $BRANCH already exists on remote, fetching and resetting"
+    git fetch origin refs/heads/"$BRANCH":refs/remotes/origin/"$BRANCH" --depth=1
+    git checkout -B "$BRANCH" "origin/$BRANCH"
+else
+    echo "-> Creating new branch $BRANCH"
+    git checkout -b "$BRANCH"
+fi
+
+#  Run catalog sync tool (now on the correct branch)
 node "$ROOT_DIR/bin/k-sync-catalog.js"
 
 #  Stop if no changes in key files 
 if git diff --quiet -- pnpm-workspace.yaml package.json; then
     echo "-> No changes in $MONOREPO, skipping"
     exit 0
-fi
-
-# Create or reuse branch 
-BRANCH="sync/catalog-$TAG"
-
-if git ls-remote --heads origin "refs/heads/$BRANCH" | grep -q "refs/heads/$BRANCH$"; then
-    echo "-> Branch $BRANCH already exists on remote, fetching and checking out"
-    git fetch origin refs/heads/"$BRANCH":refs/remotes/origin/"$BRANCH" --depth=1
-    git checkout -B "$BRANCH" "origin/$BRANCH"
-else
-    echo "-> Creating new branch $BRANCH"
-    git checkout -b "$BRANCH"
 fi
 
 #  Commit changes 
