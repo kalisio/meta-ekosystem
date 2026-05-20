@@ -81,9 +81,9 @@ fi
 git add pnpm-workspace.yaml package.json
 git commit -m "chore: sync catalog to meta-ekosystem@$TAG"
 
-#  Push branch 
+#  Push branch - use --force (safe because only this workflow writes to this branch)
 echo "-> Pushing branch $BRANCH"
-git push --force-with-lease origin "$BRANCH"
+git push --force origin "$BRANCH"
 
 #  Create pull request 
 gh_create_pull_request \
