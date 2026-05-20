@@ -1,12 +1,6 @@
 {
   "monorepos": [
     "feathers-ekosystem",
-    "krawler-ekosystem",
-    "common-ekosystem",
-    "services-ekosystem",
-    "quasar-ekosystem",
-    "maplibre-ekosystem",
-    "kdk-ekosystem",
-    "apps-ekosystem"
+    "common-ekosystem"
   ]
 }
