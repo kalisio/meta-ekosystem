@@ -71,7 +71,8 @@ BRANCH="sync/catalog-$TAG"
 if git ls-remote --heads origin "refs/heads/$BRANCH" | grep -q "refs/heads/$BRANCH$"; then
     echo "-> Branch $BRANCH already exists on remote, fetching and checking out"
     git fetch origin "$BRANCH"
-    git checkout "$BRANCH"
+    # Force creation/reset of local branch to match remote
+    git checkout -B "$BRANCH" "origin/$BRANCH"
 else
     echo "-> Creating new branch $BRANCH"
     git checkout -b "$BRANCH"
