@@ -77,7 +77,7 @@ monorepo
 pnpm k-init-monorepo
 ```
 
->[!NOTE]
+> [!NOTE]
 > You will be prompted for the repository `name` and `path`.
 
 #### k-init-package
@@ -109,7 +109,7 @@ The command also updates the documentation configuration accordingly:
 
 ##### Usage
 
->[!IMPORTANT]
+> [!IMPORTANT]
 > Run this command from the root directory of your monorepo.
 
 ```bash
@@ -135,7 +135,7 @@ package
 
 ##### Usage
 
->[!IMPORTANT]
+> [!IMPORTANT]
 > Run this command from the root directory of your monorepo.
 
 ```bash
@@ -145,7 +145,7 @@ pnpm k-init-example
 
 You will be prompted to enter the example `name`.
 
->[!IMPORTANT]
+> [!IMPORTANT]
 > The `name` is used to declare the dependency on the package named `@kalisio/<name>`
 
 #### k-sync-catalog
@@ -161,7 +161,7 @@ the catalog property in `pnpm-workspace.yaml`.
 
 ##### Usage
 
->[!IMPORTANT]
+> [!IMPORTANT]
 > Run this command from the root directory of your monorepo.
 
 ```bash
