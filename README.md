@@ -168,20 +168,6 @@ the catalog property in `pnpm-workspace.yaml`.
 cd path/to/<my-monorepo>
 pnpm k-sync-catalog
 ```
-## CI/CD Automation
-
-When a version tag (e.g., `v1.2.3`) is pushed to this repository, a GitHub Actions workflow automatically:
-
-1. **Discovers** all repositories in monorepo.json under the `kalisio` organisation (excluding `meta-ekosystem` itself).
-2. **Clones** each discovered repository.
-3. **Runs** `k-sync-catalog` inside each clone to update the dependencies according to the central `catalog.json`.
-4. **Creates** a pull request for every repository that has changes, using a dedicated GitHub App bot (`meta-ekosystem-ci[bot]`).
-
-This ensures that every dependent repository stays synchronised with the latest dependency versions defined in this meta‑catalog.
-
-> The diagram below illustrates the dynamic discovery and parallel execution across repositories.
-
-![CI Workflow](./docs/sync-catalog-diagram.png)
 ## Contributing
 
 ### Guidelines
@@ -227,10 +213,35 @@ pnpm release
 > [!NOTE]
 > When publishing a tag will be created corresponding to the **version** defined in the `package.json`
 
+## CI/CD Workflow
+
+When a version tag (e.g., `v1.2.3`) is pushed to this repository, a GitHub Actions workflow automatically:
+
+1. **Discovers** all repositories defined in the `monorepos.json` file.
+2. **Clones** each discovered repository.
+3. **Runs** `k-sync-catalog` inside each clone to update the dependencies according to the central `catalog.json`.
+4. **Creates** a pull request for every repository that has changes, using a dedicated GitHub App bot (`meta-ekosystem-ci[bot]`).
+
+This ensures that every dependent repository stays synchronized with the latest dependency versions defined in this meta‑catalog.
+
+<details>
+<summary>Click to see the diagram that illustrates this CI/CD workflow</summary>
+
+![CI Workflow](./docs/sync-catalog-diagram.png)
+
+</details>
+
+> [!IMPORTANT]
+> This workflow can also be triggered manually from GitHub Actions.
+
 ## License
 
 Licensed under the [MIT License](LICENSE).
 
 Copyright (c) 2026 [Kalisio](https://kalisio.com)
 
-[![Kalisio](https://kalisio.github.io/kalisioscope/kalisio/kalisio-logo-light-256x96.png)](https://kalisio.com)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://kalisio.github.io/kalisioscope/kalisio/kalisio-logo-dark.svg"">
+  <source media="(prefers-color-scheme: light)" srcset="https://kalisio.github.io/kalisioscope/kalisio/kalisio-logo-light.svg">
+  <img alt="Kalisio" src="https://kalisio.github.io/kalisioscope/kalisio/kalisio-logo-light.svg.png" height="96">
+</picture>
