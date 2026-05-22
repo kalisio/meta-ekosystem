@@ -28,7 +28,8 @@
     "kalisio"
   ],
   "author": {
-    "name": "KALISIO <contact@kalisio.com>",
+    "name": "Kalisio",
+    "email": "contact@kalisio.com",
     "url": "https://github.com/kalisio"
   },
   "contributors": [],
@@ -42,12 +43,13 @@
     "url": "https://github.com/kalisio/{{ monorepo }}/issues"
   },
   "homepage": "https://github.com/kalisio/{{ monorepo }}/tree/master/packages/{{ name }}",
-  "dependencies": {},
+  "peerDependencies": {},
   "devDependencies": {},
   "engines": {
     "node": ">=20"
   },
   "publishConfig": {
+    "access": "public",
     "exports": {
       ".": {
         "import": "./dist/index.mjs",

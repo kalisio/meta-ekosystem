@@ -238,7 +238,7 @@ This ensures that every dependent repository stays synchronized with the latest 
 
 Licensed under the [MIT License](LICENSE).
 
-Copyright (c) 2026 [Kalisio](https://kalisio.com)
+Copyright (c) 2026-present [Kalisio](https://kalisio.com)
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://kalisio.github.io/kalisioscope/kalisio/kalisio-logo-dark.svg"">
