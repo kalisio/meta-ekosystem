@@ -10,6 +10,12 @@ export default function packageGenerator (plop) {
     description: 'Generate a package skeleton in a monorepo',
     prompts: [
       {
+        type: 'list',
+        name: 'type',
+        message: 'Package type:',
+        choices: ['library', 'job', 'service']
+      },
+      {
         type: 'input',
         name: 'name',
         message: 'Package name:'
@@ -34,8 +40,14 @@ export default function packageGenerator (plop) {
       const contentPackageDir = path.join(monorepoDir, 'packages', packageName)
       const docsDir = path.join(monorepoDir, 'docs')
       const docsPackageDir = path.join(docsDir, 'packages', packageName)
-      const templatesDir = path.join(__dirname, 'package')
-      return [
+      const templatesDir = path.join(__dirname, 'package', answers.type)
+      const templateData = {
+        name: packageName,
+        description: answers.description,
+        monorepo: monorepoName
+      }
+
+      const actions = [
         {
           type: 'addMany',
           destination: contentPackageDir,
@@ -44,11 +56,7 @@ export default function packageGenerator (plop) {
           globOptions: {
             dot: true
           },
-          data: {
-            name: packageName,
-            description: answers.description,
-            monorepo: monorepoName
-          }
+          data: templateData
         },
         {
           type: 'addMany',
@@ -58,13 +66,12 @@ export default function packageGenerator (plop) {
           globOptions: {
             dot: true
           },
-          data: {
-            name: packageName,
-            description: answers.description,
-            monorepo: monorepoName
-          }
-        },
-        function addPackageScripts (answers) {
+          data: templateData
+        }
+      ]
+
+      if (answers.type === 'library') {
+        actions.push(function addPackageScripts (answers) {
           const pkg = JSON.parse(fs.readFileSync(monorepoPkgPath, 'utf-8'))
           pkg.scripts[`build:${answers.name}`] = `pnpm --filter @kalisio/${answers.name} build`
           pkg.scripts[`lint:${answers.name}`] = `pnpm --filter @kalisio/${answers.name} lint`
@@ -73,20 +80,36 @@ export default function packageGenerator (plop) {
             Object.entries(pkg.scripts).sort(([a], [b]) => a.localeCompare(b))
           )
           fs.writeFileSync(monorepoPkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf-8')
-          return `✅ Scripts "test:${answers.name}" and "build:${answers.name}" added in package.json`
-        },
-        {
-          type: 'modify',
-          path: path.join(docsDir, '.vitepress', 'packages.json'),
-          transform: (fileContent, answers) => {
-            const packages = JSON.parse(fileContent)
-            if (!packages.includes(answers.name)) {
-              packages.push(answers.name)
-            }
-            return JSON.stringify(packages, null, 2)
+          return `✅ Scripts "build:${answers.name}", "lint:${answers.name}" and "test:${answers.name}" added in package.json`
+        })
+      }
+
+      if (answers.type === 'service') {
+        actions.push(function addPackageScripts (answers) {
+          const pkg = JSON.parse(fs.readFileSync(monorepoPkgPath, 'utf-8'))
+          pkg.scripts[`lint:${answers.name}`] = `pnpm --filter @kalisio/${answers.name} lint`
+          pkg.scripts[`test:${answers.name}`] = `pnpm --filter @kalisio/${answers.name} test`
+          pkg.scripts = Object.fromEntries(
+            Object.entries(pkg.scripts).sort(([a], [b]) => a.localeCompare(b))
+          )
+          fs.writeFileSync(monorepoPkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf-8')
+          return `✅ Scripts "lint:${answers.name}" and "test:${answers.name}" added in package.json`
+        })
+      }
+
+      actions.push({
+        type: 'modify',
+        path: path.join(docsDir, '.vitepress', 'packages.json'),
+        transform: (fileContent, answers) => {
+          const packages = JSON.parse(fileContent)
+          if (!packages.includes(answers.name)) {
+            packages.push(answers.name)
           }
+          return JSON.stringify(packages, null, 2)
         }
-      ]
+      })
+
+      return actions
     }
   })
 }

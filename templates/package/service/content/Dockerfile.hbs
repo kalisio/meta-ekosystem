@@ -1,0 +1,26 @@
+ARG NODE_VERSION=20
+ARG DEBIAN_VERSION=bookworm
+
+FROM node:${NODE_VERSION}-${DEBIAN_VERSION}-slim AS builder
+
+WORKDIR /app
+
+RUN corepack enable && corepack prepare pnpm@10.1.0 --activate
+
+COPY pnpm-workspace.yaml pnpm-lock.yaml package.json ./
+COPY packages/{{ name }}/package.json ./packages/{{ name }}/
+
+RUN pnpm install --frozen-lockfile --ignore-scripts --filter @kalisio/{{ name }} --prod
+
+COPY packages/{{ name }}/src ./packages/{{ name }}/src
+
+FROM node:${NODE_VERSION}-${DEBIAN_VERSION}-slim
+LABEL maintainer="Kalisio <contact@kalisio.xyz>"
+
+COPY --from=builder --chown=node:node /app /app
+
+USER node
+WORKDIR /app/packages/{{ name }}
+EXPOSE 8080
+
+CMD node src/index.js

@@ -1,0 +1,33 @@
+ARG KRAWLER_TAG=latest
+ARG NODE_VERSION=20
+ARG DEBIAN_VERSION=bookworm
+
+FROM node:${NODE_VERSION}-${DEBIAN_VERSION} AS builder
+
+WORKDIR /app
+
+RUN corepack enable && corepack prepare pnpm@10.1.0 --activate
+
+COPY pnpm-workspace.yaml pnpm-lock.yaml package.json ./
+COPY packages/{{ name }}/package.json ./packages/{{ name }}/
+
+RUN pnpm install --frozen-lockfile --ignore-scripts --filter @kalisio/{{ name }} --prod
+
+COPY packages/{{ name }}/jobfile.js ./packages/{{ name }}/
+
+FROM kalisio/krawler:${KRAWLER_TAG}
+LABEL maintainer="Kalisio <contact@kalisio.xyz>"
+
+ENV CRON="0 0 0 * * *"
+
+COPY --from=builder --chown=node:node /app/node_modules /app/node_modules
+COPY --from=builder --chown=node:node /app/packages/{{ name }} /app/packages/{{ name }}
+
+USER root
+RUN rm -rf /app/packages/{{ name }}/node_modules/@kalisio/krawler \
+ && ln -s /opt/krawler /app/packages/{{ name }}/node_modules/@kalisio/krawler
+USER node
+
+WORKDIR /app/packages/{{ name }}
+
+CMD krawler --cron "$CRON" --run jobfile.js
