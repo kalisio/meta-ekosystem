@@ -18,7 +18,8 @@ export default function packageGenerator (plop) {
       {
         type: 'input',
         name: 'name',
-        message: 'Package name:'
+        message: 'Package name:',
+        validate: (value) => value.trim().length > 0 || 'Package name is required'
       },
       {
         type: 'input',
