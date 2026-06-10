@@ -3,6 +3,10 @@ packages:
   - packages/**
   - examples/**
 
+# Dependencies allowed to run their build (postinstall) scripts, blocked by default.
+# e.g. Puppeteer needs its postinstall to download its Chrome binary.
+onlyBuiltDependencies: []
+
 catalog:
 {{#each catalog}}
   {{@key}}: "{{this}}"
