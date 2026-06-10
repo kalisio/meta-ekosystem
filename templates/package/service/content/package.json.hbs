@@ -3,8 +3,24 @@
   "description": "{{ description }}",
   "version": "0.0.0",
   "type": "module",
-  "private": true,
+  "exports": {
+    ".": {
+      "development": "./src/index.js",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "standard": {
+    "ignore": [
+      "dist/**"
+    ]
+  },
   "scripts": {
+    "build": "vite build",
+    "postbuild": "publint",
     "dev": "node --watch src/index.js",
     "lint": "standard --fix",
     "test": "vitest run --coverage"
@@ -28,13 +44,18 @@
     "url": "https://github.com/kalisio/{{ monorepo }}/issues"
   },
   "homepage": "https://github.com/kalisio/{{ monorepo }}/tree/master/packages/{{ name }}",
+  "dependencies": {},
+  "devDependencies": {},
   "engines": {
     "node": ">=20"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "@vitest/coverage-v8": "catalog:",
-    "standard": "catalog:",
-    "vitest": "catalog:"
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs"
+      }
+    }
   }
 }
