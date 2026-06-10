@@ -3,25 +3,10 @@
   "description": "{{ description }}",
   "version": "0.0.0",
   "type": "module",
-  "exports": {
-    ".": {
-      "development": "./src/index.js",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
-  "files": [
-    "dist"
-  ],
-  "standard": {
-    "ignore": [
-      "dist/**"
-    ]
-  },
+  "private": true
   "scripts": {
-    "build": "vite build",
-    "postbuild": "publint",
-    "dev": "node --watch src/index.js",
+    "build": "DOCKER_BUILDKIT=1 docker build -t {{ name }}:${TAG:-latest} -f ./Dockerfile ../..",
+    "dev": "node --watch src/main.js",
     "lint": "standard --fix",
     "test": "vitest run --coverage"
   },
@@ -48,14 +33,5 @@
   "devDependencies": {},
   "engines": {
     "node": ">=20"
-  },
-  "publishConfig": {
-    "access": "public",
-    "exports": {
-      ".": {
-        "import": "./dist/index.mjs",
-        "require": "./dist/index.cjs"
-      }
-    }
   }
 }
