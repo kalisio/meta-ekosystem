@@ -29,7 +29,7 @@
     "@feathersjs/schema": "~5.0.44",
     "@feathersjs/socketio-client": "~5.0.44",
     "@feathersjs/socketio": "~5.0.44",
-    "@kalisio/common-core": "~0.5.0",
+    "@kalisio/common-core": "~0.6.0",
     "@kalisio/common-geospatial": "~0.5.0",
     "@kalisio/common-graphics": "~0.5.0",
     "@kalisio/feathers-automerge": "~0.3.8",
