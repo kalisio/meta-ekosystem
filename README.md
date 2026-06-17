@@ -217,7 +217,7 @@ pnpm release
 
 When a version tag (e.g., `v1.2.3`) is pushed to this repository, a GitHub Actions workflow automatically:
 
-1. **Discovers** all repositories defined in the `monorepos.json` file.
+1. **Discovers** all repositories defined in the `ekosystem.json` file.
 2. **Clones** each discovered repository.
 3. **Runs** `k-sync-catalog` inside each clone to update the dependencies according to the central `catalog.json`.
 4. **Creates** a pull request for every repository that has changes, using a dedicated GitHub App bot (`meta-ekosystem-ci[bot]`).

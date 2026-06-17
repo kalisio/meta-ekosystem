@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
 
-  # Get list of repos from monorepos.json
+  # Get list of repos from ekosystem.json
   load_repos:
     name: Load repos
     runs-on: ubuntu-22.04
@@ -31,7 +31,7 @@ jobs:
 
       - name: Load repos
         id: load
-        run: echo "repos=$(jq -c '.monorepos' monorepos.json)" >> "$GITHUB_OUTPUT"
+        run: echo "repos=$(jq -c '.' ekosystem.json)" >> "$GITHUB_OUTPUT"
 
   # Sync each repo in parallel
   sync_catalog:
