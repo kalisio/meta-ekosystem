@@ -40,6 +40,7 @@
     "@kalisio/feathers-webpush": "~1.0.1",
     "@kalisio/kdk": "~2.7.0",
     "@logtape/logtape": "~0.7.0",
+    "@mapbox/geojsonhint": "~3.3.0",
     "@mapbox/mbtiles": "~0.12.1",
     "@mapbox/vtquery": "~0.6.0",
     "@pdfme/common": "~6.1.2",
