@@ -55,6 +55,7 @@
     "@turf/area": "~7.3.5",
     "@turf/bbox": "~7.3.5",
     "@turf/boolean-clockwise": "~7.3.5",
+    "@turf/buffer": "~7.3.5",
     "@turf/center-of-mass": "~7.3.5",
     "@turf/convex": "~7.3.5",
     "@turf/clean-coords": "~7.3.5",
