@@ -3,13 +3,17 @@ import { withMermaid } from 'vitepress-plugin-mermaid'
 import { generateSideBar } from './sidebar.mjs'
 import packages from './packages.json'
 
-const sortedPackagesNavBar = packages.sort().map(pkg => {
+const sortedPackages = [...packages].sort()
+
+const sortedPackagesNavBar = sortedPackages.map(pkg => {
   return { text: pkg, link: `/packages/${pkg}/` }
 })
 
 const sortedPackageSidebar = Object.fromEntries(
-  packages.sort().map(pkg => [`/packages/${pkg}/`, generateSideBar(pkg)])
+  sortedPackages.map(pkg => [`/packages/${pkg}/`, generateSideBar(pkg)])
 )
+
+const forgeIcon = '{{repoUrl}}'.includes('github') ? 'github' : 'gitlab'
 
 export default withMermaid(
   defineConfig({
@@ -23,7 +27,7 @@ export default withMermaid(
     ],
     themeConfig: {
       logo: 'https://kalisio.github.io/kalisioscope/kalisio/kalisio-icon-light.svg',
-      socialLinks: [{ icon: 'github', link: 'https://github.com/kalisio/{{ name }}' }],
+      socialLinks: [{ icon: forgeIcon, link: '{{repoUrl}}/{{ name }}' }],
       nav: [
         { text: 'Overview', link: '/overview/about' },
         {
@@ -37,13 +41,15 @@ export default withMermaid(
           { text: 'Contributing', link: '/overview/contributing' },
           { text: 'Roadmap', link: '/overview/roadmap' },
           { text: 'Changelog', link: '/overview/changelog' },
+          {{~#if license}}
           { text: 'License', link: '/overview/license' },
+          {{~/if}}
           { text: 'Contact', link: '/overview/contact' }
         ],
         ...sortedPackageSidebar
       },
       footer: {
-        copyright: 'MIT Licensed | Copyright © 2026-present Kalisio'
+        copyright: '{{#if license}}MIT Licensed | {{/if}}Copyright © 2026-present {{authorName}}'
       }
     },
     vite: {

@@ -40,6 +40,7 @@ export default function packageGenerator (plop) {
       const packageName = answers.name
       const contentPackageDir = path.join(monorepoDir, 'packages', packageName)
       const docsDir = path.join(monorepoDir, 'docs')
+      const hasDocs = fs.existsSync(docsDir)
       const docsPackageDir = path.join(docsDir, 'packages', packageName)
       const templatesDir = path.join(__dirname, 'package', answers.type)
       const templateData = {
@@ -58,8 +59,11 @@ export default function packageGenerator (plop) {
             dot: true
           },
           data: templateData
-        },
-        {
+        }
+      ]
+
+      if (hasDocs) {
+        actions.push({
           type: 'addMany',
           destination: docsPackageDir,
           base: path.join(templatesDir, 'docs'),
@@ -68,8 +72,8 @@ export default function packageGenerator (plop) {
             dot: true
           },
           data: templateData
-        }
-      ]
+        })
+      }
 
       if (answers.type === 'library') {
         actions.push(function addPackageScripts (answers) {
@@ -98,17 +102,19 @@ export default function packageGenerator (plop) {
         })
       }
 
-      actions.push({
-        type: 'modify',
-        path: path.join(docsDir, '.vitepress', 'packages.json'),
-        transform: (fileContent, answers) => {
-          const packages = JSON.parse(fileContent)
-          if (!packages.includes(answers.name)) {
-            packages.push(answers.name)
+      if (hasDocs) {
+        actions.push({
+          type: 'modify',
+          path: path.join(docsDir, '.vitepress', 'packages.json'),
+          transform: (fileContent, answers) => {
+            const packages = JSON.parse(fileContent)
+            if (!packages.includes(answers.name)) {
+              packages.push(answers.name)
+            }
+            return JSON.stringify(packages, null, 2)
           }
-          return JSON.stringify(packages, null, 2)
-        }
-      })
+        })
+      }
 
       return actions
     }

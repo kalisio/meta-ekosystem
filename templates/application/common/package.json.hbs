@@ -13,19 +13,23 @@
   ],
   "author": {
     "name": "KALISIO <contact@kalisio.com>",
-    "url": "https://github.com/kalisio"
+    "url": "https://kalisio.com"
   },
   "contributors": [],
-  "license": "MIT",
+  "license": "{{#if license}}MIT{{else}}UNLICENSED{{/if}}",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kalisio/{{ monorepo }}.git",
-    "directory": "packages/{{ name }}"
+    "url": "git+{{ monorepoUrl }}/{{ monorepoName }}.git",
+    "directory": "packages/{{ name }}-common"
   },
   "bugs": {
-    "url": "https://github.com/kalisio/{{ monorepo }}/issues"
+    "url": "{{ monorepoUrl }}/{{ monorepoName }}/issues"
   },
-  "homepage": "https://github.com/kalisio/{{ monorepo }}/tree/main/packages/{{ name }}-common",
+  "homepage": "{{ monorepoUrl }}/{{ monorepoName }}/tree/main/packages/{{ name }}-common",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {},
+  "engines": {
+    "node": "^24 || ^22",
+    "pnpm": ">=10"
+  }
 }

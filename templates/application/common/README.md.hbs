@@ -3,14 +3,18 @@
 _{{ description }}_
 
 ---
+{{#if documentation}}
 
 ## Documentation
 
-Refer to the [documentation](https://github.com/kalisio/{{ monorepo }})
+Refer to the [documentation]({{ monorepoUrl }}/{{ monorepoName }})
+{{/if}}
 
 ## License
+{{#if license}}
 
 Licensed under the [MIT license](LICENSE).
+{{/if}}
 
 Copyright (c) 2026 [Kalisio](https://kalisio.com)
 

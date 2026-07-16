@@ -25,9 +25,12 @@ export default function packageGenerator (plop) {
       // Define the requested variables
       const monorepoPkg = JSON.parse(fs.readFileSync(monorepoPkgPath, 'utf-8'))
       const monorepoName = monorepoPkg.name
-      const exampleName = answers.name
-      const examplesDir = path.join(monorepoDir, 'examples', exampleName)
+      const examplesDir = path.join(monorepoDir, 'examples', answers.name)
       const templatesDir = path.join(__dirname, 'example')
+      const author = typeof monorepoPkg.author === 'object' ? monorepoPkg.author : {}
+      const hasLicense = Boolean(monorepoPkg.license) && monorepoPkg.license !== 'UNLICENSED'
+      const ignore = []
+      if (!hasLicense) ignore.push(path.join(templatesDir, 'LICENSE.md'))
       return [
         {
           type: 'addMany',
@@ -35,11 +38,17 @@ export default function packageGenerator (plop) {
           base: templatesDir,
           templateFiles: path.join(templatesDir, '**/*'),
           globOptions: {
-            dot: true
+            dot: true,
+            ignore
           },
           data: {
-            name: exampleName,
-            monorepo: monorepoName
+            monorepo: monorepoName,
+            packageManager: monorepoPkg.packageManager,
+            authorName: author.name,
+            authorEmail: author.email,
+            authorUrl: author.url,
+            authorLogo: author.logo,
+            license: hasLicense
           }
         }
       ]

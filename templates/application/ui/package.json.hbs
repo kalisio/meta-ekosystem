@@ -9,19 +9,19 @@
   ],
   "author": {
     "name": "KALISIO <contact@kalisio.com>",
-    "url": "https://github.com/kalisio"
+    "url": "{{ monorepoUrl }}"
   },
   "contributors": [],
-  "license": "MIT",
+  "license": "{{#if license}}MIT{{else}}UNLICENSED{{/if}}",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kalisio/{{ monorepo }}.git",
-    "directory": "packages/{{ name }}"
+    "url": "git+{{ monorepoUrl }}/{{ monorepoName }}.git",
+    "directory": "packages/{{ name }}-ui"
   },
   "bugs": {
-    "url": "https://github.com/kalisio/{{ monorepo }}/issues"
+    "url": "{{ monorepoUrl }}/{{ monorepoName }}/issues"
   },
-  "homepage": "https://github.com/kalisio/{{ monorepo }}/tree/main/packages/{{ name }}-ui",
+  "homepage": "{{ monorepoUrl }}/{{ monorepoName }}/tree/main/packages/{{ name }}-ui",
   "scripts": {
     "lint": "eslint -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\"",
     "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
@@ -72,9 +72,7 @@
     "workbox-strategies": "catalog:"
   },
   "engines": {
-    "node": "^28 || ^26 || ^24 || ^22 || ^20",
-    "npm": ">= 6.13.4",
-    "yarn": ">= 1.21.1",
-    "pnpm": ">= 10.0.0"
+    "node": "^24 || ^22",
+    "pnpm": ">=10"
   }
 }

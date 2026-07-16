@@ -1,23 +1,29 @@
 # {{ name }}
 
-[![Quality Gate Status](https://sonar.portal.kalisio.com/api/project_badges/measure?project=kalisio-&metric=alert_status&token=sqb_4b1fd34b21813576749637e9c644ffd21ed8fa74)](https://sonar.portal.kalisio.com/dashboard?id=kalisio-{{ name }})
-[![Maintainability Rating](https://sonar.portal.kalisio.com/api/project_badges/measure?project=kalisio-{{ name }}&metric=software_quality_maintainability_rating&token=sqb_4b1fd34b21813576749637e9c644ffd21ed8fa74)](https://sonar.portal.kalisio.com/dashboard?id=kalisio-{{ name }})
-[![Security Rating](https://sonar.portal.kalisio.com/api/project_badges/measure?project=kalisio-{{ name }}&metric=software_quality_security_rating&token=sqb_4b1fd34b21813576749637e9c644ffd21ed8fa74)](https://sonar.portal.kalisio.com/dashboard?id=kalisio-{{ name }})
-[![Coverage](https://sonar.portal.kalisio.com/api/project_badges/measure?project=kalisio-{{ name }}&metric=coverage&token=sqb_4b1fd34b21813576749637e9c644ffd21ed8fa74)](https://sonar.portal.kalisio.com/dashboard?id=kalisio-{{ name }})
+[![Quality Gate Status]({{sonarUrl}}/api/project_badges/measure?project={{sonarPrefix}}{{ name }}&metric=alert_status&token={{sonarToken}})]({{sonarUrl}}/dashboard?id={{sonarPrefix}}{{ name }})
+[![Maintainability Rating]({{sonarUrl}}/api/project_badges/measure?project={{sonarPrefix}}{{ name }}&metric=software_quality_maintainability_rating&token={{sonarToken}})]({{sonarUrl}}/dashboard?id={{sonarPrefix}}{{ name }})
+[![Security Rating]({{sonarUrl}}/api/project_badges/measure?project={{sonarPrefix}}{{ name }}&metric=software_quality_security_rating&token={{sonarToken}})]({{sonarUrl}}/dashboard?id={{sonarPrefix}}{{ name }})
+[![Coverage]({{sonarUrl}}/api/project_badges/measure?project={{sonarPrefix}}{{ name }}&metric=coverage&token={{sonarToken}})]({{sonarUrl}}/dashboard?id={{sonarPrefix}}{{ name }})
+{{~#if license}}
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+{{~/if}}
 
 _{{ description }}_
 
 ---
+{{#if documentation}}
 
 ## Documentation
 
 Detailed documentation is available at the following [link](https://kalisio.github.io/{{ name }}).
+{{/if}}
 
 ## License
 
+{{#if license}}
 Licensed under the [MIT license](LICENSE).
+{{/if}}
 
-Copyright (c) 2026 [Kalisio](https://kalisio.com)
+Copyright (c) 2026 [{{authorName}}]({{authorUrl}})
 
-[![Kalisio](https://kalisio.github.io/kalisioscope/kalisio/kalisio-logo-light-256x96.png)](https://kalisio.com)
+[<img src="{{authorLogo}}" alt="{{authorName}}" height="96">]({{authorUrl}})

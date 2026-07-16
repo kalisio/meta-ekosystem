@@ -8,8 +8,10 @@
     "bump": "changeset version",
     "change": "changeset",
     "clear": "pnpm -r exec rimraf node_modules dist coverage",
+    {{~#if documentation}}
     "docs:build": "pnpm --filter docs run build",
     "docs:dev": "pnpm --filter docs run dev",
+    {{~/if}}
     "inspect": "pnpm knip",
     "lint": "pnpm -r lint",
     "prepare": "husky",
@@ -23,22 +25,24 @@
   "keywords": [
     "kalisio"
   ],
-  "author": {
-    "name": "KALISIO <contact@kalisio.com>",
-    "url": "https://github.com/kalisio"
+ "author": {
+    "name": "{{authorName}}",
+    "email": "{{authorEmail}}",
+    "url": "{{authorUrl}}",
+    "logo": "{{authorLogo}}"
   },
   "contributors": [],
-  "license": "MIT",
+  "license": "{{#if license}}MIT{{else}}UNLICENSED{{/if}}",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kalisio/{{ name }}.git"
+    "url": "git+{{repoUrl}}/{{ name }}.git"
   },
   "bugs": {
-    "url": "https://github.com/kalisio/{{ name }}/issues"
+    "url": "{{repoUrl}}/{{ name }}/issues"
   },
-  "homepage": "git://github.com/kalisio/{{ name }}#readme",
+  "homepage": "{{#if documentation}}{{docsUrl}}{{else}}{{repoUrl}}/{{ name }}#readme{{/if}}",
   "devDependencies": {
-   "@changesets/cli": "catalog:",
+    "@changesets/cli": "catalog:",
     "@vitest/coverage-v8": "catalog:",
     "husky": "catalog:",
     "knip": "catalog:",

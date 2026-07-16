@@ -1,20 +1,22 @@
 {
   "name": "{{ name }}",
   "description": "{{ name }} example",
-  "packageManager": "pnpm@10.1.0",
+  "private": true,
+  "packageManager": "{{packageManager}}",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "lint": "standard --fix"
   },
   "author": {
-    "name": "KALISIO <contact@kalisio.com>",
-    "url": "https://github.com/kalisio"
+    "name": "{{authorName}}",
+    "email": "{{authorEmail}}",
+    "url": "{{authorUrl}}",
+    "logo": "{{authorLogo}}"
   },
   "contributors": [],
-  "license": "MIT",
+  "license": "{{#if license}}MIT{{else}}UNLICENSED{{/if}}",
   "devDependencies": {
-    "@kalisio/{{ name }}": "workspace:*",
     "vite": "catalog:"
   }
 }
