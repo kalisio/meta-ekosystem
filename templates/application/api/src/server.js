@@ -1,8 +1,7 @@
 import fs from 'node:fs'
-import _ from 'lodash'
 import express from '@feathersjs/express'
-import { kdk } from '@kalisio/kdk/core.api.js'
 import distribution, { finalize } from '@kalisio/feathers-distributed'
+import { createApplication } from '@kalisio/kdk-core-api'
 import middlewares from './middlewares.js'
 import services from './services.js'
 import hooks from './hooks.js'
@@ -10,7 +9,7 @@ import channels from './channels.js'
 
 export class Server {
   constructor () {
-    this.app = kdk()
+    this.app = createApplication()
     // Listen to distributed services
     const distConfig = this.app.get('distribution')
     if (distConfig) this.app.configure(distribution(distConfig))
@@ -53,7 +52,7 @@ export class Server {
 export function createServer () {
   const server = new Server()
   const config = server.app.get('logs')
-  const logPath = _.get(config, 'DailyRotateFile.dirname')
+  const logPath = config?.DailyRotateFile?.dirname
   if (logPath) {
     // This will ensure the log directory does exist
     fs.mkdirSync(logPath, { recursive: true })

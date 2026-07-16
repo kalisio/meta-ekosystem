@@ -1,7 +1,7 @@
 import path from 'node:path'
 import fs from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import kdkCore from '@kalisio/kdk/core.api.js'
+import { initialize } from '@kalisio/kdk/core.api.js'
 import makeDebug from 'debug'
 
 const debug = makeDebug('{{ name }}:services')
@@ -24,8 +24,8 @@ export default async function () {
       }
       res.json(response)
     })
-    await app.configure(kdkCore)
-    debug('kdk initialized')
+    await app.configure(initialize)
+    debug('kdk-core-api initialized')
     /*
        Declare the services here
      */

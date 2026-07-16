@@ -2,21 +2,24 @@
   "name": "{{ name }}",
   "description": "{{ name }} example",
   "private": true,
-  "packageManager": "{{packageManager}}",
   "type": "module",
+  "packageManager": "{{ packageManager }}",
   "scripts": {
     "dev": "vite",
     "lint": "standard --fix"
   },
   "author": {
-    "name": "{{authorName}}",
-    "email": "{{authorEmail}}",
-    "url": "{{authorUrl}}",
-    "logo": "{{authorLogo}}"
+    "name": "{{ authorName }}",
+    "email": "{{ authorEmail }}",
+    "url": "{{ authorUrl }}"
   },
   "contributors": [],
   "license": "{{#if license}}MIT{{else}}UNLICENSED{{/if}}",
   "devDependencies": {
     "vite": "catalog:"
+  }
+  "engines": {
+    "node": "^24 || ^22",
+    "pnpm": ">=10"
   }
 }

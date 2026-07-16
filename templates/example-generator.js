@@ -24,7 +24,6 @@ export default function packageGenerator (plop) {
       }
       // Define the requested variables
       const monorepoPkg = JSON.parse(fs.readFileSync(monorepoPkgPath, 'utf-8'))
-      const monorepoName = monorepoPkg.name
       const examplesDir = path.join(monorepoDir, 'examples', answers.name)
       const templatesDir = path.join(__dirname, 'example')
       const author = typeof monorepoPkg.author === 'object' ? monorepoPkg.author : {}
@@ -42,7 +41,6 @@ export default function packageGenerator (plop) {
             ignore
           },
           data: {
-            monorepo: monorepoName,
             packageManager: monorepoPkg.packageManager,
             authorName: author.name,
             authorEmail: author.email,

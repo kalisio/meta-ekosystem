@@ -35,6 +35,7 @@ export default function packageGenerator (plop) {
       const monorepoUrl = monorepoPkg.repository?.url
         ?.replace(/^git\+/, '')
         ?.replace(/\/[^/]+\.git$/, '')
+      const author = typeof monorepoPkg.author === 'object' ? monorepoPkg.author : {}
       const hasLicense = Boolean(monorepoPkg.license) && monorepoPkg.license !== 'UNLICENSED'
       const docsDir = path.join(monorepoDir, 'docs')
       const hasDocs = fs.existsSync(docsDir)
@@ -43,6 +44,11 @@ export default function packageGenerator (plop) {
         description: answers.description,
         monorepoName,
         monorepoUrl,
+        packageManager: monorepoPkg.packageManager,
+        authorName: author.name,
+        authorEmail: author.email,
+        authorUrl: author.url,
+        authorLogo: author.logo,
         license: hasLicense,
         documentation: hasDocs
       }

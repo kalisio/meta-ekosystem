@@ -3,17 +3,18 @@
   "description": "{{ description }} (common package)",
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "{{ packageManager }}",
   "exports": "./src/index.js",
   "scripts": {
     "test": "vitest run --coverage"
   },
   "keywords": [
-    "{{ name }}",
-    "kalisio"
+    "{{ name }}"
   ],
   "author": {
-    "name": "KALISIO <contact@kalisio.com>",
-    "url": "https://kalisio.com"
+    "name": "{{ authorName }}",
+    "email": "{{ authorEmail }}",
+    "url": "{{ authorUrl }}"
   },
   "contributors": [],
   "license": "{{#if license}}MIT{{else}}UNLICENSED{{/if}}",
@@ -26,7 +27,9 @@
     "url": "{{ monorepoUrl }}/{{ monorepoName }}/issues"
   },
   "homepage": "{{ monorepoUrl }}/{{ monorepoName }}/tree/main/packages/{{ name }}-common",
-  "dependencies": {},
+  "dependencies": {
+    "lodash-es": "catalog:"
+  },
   "devDependencies": {},
   "engines": {
     "node": "^24 || ^22",

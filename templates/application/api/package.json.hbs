@@ -3,6 +3,7 @@
   "description": "{{ description }} (api package)",
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "{{ packageManager }}",
   "exports": {
     ".": {
       "development": "./src/index.js",
@@ -14,16 +15,16 @@
     "dist"
   ],
   "scripts": {
-    "dev": "node --watch src/index.js",
+    "dev": "node --conditions=development --watch src/index.js",
     "test": "vitest run --coverage"
   },
   "keywords": [
-    "{{ name }}",
-    "kalisio"
+    "{{ name }}"
   ],
   "author": {
-    "name": "KALISIO <contact@kalisio.com>",
-    "url": "https://kalisio.com"
+    "name": "{{ authorName }}",
+    "email": "{{ authorEmail }}",
+    "url": "{{ authorUrl }}"
   },
   "contributors": [],
   "license": "{{#if license}}MIT{{else}}UNLICENSED{{/if}}",
@@ -45,7 +46,6 @@
     "debug": "catalog:",
     "feathers-hooks-common": "catalog:",
     "is-docker": "catalog:",
-    "lodash": "catalog:",
     "winston": "catalog:"
   },
   "devDependencies": {},

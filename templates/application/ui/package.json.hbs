@@ -3,13 +3,14 @@
   "description": "{{ description }} (ui package)",
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "{{packageManager}}",
   "keywords": [
-    "{{ name }}",
-    "kalisio"
+    "{{ name }}"
   ],
   "author": {
-    "name": "KALISIO <contact@kalisio.com>",
-    "url": "{{ monorepoUrl }}"
+    "name": "{{ authorName }}",
+    "email": "{{ authorEmail }}",
+    "url": "{{ authorUrl }}"
   },
   "contributors": [],
   "license": "{{#if license}}MIT{{else}}UNLICENSED{{/if}}",
