@@ -4,18 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "packageManager": "{{ packageManager }}",
-  "exports": {
-    ".": {
-      "development": "./src/index.js",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "dev": "node --conditions=development --watch src/index.js",
+    "lint": "standard --fix",
+    "test": "vitest run --coverage"
+  },
     "test": "vitest run --coverage"
   },
   "keywords": [

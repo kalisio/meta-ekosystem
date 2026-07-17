@@ -4,6 +4,20 @@
   "version": "0.0.0",
   "type": "module",
   "packageManager": "{{packageManager}}",
+  "standard": {
+    "globals": [
+      "self"
+    ]
+  },
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development quasar dev",
+    "build": "quasar build",
+    "lint": "standard --fix",
+    "pwa:dev": "quasar dev -m pwa",
+    "pwa:build": "quasar build -m pwa",
+    "postinstall": "quasar prepare",
+    "test": "vitest run --coverage"
+  },
   "keywords": [
     "{{ name }}"
   ],
@@ -23,17 +37,6 @@
     "url": "{{ monorepoUrl }}/{{ monorepoName }}/issues"
   },
   "homepage": "{{ monorepoUrl }}/{{ monorepoName }}/tree/main/packages/{{ name }}-ui",
-  "scripts": {
-    "lint": "eslint -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\"",
-    "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
-    "dev": "cross-env NODE_ENV=development quasar dev",
-    "build": "quasar build",
-    "pwa:dev": "quasar dev -m pwa",
-    "pwa:build": "quasar build -m pwa",
-    "postinstall": "quasar prepare",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
-  },
   "dependencies": {
     "@kalisio/feathers-localforage": "catalog:",
     "@kalisio/kdk": "catalog:",
