@@ -42,6 +42,7 @@
     "@logtape/logtape": "~0.7.0",
     "@mapbox/mbtiles": "~0.12.1",
     "@mapbox/vtquery": "~0.6.0",
+    "@modelcontextprotocol/sdk": "~1.29.0",
     "@pdfme/common": "~6.1.2",
     "@pdfme/generator": "~6.1.2",
     "@pdfme/schemas": "~6.1.2",
@@ -195,5 +196,6 @@
     "workbox-strategies": "~7.0.0",
     "ws": "~8.21.1",
     "xml2js": "~0.6.2",
-    "zlib": "~1.0.5"
+    "zlib": "~1.0.5",
+    "zod": "~4.4.3"
   }
