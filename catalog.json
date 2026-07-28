@@ -101,6 +101,7 @@
     "email-validator": "~2.0.4",
     "ejs": "~5.0.1",
     "epsg-index": "~2.0.0",
+    "envsub": "~4.1.0",
     "eslint": "~9.14.0",
     "eslint-plugin-vue": "~10.4.0",
     "express": "~5.2.1",
