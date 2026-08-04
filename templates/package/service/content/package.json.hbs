@@ -3,7 +3,7 @@
   "description": "{{ description }}",
   "version": "0.0.0",
   "type": "module",
-  "private": true
+  "private": true,
   "scripts": {
     "build": "DOCKER_BUILDKIT=1 docker build -t {{ name }}:${TAG:-latest} -f ./Dockerfile ../..",
     "dev": "node --watch src/main.js",
@@ -29,7 +29,25 @@
     "url": "https://github.com/kalisio/{{ monorepo }}/issues"
   },
   "homepage": "https://github.com/kalisio/{{ monorepo }}/tree/master/packages/{{ name }}",
-  "dependencies": {},
+  "dependencies": {
+    "@feathersjs/commons": "catalog:",
+    "@feathersjs/configuration": "catalog:",
+    "@feathersjs/errors": "catalog:",
+    "@feathersjs/express": "catalog:",
+    "@feathersjs/feathers": "catalog:",
+    "@feathersjs/schema": "catalog:",
+    "@kalisio/feathers-distributed": "catalog:",
+    "compression": "catalog:",
+    "is-docker":"catalog:",
+    "cors": "catalog:",
+    "debug": "catalog:",
+    "envsub": "catalog:",
+    "feathers-hooks-common": "catalog:",
+    "fs-extra": "catalog:",
+    "helmet": "catalog:",
+    "winston": "catalog:",
+    "winston-daily-rotate-file": "catalog:"
+  },
   "devDependencies": {},
   "engines": {
     "node": ">=20"
