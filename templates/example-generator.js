@@ -28,8 +28,6 @@ export default function packageGenerator (plop) {
       const templatesDir = path.join(__dirname, 'example')
       const author = typeof monorepoPkg.author === 'object' ? monorepoPkg.author : {}
       const hasLicense = Boolean(monorepoPkg.license) && monorepoPkg.license !== 'UNLICENSED'
-      const ignore = []
-      if (!hasLicense) ignore.push(path.join(templatesDir, 'LICENSE.md'))
       return [
         {
           type: 'addMany',
@@ -38,15 +36,13 @@ export default function packageGenerator (plop) {
           templateFiles: path.join(templatesDir, '**/*'),
           globOptions: {
             dot: true,
-            ignore
+            ignore: hasLicense ? [] : [path.join(templatesDir, 'content', 'LICENSE.md')]
           },
           data: {
             packageManager: monorepoPkg.packageManager,
-            authorName: author.name,
-            authorEmail: author.email,
-            authorUrl: author.url,
-            authorLogo: author.logo,
-            license: hasLicense
+            author,
+            license: hasLicense,
+            year: new Date().getFullYear()
           }
         }
       ]

@@ -19,7 +19,7 @@ RUN pnpm install \
   --prod
 
 FROM node:${NODE_VERSION}-${DEBIAN_VERSION}-slim
-LABEL maintainer="Kalisio <contact@kalisio.xyz>"
+LABEL maintainer="{{ author.name }} <{{ author.contact }}>"
 
 COPY --from=builder --chown=node:node /app /app
 

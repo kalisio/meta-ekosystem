@@ -1,7 +1,7 @@
-var path = require('path')
-var fs = require('fs')
-var winston = require('winston')
-//const express = require('@feathersjs/express')
+const path = require('path')
+const fs = require('fs')
+const winston = require('winston')
+// const express = require('@feathersjs/express')
 const isDocker = require('is-docker')
 
 const SERVER_PORT = process.env.PORT || 8081
@@ -110,7 +110,7 @@ module.exports = {
       enabled: true,
       name: 'feathers-jwt',
       httpOnly: false,
-      secure: (process.env.NODE_ENV === 'development' ? false : true)
+      secure: (process.env.NODE_ENV !== 'development')
     },
     authorisation: {
       cache: {

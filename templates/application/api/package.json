@@ -15,9 +15,9 @@
     "{{ name }}"
   ],
   "author": {
-    "name": "{{ authorName }}",
-    "email": "{{ authorEmail }}",
-    "url": "{{ authorUrl }}"
+    "name": "{{ author.name }}",
+    "email": "{{ author.email }}",
+    "url": "{{ author.url }}"
   },
   "contributors": [],
   "license": "{{#if license}}MIT{{else}}UNLICENSED{{/if}}",

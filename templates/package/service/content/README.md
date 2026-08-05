@@ -3,15 +3,17 @@
 _{{ description }}_
 
 ---
+{{#if documentation}}
 
 ## Documentation
 
-Detailed documentation is available at the following [link](https://kalisio.github.io/{{ monorepo }}/packages/{{ name }}).
+Refer to the [documentation]({{ monorepoUrl }}/{{ monorepoName }})
+{{/if}}
 
 ## License
 
-Licensed under the [MIT license](LICENSE).
+{{#if license}}Licensed under the [MIT license](LICENSE).{{else}}Not licensed. This package is private.{{/if}}
 
-Copyright (c) 2026 [Kalisio](https://kalisio.com)
+Copyright (c) {{ year }}-present [{{author.name}}]({{author.url}})
 
-[![Kalisio](https://kalisio.github.io/kalisioscope/kalisio/kalisio-logo-light-256x96.png)](https://kalisio.com)
+[<img src="{{author.logo}}" alt="{{author.name}}" height="96">]({{author.url}})

@@ -14,6 +14,6 @@ Refer to the [documentation]({{ monorepoUrl }}/{{ monorepoName }})
 
 {{#if license}}Licensed under the [MIT license](LICENSE).{{else}}Not licensed. This package is private.{{/if}}
 
-Copyright (c) {{ year }}-present [{{author.name}}]({{author.url}})
+Copyright (c) {{ year }}-present [{{author.name}}]({{author.uul}})
 
 [<img src="{{author.logo}}" alt="{{author.name}}" height="96">]({{author.url}})

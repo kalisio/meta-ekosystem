@@ -7,7 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 export default defineConfig({
   root: __dirname,
   test: {
-    name: '{{ name }}-api',
+    name: '{{ name }}-ui',
     environment: 'node',
     globals: true,
     silent: false,
@@ -18,7 +18,7 @@ export default defineConfig({
       include: ['src/**/*.js'],
       exclude: ['**/*.test.js', 'node_modules/**', 'dist/**'],
       reporter: ['text', 'html', 'lcov'],
-      reportsDirectory: path.join(__dirname, '../../coverage/{{ name }}-api')
+      reportsDirectory: path.join(__dirname, '../../coverage/{{ name }}-ui')
     }
   }
 })

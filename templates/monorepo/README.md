@@ -20,10 +20,8 @@ Detailed documentation is available at the following [link](https://kalisio.gith
 
 ## License
 
-{{#if license}}
-Licensed under the [MIT license](LICENSE).
-{{/if}}
+{{#if license}}Licensed under the [MIT license](LICENSE).{{else}}Not licensed. This repository is private.{{/if}}
 
-Copyright (c) 2026 [{{authorName}}]({{authorUrl}})
+Copyright (c) {{ year }}-present [{{authorName}}]({{authorUrl}})
 
 [<img src="{{authorLogo}}" alt="{{authorName}}" height="96">]({{authorUrl}})

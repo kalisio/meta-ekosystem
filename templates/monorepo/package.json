@@ -23,6 +23,8 @@
     "posttest": "pnpm lcov-result-merger --prepend-source-files 'packages/*/coverage/lcov.info' coverage/lcov.info"
   },
   "keywords": [
+    "{{ name }}",
+    "ekosystem",
     "kalisio"
   ],
  "author": {

@@ -1,4 +1,4 @@
-import pkg from '../package.json' assert { type: 'json' }
+import pkg from '../package.json'
 import routes from '../src/router/routes.js'
 
 // Helper declaration

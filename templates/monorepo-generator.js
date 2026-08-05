@@ -121,6 +121,9 @@ export default function monorepoGenerator (plop) {
           globOptions: {
             dot: true,
             ignore
+          },
+          data: {
+            year: new Date().getFullYear()
           }
         },
         {

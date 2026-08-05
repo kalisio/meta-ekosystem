@@ -16,7 +16,7 @@ RUN pnpm install --frozen-lockfile --ignore-scripts --filter @kalisio/{{ name }}
 COPY packages/{{ name }}/jobfile.js ./packages/{{ name }}/
 
 FROM kalisio/krawler:${KRAWLER_TAG}
-LABEL maintainer="Kalisio <contact@kalisio.xyz>"
+LABEL maintainer="{{ author.name }}<{{ author.email }}>"
 
 ENV CRON="0 0 0 * * *"
 

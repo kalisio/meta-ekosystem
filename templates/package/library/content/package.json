@@ -3,6 +3,7 @@
   "description": "{{ description }}",
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "{{ packageManager }}",
   "exports": {
     ".": {
       "development": "./src/index.js",
@@ -25,28 +26,29 @@
     "test": "vitest run --coverage"
   },
   "keywords": [
-    "kalisio"
+    "{{ name }}"
   ],
   "author": {
-    "name": "Kalisio",
-    "email": "contact@kalisio.com",
-    "url": "https://github.com/kalisio"
+    "name": "{{ author.name }}",
+    "email": "{{ author.email }}",
+    "url": "{{ author.url }}"
   },
   "contributors": [],
-  "license": "MIT",
+  "license": "{{#if license}}MIT{{else}}UNLICENSED{{/if}}",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kalisio/{{ monorepo }}.git",
+    "url": "git+{{ monorepoUrl }}/{{ monorepoName }}.git",
     "directory": "packages/{{ name }}"
   },
   "bugs": {
-    "url": "https://github.com/kalisio/{{ monorepo }}/issues"
+    "url": "{{ monorepoUrl }}/{{ monorepoName }}/issues"
   },
-  "homepage": "https://github.com/kalisio/{{ monorepo }}/tree/master/packages/{{ name }}",
+  "homepage": "{{ monorepoUrl }}/{{ monorepoName }}/tree/main/packages/{{ name }}",
   "peerDependencies": {},
   "devDependencies": {},
   "engines": {
-    "node": ">=20"
+    "node": ">=20",
+    "pnpm": ">=10"
   },
   "publishConfig": {
     "access": "public",

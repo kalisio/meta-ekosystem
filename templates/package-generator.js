@@ -37,16 +37,28 @@ export default function packageGenerator (plop) {
       // Define the requested variables
       const monorepoPkg = JSON.parse(fs.readFileSync(monorepoPkgPath, 'utf-8'))
       const monorepoName = monorepoPkg.name
-      const packageName = answers.name
-      const contentPackageDir = path.join(monorepoDir, 'packages', packageName)
+      const contentPackageDir = path.join(monorepoDir, 'packages', answers.name)
       const docsDir = path.join(monorepoDir, 'docs')
-      const hasDocs = fs.existsSync(docsDir)
-      const docsPackageDir = path.join(docsDir, 'packages', packageName)
+      const docsPackageDir = path.join(docsDir, 'packages', answers.name)
       const templatesDir = path.join(__dirname, 'package', answers.type)
+      const monorepoUrl = monorepoPkg.repository?.url
+        ?.replace(/^git\+/, '')
+        ?.replace(/\/[^/]+\.git$/, '')
+      const author = typeof monorepoPkg.author === 'object' ? monorepoPkg.author : {}
+      const hasLicense = Boolean(monorepoPkg.license) && monorepoPkg.license !== 'UNLICENSED'
+      const hasDocs = fs.existsSync(docsDir)
+      const hasKrawler = fs.existsSync(path.join(monorepoDir, 'packages/krawler'))
       const templateData = {
-        name: packageName,
+        name: answers.name,
         description: answers.description,
-        monorepo: monorepoName
+        monorepoName,
+        monorepoUrl,
+        packageManager: monorepoPkg.packageManager,
+        author,
+        license: hasLicense,
+        documentation: hasDocs,
+        krawlerEkosystem: hasKrawler,
+        year: new Date().getFullYear()
       }
 
       const actions = [
@@ -56,7 +68,8 @@ export default function packageGenerator (plop) {
           base: path.join(templatesDir, 'content'),
           templateFiles: '**/*',
           globOptions: {
-            dot: true
+            dot: true,
+            ignore: hasLicense ? [] : [path.join(templatesDir, 'content', 'LICENSE.md')]
           },
           data: templateData
         }

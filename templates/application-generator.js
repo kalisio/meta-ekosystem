@@ -45,17 +45,14 @@ export default function packageGenerator (plop) {
         monorepoName,
         monorepoUrl,
         packageManager: monorepoPkg.packageManager,
-        authorName: author.name,
-        authorEmail: author.email,
-        authorUrl: author.url,
-        authorLogo: author.logo,
+        author,
         license: hasLicense,
-        documentation: hasDocs
+        documentation: hasDocs,
+        year: new Date().getFullYear()
       }
 
       function actionFor (sub) {
         const base = path.join(templatesDir, sub)
-        const ignore = hasLicense ? [] : [path.join(base, 'LICENSE.md')]
         return {
           type: 'addMany',
           destination: `${packageDir}-${sub}`,
@@ -63,7 +60,7 @@ export default function packageGenerator (plop) {
           templateFiles: path.join(base, '**/*'),
           globOptions: {
             dot: true,
-            ignore
+            ignore: hasLicense ? [] : [path.join(base, 'LICENSE.md')]
           },
           data: templateData
         }
