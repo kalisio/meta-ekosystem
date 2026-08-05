@@ -5,10 +5,8 @@
   "type": "module",
   "packageManager": "{{ packageManager }}",
   "scripts": {
-    "dev": "node --conditions=development --watch src/index.js",
+    "dev": "node --conditions=development --watch src/main.js",
     "lint": "standard --fix",
-    "test": "vitest run --coverage"
-  },
     "test": "vitest run --coverage"
   },
   "keywords": [

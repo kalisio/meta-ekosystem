@@ -2,9 +2,9 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file
 
 import { defineConfig } from '#q-app/wrappers'
+import path from 'node:path'
+import fs from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import path from 'path'
-import fs from 'fs'
 
 // Load config based on current NODE_ENV, etc.
 import clientConfig from 'config'
@@ -76,7 +76,7 @@ export default defineConfig((/* ctx */) => {
           alias: {
             ...viteConf.resolve.alias,
 
-            '@components': [
+            /* '@components': [
               path.resolve(__dirname, 'src/components'),
               path.resolve(__dirname, 'node_modules/@kalisio/kdk/core/client/components')
             ],
@@ -88,9 +88,8 @@ export default defineConfig((/* ctx */) => {
               path.resolve(__dirname, 'src/i18n'),
               path.resolve(__dirname, 'node_modules/@kalisio/kdk/core/client/i18n'),
               path.resolve(__dirname, 'node_modules/@kalisio/kdk/map/client/i18n')
-            ],
+            ], */
             config: path.resolve(__dirname, 'config/client-config.json')
-            // jsts: path.resolve(__dirname, 'src/assets/kdk/jsts.min.js'),
 
             // polyfills
             // assert: 'assert',

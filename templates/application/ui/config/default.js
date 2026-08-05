@@ -1,5 +1,7 @@
-import pkg from '../package.json'
+import { readFileSync } from 'node:fs'
 import routes from '../src/router/routes.js'
+
+const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url)))
 
 // Helper declaration
 const APP_SLUG = '{{ name }}'

@@ -1,7 +1,7 @@
 import path from 'node:path'
 import fs from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { initialize } from '@kalisio/kdk/core.api.js'
+import { initialize } from '@kalisio/kdk-core-api'
 import makeDebug from 'debug'
 
 const debug = makeDebug('{{ name }}:services')
