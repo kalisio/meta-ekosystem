@@ -1,8 +1,8 @@
 {
   "name": "{{ name }}",
   "description": "{{ name }} example",
-  "private": true,
   "type": "module",
+  "private": true,
   "packageManager": "{{ packageManager }}",
   "scripts": {
     "dev": "vite",
