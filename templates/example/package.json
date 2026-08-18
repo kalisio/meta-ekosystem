@@ -15,9 +15,7 @@
   },
   "contributors": [],
   "license": "{{#if license}}MIT{{else}}UNLICENSED{{/if}}",
-  "devDependencies": {
-    "vite": "catalog:"
-  },
+  "dependencies": {},
   "engines": {
     "node": "^24 || ^22",
     "pnpm": ">=10"
