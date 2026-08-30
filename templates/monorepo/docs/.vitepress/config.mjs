@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
-import { generateSideBar } from 'vitepress-theme-kalisio/sidebar'
+import { generatePackageSidebar } from '@kalisio/vitepress-theme/sidebar'
 import packages from './packages.json'
 
 const sortedPackages = [...packages].sort()
@@ -10,7 +10,7 @@ const sortedPackagesNavBar = sortedPackages.map(pkg => {
 })
 
 const sortedPackageSidebar = Object.fromEntries(
-  sortedPackages.map(pkg => [`/packages/${pkg}/`, generateSideBar(pkg)])
+  sortedPackages.map(pkg => [`/packages/${pkg}/`, generatePackageSidebar(pkg)])
 )
 
 const forgeIcon = '{{repoUrl}}'.includes('github') ? 'github' : 'gitlab'
@@ -40,7 +40,6 @@ export default withMermaid(
           { text: 'About', link: '/overview/about' },
           { text: 'Contributing', link: '/overview/contributing' },
           { text: 'Roadmap', link: '/overview/roadmap' },
-          { text: 'Changelog', link: '/overview/changelog' },
           {{~#if license}}
           { text: 'License', link: '/overview/license' },
           {{~/if}}
@@ -54,10 +53,10 @@ export default withMermaid(
     },
     vite: {
       optimizeDeps: {
-        include: ['keycloak-js', 'lodash', 'dayjs', 'mermaid', 'cytoscape', 'cytoscape-cose-bilkent'],
+        include: ['dayjs', 'mermaid', 'cytoscape', 'cytoscape-cose-bilkent'],
       },
       ssr: {
-        noExternal: ['vitepress-theme-kalisio', 'dayjs', 'mermaid', 'cytoscape', 'cytoscape-cose-bilkent']
+        noExternal: ['@kalisio/vitepress-theme']
       }
     }
   })

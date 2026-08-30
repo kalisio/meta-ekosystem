@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "description": "{{ description }}",
+  "description": "{{ name }} docs",
   "packageManager": "pnpm@10.34.5",
   "type": "module",
   "private": true,
@@ -8,21 +8,19 @@
     "build": "vitepress build",
     "dev": "vitepress dev"
   },
-  "author": {
-    "name": "KALISIO <contact@kalisio.com>",
-    "url": "https://github.com/kalisio"
+ "author": {
+    "name": "{{authorName}}",
+    "email": "{{authorEmail}}",
+    "url": "{{authorUrl}}"
   },
   "contributors": [],
-  "license": "MIT",
+  "license": "{{#if license}}MIT{{else}}UNLICENSED{{/if}}",
   "devDependencies": {
-    "keycloak-js": "catalog:",
-    "lodash": "catalog:",
+    "@kalisio/vitepress-theme": "catalog:",
     "mermaid": "catalog:",
-    "moment": "catalog:",
     "quasar": "catalog:",
     "vitepress": "catalog:",
-    "vitepress-openapi": "catalog:",
     "vitepress-plugin-mermaid": "catalog:",
-    "vitepress-theme-kalisio": "catalog:"
+    "vue": "catalog:"
   }
 }
