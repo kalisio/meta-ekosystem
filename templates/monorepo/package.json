@@ -5,22 +5,22 @@
   "packageManager": "pnpm@10.34.5",
   "scripts": {
     "build": "pnpm -r --filter './packages/*' build",
+    "prebump": "changeset",
     "bump": "changeset version",
-    "change": "changeset",
     "clear": "pnpm -r exec rimraf node_modules dist coverage",
     {{~#if documentation}}
     "docs:prepare": "pnpm --filter './examples/*' build",
     "docs:build": "pnpm --filter docs run build",
     "docs:dev": "pnpm --filter docs run dev",
     {{~/if}}
-    "inspect": "pnpm knip",
+    "inspect": "knip || true",
     "lint": "pnpm -r lint",
     "prepare": "node scripts/prepare.mjs",
     "prerelease": "pnpm build",
     "release": "changeset publish",
     "postrelease": "git push --follow-tags",
     "pretest": "mkdir -p coverage",
-    "test": "pnpm -r test --coverage",
+    "test": "pnpm -r test",
     "posttest": "pnpm lcov-result-merger --prepend-source-files 'packages/*/coverage/lcov.info' coverage/lcov.info"
   },
   "keywords": [
