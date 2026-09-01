@@ -15,7 +15,7 @@
     {{~/if}}
     "inspect": "pnpm knip",
     "lint": "pnpm -r lint",
-    "prepare": "husky",
+    "prepare": "node scripts/prepare.mjs",
     "prerelease": "pnpm build",
     "release": "changeset publish",
     "postrelease": "git push --follow-tags",
