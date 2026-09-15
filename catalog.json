@@ -46,6 +46,7 @@
     "@kalisio/vitepress-theme": "~2.1.0",
     "@logtape/logtape": "~0.7.0",
     "@mapbox/mbtiles": "~0.12.1",
+    "@mapbox/sphericalmercator": "~2.0.2",
     "@mapbox/vtquery": "~0.6.0",
     "@modelcontextprotocol/sdk": "~1.29.0",
     "@pdfme/common": "~5.2.0",
