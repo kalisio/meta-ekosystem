@@ -166,7 +166,6 @@
     "mubsub-es": "~2.1.0",
     "nock": "~14.0.13",
     "node-cron": "~4.6.0",
-    "node-geocoder": "git+https://github.com/nchaulet/node-geocoder.git#f66ea8db928d780b5d4268938909f86fba503eef",
     "nodemailer": "~6.9.8",
     "osmtogeojson": "3.0.0-beta.5",
     "papaparse": "~5.7.0",
