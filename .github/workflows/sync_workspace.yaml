@@ -67,6 +67,6 @@ jobs:
       - name: Sync workspace
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
-          MONOREPO: ${{ matrix.repo }}
+          REPOSITORY: ${{ matrix.repo }}
           GITHUB_REF_NAME: ${{ github.event.inputs.tag || github.ref_name }}
         run: bash ./scripts/sync_workspace.sh
