@@ -1,0 +1,72 @@
+name: sync_workspace
+
+on:
+  # push:
+  #   tags:
+  #     - 'v[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to sync, it must match current HEAD (e.g. v1.0.0)'
+        required: true
+
+# Only one sync runs at a time
+concurrency:
+  group: sync_workspace
+  cancel-in-progress: false
+
+jobs:
+
+  # Get list of repos from ekosystem.json
+  load_repos:
+    name: Load repos
+    runs-on: ubuntu-22.04
+    outputs:
+      repos: ${{ steps.load.outputs.repos }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Load repos
+        id: load
+        run: echo "repos=$(jq -c '.' ekosystem.json)" >> "$GITHUB_OUTPUT"
+
+  # Sync each repo in parallel
+  sync_workspace:
+    name: Sync ${{ matrix.repo }}
+    needs: load_repos
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        repo: ${{ fromJson(needs.load_repos.outputs.repos) }}
+      fail-fast: false  # do not stop other repos if one fails
+    steps:
+      - name: Checkout meta-ekosystem
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          submodules: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Generate a short-lived token from a GitHub App
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: kalisio
+          repositories: ${{ matrix.repo }}   # only allow access to this repo
+
+      - name: Sync workspace
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          MONOREPO: ${{ matrix.repo }}
+          GITHUB_REF_NAME: ${{ github.event.inputs.tag || github.ref_name }}
+        run: bash ./scripts/sync_workspace.sh
