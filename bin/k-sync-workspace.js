@@ -10,7 +10,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const cmdDir = path.resolve(process.cwd())
 
 // Settings that are never synchronized because they are specific to each repository
-const excludedSettings = ['packages']
+// or handled separately
+const excludedSettings = ['packages', 'pnpmVersion']
 
 // Read a YAML file, an empty file gives an empty object
 const readYaml = (filePath) => load(fs.readFileSync(filePath, 'utf8')) ?? {}
@@ -58,7 +59,7 @@ try {
   process.exit(1)
 }
 
-// Read the local workspace file, used only to adjust the settings defined in the meta workspace
+// Read the local workspace file
 const localWorkspacePath = path.join(cmdDir, 'workspace.yaml')
 let localWorkspaceContent = {}
 
@@ -112,11 +113,14 @@ try {
 // Keep the initial workspace content to detect changes
 const previousWorkspaceContent = JSON.stringify(workspaceContent)
 
-// Only the settings defined in the meta workspace are managed: each one is overwritten
-// in pnpm-workspace.yaml by the merge of the meta and local workspace values.
-// Any other setting of pnpm-workspace.yaml is left untouched.
-const settings = Object.keys(metaWorkspaceContent)
-  .filter(setting => !excludedSettings.includes(setting))
+// Replace every managed setting in the workspace.
+// Excluded settings and settings unknown to the meta and local files are left untouched.
+const settings = [
+  ...new Set([
+    ...Object.keys(metaWorkspaceContent),
+    ...Object.keys(localWorkspaceContent)
+  ])
+].filter(setting => !excludedSettings.includes(setting))
 
 for (const setting of settings) {
   workspaceContent[setting] = mergeSetting(
@@ -127,35 +131,36 @@ for (const setting of settings) {
 
 // Check whether the workspace has changed
 const workspaceChanged = JSON.stringify(workspaceContent) !== previousWorkspaceContent
-if (!workspaceChanged) {
-  console.log(chalk.green('✅ Workspace is already up to date!'))
-  process.exit(0)
+
+// Update the pnpm-workspace.yaml file if needed
+if (workspaceChanged) {
+  fs.writeFileSync(
+    workspacePath,
+    dump(workspaceContent, {
+      noRefs: true,
+      lineWidth: -1
+    }),
+    'utf8'
+  )
 }
-
-// Keep the original files to restore them if the lockfile update fails,
-// otherwise a new run would consider the workspace up to date and skip it
-const originalWorkspaceFile = fs.readFileSync(workspacePath, 'utf8')
-const originalPackageFile = fs.readFileSync(packagePath, 'utf8')
-
-// Update the pnpm-workspace.yaml file
-fs.writeFileSync(
-  workspacePath,
-  dump(workspaceContent, {
-    noRefs: true,
-    lineWidth: -1
-  }),
-  'utf8'
-)
 
 // Update the package.json file
 let packageContent
 try {
-  packageContent = JSON.parse(originalPackageFile)
+  packageContent = JSON.parse(fs.readFileSync(packagePath, 'utf8'))
 } catch (error) {
   console.error(chalk.red('❌ Failed to read package.json file:', error))
   process.exit(1)
 }
 
+// Synchronize the PNPM version
+const previousPackageManager = packageContent.packageManager
+if (metaWorkspaceContent.pnpmVersion) {
+  packageContent.packageManager = `pnpm@${metaWorkspaceContent.pnpmVersion}`
+}
+const packageManagerChanged = packageContent.packageManager !== previousPackageManager
+
+// Update the meta workspace information
 delete packageContent.metaCatalog // Former name of the metaWorkspace property
 packageContent.metaWorkspace = {
   version: metaPackageContent.version,
@@ -168,19 +173,18 @@ fs.writeFileSync(
   'utf8'
 )
 
-// Update the lockfile only: no node_modules and no build scripts.
-// --no-frozen-lockfile is required because pnpm freezes the lockfile by default in CI.
-console.log(chalk.blue('📦 Updating PNPM lockfile...'))
-try {
-  execFileSync('pnpm', ['install', '--lockfile-only', '--no-frozen-lockfile'], {
-    cwd: cmdDir,
-    stdio: 'inherit'
-  })
-} catch (error) {
-  console.error(chalk.red('❌ PNPM install failed, restoring pnpm-workspace.yaml and package.json'))
-  fs.writeFileSync(workspacePath, originalWorkspaceFile, 'utf8')
-  fs.writeFileSync(packagePath, originalPackageFile, 'utf8')
-  process.exit(error.status || 1)
+// Install dependencies if the workspace or PNPM version has changed
+if (workspaceChanged || packageManagerChanged) {
+  console.log(chalk.blue('📦 Installing PNPM dependencies...'))
+  try {
+    execFileSync('pnpm', ['install'], {
+      cwd: cmdDir,
+      stdio: 'inherit'
+    })
+  } catch (error) {
+    console.error(chalk.red('❌ PNPM install failed'))
+    process.exit(error.status || 1)
+  }
 }
 
 console.log(chalk.green('✅ Workspace synchronized successfully!'))

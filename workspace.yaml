@@ -1,3 +1,5 @@
+pnpmVersion: "10.34.5"
+
 catalog:
   "@automerge/automerge-repo": "2.4.0"
   "@automerge/automerge-repo-network-websocket": "2.4.0"
@@ -255,3 +257,6 @@ allowBuilds:
   sqlite3: true
   ssh2: true
   vue-demi: true
+
+disallowWorkspaceCycles: true
+pmOnFail: error
