@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 import fs from 'node:fs'
 import path from 'node:path'
+import { execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import chalk from 'chalk'
-import { loadAll, dump } from 'js-yaml'
+import { load, dump } from 'js-yaml'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const cmdDir = path.resolve(process.cwd())
@@ -11,8 +12,8 @@ const cmdDir = path.resolve(process.cwd())
 // Settings that are never synchronized because they are specific to each repository
 const excludedSettings = ['packages']
 
-// Read a YAML file, an empty file gives an empty object (loadAll is used because load throws on an empty document)
-const readYaml = (filePath) => loadAll(fs.readFileSync(filePath, 'utf8'))[0] ?? {}
+// Read a YAML file, an empty file gives an empty object
+const readYaml = (filePath) => load(fs.readFileSync(filePath, 'utf8')) ?? {}
 
 // Ensure the command is run within a repo
 const packagePath = path.join(cmdDir, 'package.json')
@@ -57,7 +58,7 @@ try {
   process.exit(1)
 }
 
-// Read the local workspace file
+// Read the local workspace file, used only to adjust the settings defined in the meta workspace
 const localWorkspacePath = path.join(cmdDir, 'workspace.yaml')
 let localWorkspaceContent = {}
 
@@ -78,7 +79,7 @@ const isMap = (value) =>
   !Array.isArray(value)
 
 function mergeSetting (meta, local) {
-  // A setting left empty in a file is considered as missing
+  // A setting with a null value is considered as missing
   if (local == null) return meta
   if (meta == null) return local
 
@@ -108,14 +109,14 @@ try {
   process.exit(1)
 }
 
-// Replace every managed setting in the workspace.
-// Excluded settings and settings unknown to the meta and local files are left untouched.
-const settings = [
-  ...new Set([
-    ...Object.keys(metaWorkspaceContent),
-    ...Object.keys(localWorkspaceContent)
-  ])
-].filter(setting => !excludedSettings.includes(setting))
+// Keep the initial workspace content to detect changes
+const previousWorkspaceContent = JSON.stringify(workspaceContent)
+
+// Only the settings defined in the meta workspace are managed: each one is overwritten
+// in pnpm-workspace.yaml by the merge of the meta and local workspace values.
+// Any other setting of pnpm-workspace.yaml is left untouched.
+const settings = Object.keys(metaWorkspaceContent)
+  .filter(setting => !excludedSettings.includes(setting))
 
 for (const setting of settings) {
   workspaceContent[setting] = mergeSetting(
@@ -124,6 +125,19 @@ for (const setting of settings) {
   )
 }
 
+// Check whether the workspace has changed
+const workspaceChanged = JSON.stringify(workspaceContent) !== previousWorkspaceContent
+if (!workspaceChanged) {
+  console.log(chalk.green('✅ Workspace is already up to date!'))
+  process.exit(0)
+}
+
+// Keep the original files to restore them if the lockfile update fails,
+// otherwise a new run would consider the workspace up to date and skip it
+const originalWorkspaceFile = fs.readFileSync(workspacePath, 'utf8')
+const originalPackageFile = fs.readFileSync(packagePath, 'utf8')
+
+// Update the pnpm-workspace.yaml file
 fs.writeFileSync(
   workspacePath,
   dump(workspaceContent, {
@@ -136,7 +150,7 @@ fs.writeFileSync(
 // Update the package.json file
 let packageContent
 try {
-  packageContent = JSON.parse(fs.readFileSync(packagePath, 'utf8'))
+  packageContent = JSON.parse(originalPackageFile)
 } catch (error) {
   console.error(chalk.red('❌ Failed to read package.json file:', error))
   process.exit(1)
@@ -150,8 +164,23 @@ packageContent.metaWorkspace = {
 
 fs.writeFileSync(
   packagePath,
-  JSON.stringify(packageContent, null, 2),
+  `${JSON.stringify(packageContent, null, 2)}\n`,
   'utf8'
 )
 
-console.log(chalk.green('✅ workspace synchronized successfully!'))
+// Update the lockfile only: no node_modules and no build scripts.
+// --no-frozen-lockfile is required because pnpm freezes the lockfile by default in CI.
+console.log(chalk.blue('📦 Updating PNPM lockfile...'))
+try {
+  execFileSync('pnpm', ['install', '--lockfile-only', '--no-frozen-lockfile'], {
+    cwd: cmdDir,
+    stdio: 'inherit'
+  })
+} catch (error) {
+  console.error(chalk.red('❌ PNPM install failed, restoring pnpm-workspace.yaml and package.json'))
+  fs.writeFileSync(workspacePath, originalWorkspaceFile, 'utf8')
+  fs.writeFileSync(packagePath, originalPackageFile, 'utf8')
+  process.exit(error.status || 1)
+}
+
+console.log(chalk.green('✅ Workspace synchronized successfully!'))
