@@ -123,7 +123,7 @@ catalog:
   eslint: "9.14.0"
   eslint-plugin-vue: "10.4.0"
   express: "5.2.1"
-  express-rate-limit: "5.1.0"
+  express-rate-limit: "5.5.1"
   fast-xml-parser: "5.11.1"
   feathers-authentication-management: "4.0.0"
   feathers-mailer: "3.0.0"
