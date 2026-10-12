@@ -36,7 +36,7 @@ export default function packageGenerator (plop) {
           templateFiles: path.join(templatesDir, '**/*'),
           globOptions: {
             dot: true,
-            ignore: hasLicense ? [] : [path.join(templatesDir, 'content', 'LICENSE.md')]
+            ignore: hasLicense ? [] : [path.join(templatesDir, 'LICENSE.md')]
           },
           data: {
             packageManager: monorepoPkg.packageManager,

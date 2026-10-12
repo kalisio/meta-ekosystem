@@ -4,9 +4,9 @@
 [![Maintainability Rating]({{sonarUrl}}/api/project_badges/measure?project={{sonarPrefix}}{{ name }}&metric=software_quality_maintainability_rating&token={{sonarToken}})]({{sonarUrl}}/dashboard?id={{sonarPrefix}}{{ name }})
 [![Security Rating]({{sonarUrl}}/api/project_badges/measure?project={{sonarPrefix}}{{ name }}&metric=software_quality_security_rating&token={{sonarToken}})]({{sonarUrl}}/dashboard?id={{sonarPrefix}}{{ name }})
 [![Coverage]({{sonarUrl}}/api/project_badges/measure?project={{sonarPrefix}}{{ name }}&metric=coverage&token={{sonarToken}})]({{sonarUrl}}/dashboard?id={{sonarPrefix}}{{ name }})
-{{~#if license}}
+{{#if license}}
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-{{~/if}}
+{{/if}}
 
 _{{ description }}_
 
@@ -15,7 +15,7 @@ _{{ description }}_
 
 ## Documentation
 
-Detailed documentation is available at the following [link](https://kalisio.github.io/{{ name }}).
+Detailed documentation is available at the following [link]({{docsUrl}}).
 {{/if}}
 
 ## License
