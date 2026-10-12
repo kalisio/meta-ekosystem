@@ -5,6 +5,7 @@ export const baseConfig = defineConfig({
     globals: true,
     silent: false,
     testTimeout: 30000,
+    passWithNoTests: true,
     coverage: {
       provider: 'v8',
       all: true,

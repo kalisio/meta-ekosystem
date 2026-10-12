@@ -6,9 +6,9 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 export default function monorepoGenerator (plop) {
-  plop.setActionType('injectCatalog', (answers, config) => {
-    execSync('k-sync-catalog', { cwd: config.destination, stdio: 'inherit' })
-    return 'catalog synced'
+  plop.setActionType('injectWorkspace', (answers, config) => {
+    execSync('k-sync-workspace', { cwd: config.destination, stdio: 'inherit' })
+    return 'workspace synced'
   })
 
   plop.setGenerator('monorepo', {
@@ -127,7 +127,7 @@ export default function monorepoGenerator (plop) {
           }
         },
         {
-          type: 'injectCatalog',
+          type: 'injectWorkspace',
           destination: targetRepo
         }
       ]
