@@ -31,7 +31,7 @@
     "winston": "catalog:"
   },
   "peerDependencies": {
-    "@kalisio/krawler": "{{#if krawlerEkosystem}}workspace:*{{else}}catalog:*{{/if}}"
+    "@kalisio/krawler": "{{#if krawlerEkosystem}}workspace:*{{else}}catalog:{{/if}}"
   },
   "engines": {
     "node": ">=20",

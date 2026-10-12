@@ -11,7 +11,7 @@ const plopfilePath = path.join(metaRepoDir, 'plopfile.js')
 try {
   const plop = await nodePlop(plopfilePath, { cwd: metaRepoDir })
   const generator = plop.getGenerator('monorepo')
-  if (!generator) throw new Error('❌ Generator \'nonorepo\' not found')
+  if (!generator) throw new Error('❌ Generator \'monorepo\' not found')
   const answers = await generator.runPrompts()
   await generator.runActions({
     ...answers,
