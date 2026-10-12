@@ -110,7 +110,7 @@ export default function monorepoGenerator (plop) {
       if (!answers.documentation) ignore.push(path.join(templatesPath, 'docs/**'))
       if (!answers.license) {
         ignore.push(path.join(templatesPath, 'LICENSE.md'))
-        ignore.push(path.join(templatesPath, 'docs/license.md'))
+        ignore.push(path.join(templatesPath, 'docs/overview/license.md'))
       }
       return [
         {

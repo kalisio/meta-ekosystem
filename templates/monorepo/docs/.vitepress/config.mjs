@@ -40,20 +40,20 @@ export default withMermaid(
           { text: 'About', link: '/overview/about' },
           { text: 'Contributing', link: '/overview/contributing' },
           { text: 'Roadmap', link: '/overview/roadmap' },
-          {{~#if license}}
+          {{#if license}}
           { text: 'License', link: '/overview/license' },
-          {{~/if}}
+          {{/if}}
           { text: 'Contact', link: '/overview/contact' }
         ],
         ...sortedPackageSidebar
       },
       footer: {
-        copyright: '{{#if license}}MIT Licensed | {{/if}}Copyright © 2026-present {{authorName}}'
+        copyright: '{{#if license}}MIT Licensed | {{/if}}Copyright © {{year}}-present {{authorName}}'
       }
     },
     vite: {
       optimizeDeps: {
-        include: ['dayjs', 'mermaid', 'cytoscape', 'cytoscape-cose-bilkent'],
+        include: ['dayjs', 'mermaid', 'cytoscape', 'cytoscape-cose-bilkent']
       },
       ssr: {
         noExternal: ['@kalisio/vitepress-theme']
