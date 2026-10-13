@@ -54,22 +54,23 @@ It generates a **monorepo** skeleton with the following structure:
 ```
 monorepo
 ├── docs
-│   ├── index.md.hbs
+│   ├── index.md
 │   ├── overview
-│   │   ├── about.md.hbs
-│   │   ├── changelog.md
+│   │   ├── about.md
 │   │   ├── contact.md
-│   │   ├── contributing.md.hbs
+│   │   ├── contributing.md
 │   │   ├── license.md
-│   │   └── roadmap.md.hbs
-│   └── package.json.hbs
+│   │   └── roadmap.md
+│   └── package.json
 ├── knip.json
 ├── LICENSE.md
 ├── lint-staged.config.mjs
-├── package.json.hbs
-├── pnpm-workspace.yaml.hbs
-├── README.md.hbs
-├── sonar-project.properties.hbs
+├── package.json
+├── pnpm-workspace.yaml
+├── README.md
+├── scripts
+│   └── prepare.mjs
+├── sonar-project.properties
 ├── vite.base-config.js
 └── vitest.base-config.js
 ```
@@ -89,13 +90,52 @@ pnpm k-init-monorepo
 
 It generates a **package** skeleton with the following structure:
 
+- library
+
 ```
-package
+library
 ├── LICENSE.md
 ├── package.json
 ├── README.md
+├── src
+│   └── index.js
+├── test
+│   └── index.test.js
 ├── vite.config.js
 └── vitest.config.js
+```
+
+- service
+
+```
+package/service/content/
+├── config
+│   └── default.cjs
+├── Dockerfile
+├── LICENSE.md
+├── package.json
+├── README.md
+├── src
+│   ├── channels.js
+│   ├── hooks.js
+│   ├── main.js
+│   ├── middlewares.js
+│   ├── routes.js.hbs
+│   └── server.js
+├── test
+│   └── healthcheck.test.js
+└── vitest.config.js
+```
+
+- job
+
+```
+job
+├── Dockerfile
+├── jobfile.js
+├── LICENSE.md
+├── package.json
+└── README.md
 ```
 
 It adds the following scripts to the parent monorepo's `package.json`:
@@ -129,7 +169,7 @@ You will be prompted to enter the package `name` and `description`.
 It generates an **example** skeleton with the following structure:
 
 ```
-package
+example
 ├── LICENSE.md
 ├── package.json
 ├── README.md
@@ -180,6 +220,10 @@ flowchart LR
   S -- "overrides settings, e.g, catalog, overrides..." --> PW
   S -- "overrides packageManager, metaWorkspace" --> PJ
   S -. "if changed" .-> I[pnpm install]
+  classDef file fill:#FAEEDA,stroke:#BA7517,color:#633806
+  classDef tool fill:#EEEDFE,stroke:#534AB7,color:#26215C
+  class MW,LW,PW,PJ file
+  class S,I tool
 ```
 
 > [!TIP]
