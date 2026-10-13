@@ -1,6 +1,6 @@
 {
   "name": "@kalisio/meta-ekosystem",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Kalisio's meta-repo for sharing tools, configurations, and conventions",
   "packageManager": "pnpm@10.34.5",
   "private": true,

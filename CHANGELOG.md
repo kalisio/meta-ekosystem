@@ -1,5 +1,11 @@
 # @kalisio/meta-ekosystem
 
+## 0.12.0
+
+### Minor Changes
+
+- [v0.11.0](https://github.com/kalisio/meta-ekosystem/milestone/11?closed=1)
+
 ## 0.11.0
 
 ### Minor Changes
