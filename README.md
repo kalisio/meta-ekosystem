@@ -272,15 +272,6 @@ pnpm lint
 Create changesets as needed during the development phase using:
 
 ```bash
-pnpm change
-```
-
-> [!NOTE]
-> It is recommended to create a changeset for each significant commit, e.g., a fix or feat.
-
-Then update the **version** using:
-
-```bash
 pnpm bump
 ```
 

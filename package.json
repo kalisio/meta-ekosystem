@@ -23,11 +23,11 @@
     ]
   },
   "scripts": {
+    "prebump": "changeset",
     "bump": "changeset version",
-    "change": "changeset",
+    "postbump": "node scripts/commit-bump.js",
     "lint": "standard '**/*.js' --fix",
     "prepare": "husky",
-    "postbump": "node scripts/commit-bump.js",
     "postrelease": "git push --follow-tags",
     "release": "changeset publish"
   },
