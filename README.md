@@ -33,12 +33,15 @@ pnpm link --global
 
 ### Resources
 
-#### Catalog
+#### Workspace
 
-The [`catalog.json`](./catalog.json) file, also referred to as the **meta-catalog**, centralizes and maintains the list of all dependencies, along with their respective versions, to ensure consistency and alignment across the **Kalisio** ecosystem.
+The [`workspace.yaml`](./workspace.yaml) file, also referred to as the **meta-workspace**, centralizes the PNPM
+workspace configuration shared across the **Kalisio** ecosystem: the dependency catalog with the respective versions,
+overrides, and other PNPM settings, as well as the PNPM version to be used.
 
 > [!TIP]
-> Use the [k-sync-catalog](#k-sync-catalog) commands to keep your local catalog synchronized with this meta-catalog.
+> Use the [k-sync-workspace](#k-sync-workspace) command to keep your monorepo synchronized with this meta-workspace.
+
 
 ### Commands
 
@@ -148,16 +151,40 @@ You will be prompted to enter the example `name`.
 > [!IMPORTANT]
 > The `name` is used to declare the dependency on the package named `@kalisio/<name>`
 
-#### k-sync-catalog
+#### k-sync-workspace
 
 ##### Description
 
-It synchronizes your project catalog by merging the **meta-catalog** with an existing local catalog file and updating
-the catalog property in `pnpm-workspace.yaml`.
+It synchronizes your monorepo with the **meta-workspace**:
 
-<div align="center">
-  <img src="./docs/k-sync-catalog.png" alt="k-sync-catalog" width="400"/>
-</div>
+- merges the **meta-workspace** with an optional local `workspace.yaml` file, then writes the result
+to `pnpm-workspace.yaml`. Maps (e.g. `catalog`, `overrides`) are merged with local entries taking precedence,
+lists are merged, other values are taken from the local file. The `packages` setting is never modified.
+- sets the `packageManager` field of the `package.json` according to the `pnpmVersion` defined in the **meta-workspace**.
+- records the meta-workspace version and the synchronization date in the `metaWorkspace` field of the `package.json`.
+- runs `pnpm install` if the workspace or the PNPM version has changed.
+
+```mermaid
+flowchart LR
+  subgraph meta [meta-ekosystem]
+    MW[workspace.yaml]
+  end
+  subgraph repo [monorepo]
+    LW["workspace.yaml (optional)"]
+    PW[pnpm-workspace.yaml]
+    PJ[package.json]
+  end
+  S{{k-sync-workspace}}
+  MW --> S
+  LW --> S
+  S -- "catalog, overrides, settings" --> PW
+  S -- "packageManager, metaWorkspace" --> PJ
+  S -. "if changed" .-> I[pnpm install]
+```
+
+> [!TIP]
+> Use a local `workspace.yaml` file to add dependencies specific to your monorepo or to override a meta-workspace
+> version, rather than editing `pnpm-workspace.yaml` directly: it would be overwritten by the next synchronization.
 
 ##### Usage
 
@@ -166,8 +193,9 @@ the catalog property in `pnpm-workspace.yaml`.
 
 ```bash
 cd path/to/<my-monorepo>
-pnpm k-sync-catalog
+pnpm k-sync-workspace
 ```
+
 ## Contributing
 
 ### Guidelines
@@ -219,7 +247,7 @@ When a version tag (e.g., `v1.2.3`) is pushed to this repository, a GitHub Actio
 
 1. **Discovers** all repositories defined in the `ekosystem.json` file.
 2. **Clones** each discovered repository.
-3. **Runs** `k-sync-catalog` inside each clone to update the dependencies according to the central `catalog.json`.
+3. **Runs** `k-sync-workspace` inside each clone to update the dependencies according to the central `workspace.yaml`.
 4. **Creates** a pull request for every repository that has changes, using a dedicated GitHub App bot (`meta-ekosystem-ci[bot]`).
 
 This ensures that every dependent repository stays synchronized with the latest dependency versions defined in this meta‑catalog.
