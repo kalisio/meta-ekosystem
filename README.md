@@ -284,7 +284,7 @@ Then update the **version** using:
 pnpm bump
 ```
 
-### Publishing
+### Releasing
 
 To release a new version, use:
 
