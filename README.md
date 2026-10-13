@@ -1,7 +1,6 @@
 # meta-ekosystem
 
 [![Latest Release](https://img.shields.io/github/v/tag/kalisio/meta-ekosystem?sort=semver&label=latest)](https://github.com/kalisio/meta-ekosystem/releases)
-[![Download Status](https://img.shields.io/npm/dm/@kalisio/meta-ekosystem.svg?style=flat-square)](https://www.npmjs.com/package/@kalisio/meta-ekosystem)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
@@ -287,14 +286,16 @@ pnpm bump
 
 ### Publishing
 
-To publish this package to [NPM](https://www.npmjs.com/), use:
+To release a new version, use:
 
 ```bash
 pnpm release
 ```
 
 > [!NOTE]
-> When publishing a tag will be created corresponding to the **version** defined in the `package.json`
+> This package is not published to NPM anymore. Releasing creates and pushes a tag corresponding to the **version**
+> defined in the `package.json`, which triggers the [CI/CD workflow](#cicd-workflow) that synchronizes the
+> dependent repositories.
 
 ### CI/CD Workflow
 
