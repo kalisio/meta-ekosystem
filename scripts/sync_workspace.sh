@@ -99,6 +99,7 @@ else
     gh_create_pull_request "$TARGET_REPO" "$PR_TITLE" "$PR_BODY" "$BRANCH"
 fi
 
+# TODO: Auto-merge is currently disabled, pending a team decision
 # Merge automatically once the required checks pass.
 # Requires "Allow auto-merge" in the repo settings and branch protection with required checks.
 # if ! gh pr merge "$BRANCH" --repo "$TARGET_REPO" --auto --squash; then

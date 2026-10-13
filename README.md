@@ -10,7 +10,7 @@ _Kalisio's meta-repo for sharing tools, configurations, and conventions_
 ---
 
 This repository centralizes common development resources used across Kalisio projects, including:
-- A meta package catalog for ecosystem management
+- A meta workspace for ecosystem management
 - Various scripts to be included in monorepo projects that includes this meta-repo
 - Various code generators to help creating monorepo projects
 - Common conventions
@@ -109,7 +109,7 @@ library
 
 ```
 service
-|_ .dockerignore
+├── .dockerignore
 ├── config
 │   └── default.cjs
 ├── Dockerfile
@@ -306,7 +306,7 @@ When a version tag (e.g., `v1.2.3`) is pushed to this repository, a GitHub Actio
 4. **Opens** a pull request for every repository that has changes, using a dedicated GitHub App bot (`meta-ekosystem-ci[bot]`):
    - the changes are committed on a single `sync/meta-ekosystem` branch, rebuilt from the default branch on every sync, so that pull requests don't pile up,
    - if a sync pull request is already open, it is updated instead of creating a new one,
-   - if the repository is already up to date, any open sync pull request is obsolete and is closed,
+   - if the repository is already up to date, any open sync pull request is obsolete and is closed.
 
 This ensures that every dependent repository stays synchronized with the latest dependency versions defined in this **meta‑workspace**.
 
