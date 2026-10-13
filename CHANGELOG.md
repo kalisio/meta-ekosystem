@@ -1,6 +1,6 @@
 # @kalisio/meta-ekosystem
 
-## [0.10.0]((https://github.com/kalisio/meta-ekosystem/milestone/9?closed=1))
+## [0.10.0](https://github.com/kalisio/meta-ekosystem/milestone/9?closed=1)
 
 ## [0.9.0](https://github.com/kalisio/meta-ekosystem/milestone/9?closed=1)
 
