@@ -108,7 +108,8 @@ library
 - service
 
 ```
-package/service/content/
+service
+|_ .dockerignore
 ├── config
 │   └── default.cjs
 ├── Dockerfile
@@ -120,7 +121,7 @@ package/service/content/
 │   ├── hooks.js
 │   ├── main.js
 │   ├── middlewares.js
-│   ├── routes.js.hbs
+│   ├── routes.js
 │   └── server.js
 ├── test
 │   └── healthcheck.test.js
@@ -140,11 +141,24 @@ job
 
 It adds the following scripts to the parent monorepo's `package.json`:
 
+- library
+
 | Script | Description |
 |---|---|
-| `build:<package>` | Build the package |
-| `lint:<package>`  | Lint the package  |
-| `test:<package>`  | Run the package tests |
+| `build:<package>` | Build the library |
+| `lint:<package>`  | Lint the library  |
+| `test:<package>`  | Run the library tests |
+
+- service
+
+| Script | Description |
+|---|---|
+| `lint:<package>`  | Lint the service  |
+| `test:<package>`  | Run the service tests |
+
+- job
+
+None.
 
 The command also updates the documentation configuration accordingly:
 - adds an entry to the `packages.json` file, which is used to generate the documentation
@@ -188,9 +202,6 @@ pnpm k-init-example
 
 You will be prompted to enter the example `name`.
 
-> [!IMPORTANT]
-> The `name` is used to declare the dependency on the package named `@kalisio/<name>`
-
 #### k-sync-workspace
 
 ##### Description
@@ -217,7 +228,7 @@ flowchart LR
   S{{k-sync-workspace}}
   MW --> S
   LW --> S
-  S -- "overrides settings, e.g, catalog, overrides..." --> PW
+  S -- "overrides settings, e.g., catalog, overrides..." --> PW
   S -- "overrides packageManager, metaWorkspace" --> PJ
   S -. "if changed" .-> I[pnpm install]
   classDef file fill:#FAEEDA,stroke:#BA7517,color:#633806
@@ -292,9 +303,12 @@ When a version tag (e.g., `v1.2.3`) is pushed to this repository, a GitHub Actio
 1. **Discovers** all repositories defined in the `ekosystem.json` file.
 2. **Clones** each discovered repository.
 3. **Runs** `k-sync-workspace` inside each clone to update the dependencies according to the central `workspace.yaml`.
-4. **Creates** a pull request for every repository that has changes, using a dedicated GitHub App bot (`meta-ekosystem-ci[bot]`).
+4. **Opens** a pull request for every repository that has changes, using a dedicated GitHub App bot (`meta-ekosystem-ci[bot]`):
+   - the changes are committed on a single `sync/meta-ekosystem` branch, rebuilt from the default branch on every sync, so that pull requests don't pile up,
+   - if a sync pull request is already open, it is updated instead of creating a new one,
+   - if the repository is already up to date, any open sync pull request is obsolete and is closed,
 
-This ensures that every dependent repository stays synchronized with the latest dependency versions defined in this meta‑catalog.
+This ensures that every dependent repository stays synchronized with the latest dependency versions defined in this **meta‑workspace**.
 
 <details>
 <summary>Click to see the diagram that illustrates this CI/CD workflow</summary>
@@ -310,7 +324,6 @@ flowchart TD
   Q -- No --> X["Close any obsolete sync pull request"]
   Q -- Yes --> P["Commit and force push the branch"]
   P --> R["Create or update the pull request"]
-  R --> A["Enable auto-merge once checks pass"]
 ```
 
 </details>
@@ -325,7 +338,7 @@ Licensed under the [MIT License](LICENSE).
 Copyright (c) 2026-present [Kalisio](https://kalisio.com)
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://kalisio.github.io/kalisioscope/kalisio/kalisio-logo-dark.svg"">
+  <source media="(prefers-color-scheme: dark)" srcset="https://kalisio.github.io/kalisioscope/kalisio/kalisio-logo-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://kalisio.github.io/kalisioscope/kalisio/kalisio-logo-light.svg">
   <img alt="Kalisio" src="https://kalisio.github.io/kalisioscope/kalisio/kalisio-logo-light.svg" height="96">
 </picture>

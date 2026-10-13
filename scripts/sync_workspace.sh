@@ -99,10 +99,10 @@ else
     gh_create_pull_request "$TARGET_REPO" "$PR_TITLE" "$PR_BODY" "$BRANCH"
 fi
 
-#  Merge automatically once the required checks pass.
+# Merge automatically once the required checks pass.
 # Requires "Allow auto-merge" in the repo settings and branch protection with required checks.
-if ! gh pr merge "$BRANCH" --repo "$TARGET_REPO" --auto --squash; then
-    echo "-> Warning: auto-merge could not be enabled on $REPOSITORY, the pull request must be merged manually" >&2
-fi
+# if ! gh pr merge "$BRANCH" --repo "$TARGET_REPO" --auto --squash; then
+#    echo "-> Warning: auto-merge could not be enabled on $REPOSITORY, the pull request must be merged manually" >&2
+# fi
 
 echo "-> $REPOSITORY synced successfully"
