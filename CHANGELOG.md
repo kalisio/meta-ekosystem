@@ -1,5 +1,11 @@
 # @kalisio/meta-ekosystem
 
+## 0.11.0
+
+### Minor Changes
+
+- 5cfc619: feat: Update Kalisio logo/icons in vitepress template
+
 ## [0.10.0](https://github.com/kalisio/meta-ekosystem/milestone/9?closed=1)
 
 ## [0.9.0](https://github.com/kalisio/meta-ekosystem/milestone/9?closed=1)
@@ -25,4 +31,3 @@
 ## [0.2.0](https://github.com/kalisio/meta-ekosystem/milestone/2?closed=1)
 
 ## [0.1.0](https://github.com/kalisio/meta-ekosystem/milestone/1?closed=1)
-
