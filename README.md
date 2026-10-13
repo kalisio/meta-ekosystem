@@ -177,8 +177,8 @@ flowchart LR
   S{{k-sync-workspace}}
   MW --> S
   LW --> S
-  S -- "catalog, overrides, settings" --> PW
-  S -- "packageManager, metaWorkspace" --> PJ
+  S -- "overrides settings, e.g, catalog, overrides..." --> PW
+  S -- "overrides packageManager, metaWorkspace" --> PJ
   S -. "if changed" .-> I[pnpm install]
 ```
 
