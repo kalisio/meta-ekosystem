@@ -2,7 +2,8 @@
   "name": "@kalisio/meta-ekosystem",
   "version": "0.10.0",
   "description": "Kalisio's meta-repo for sharing tools, configurations, and conventions",
-  "packageManager": "pnpm@10.28.0",
+  "packageManager": "pnpm@10.34.5",
+  "private": true,
   "type": "module",
   "bin": {
     "k-init-application": "./bin/k-init-application.js",
@@ -10,15 +11,6 @@
     "k-init-monorepo": "./bin/k-init-monorepo.js",
     "k-init-package": "./bin/k-init-package.js",
     "k-sync-workspace": "./bin/k-sync-workspace.js"
-  },
-  "files": [
-    "catalog.json",
-    "plopfile.js",
-    "templates/",
-    "scripts/"
-  ],
-  "exports": {
-    "./catalog.json": "./catalog.json"
   },
   "standard": {
     "globals": [
