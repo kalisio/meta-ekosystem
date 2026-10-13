@@ -296,7 +296,7 @@ pnpm release
 > [!NOTE]
 > When publishing a tag will be created corresponding to the **version** defined in the `package.json`
 
-## CI/CD Workflow
+### CI/CD Workflow
 
 When a version tag (e.g., `v1.2.3`) is pushed to this repository, a GitHub Actions workflow automatically:
 
@@ -329,7 +329,9 @@ flowchart TD
 </details>
 
 > [!IMPORTANT]
-> This workflow can also be triggered manually from GitHub Actions.
+> This workflow can also be triggered manually from GitHub Actions. In that case,
+> select the version tag to sync in the **Use workflow from** list, and enter the same
+> tag in the `tag` input: the sync fails if it is run from a branch.
 
 ## License
 
