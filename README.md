@@ -255,7 +255,19 @@ This ensures that every dependent repository stays synchronized with the latest 
 <details>
 <summary>Click to see the diagram that illustrates this CI/CD workflow</summary>
 
-![CI Workflow](./docs/sync-catalog-diagram.png)
+```mermaid
+flowchart TD
+  T["Tag vX.Y.Z on meta-ekosystem"] --> D["Run the sync_workspace workflow"]
+  D --> L["load_repos: read ekosystem.json"]
+  L --> M["One job per repository, in parallel"]
+  M --> C["Clone the repository and create the sync/meta-ekosystem branch"]
+  C --> K["Run k-sync-workspace"]
+  K --> Q{Changes?}
+  Q -- No --> X["Close any obsolete sync pull request"]
+  Q -- Yes --> P["Commit and force push the branch"]
+  P --> R["Create or update the pull request"]
+  R --> A["Enable auto-merge once checks pass"]
+```
 
 </details>
 
